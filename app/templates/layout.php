@@ -25,11 +25,12 @@
 	</div>
 
 
-	<!-- Appel à jQuery -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
 
 	<!-- Appel à jQuery Mobile -->
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	
+	<!-- Appel à jQuery -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
 
 	<!-- Appel des scripts -->
 	<?= $this->section('scripts') ?>
