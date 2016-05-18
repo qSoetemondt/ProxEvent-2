@@ -14,30 +14,40 @@ class UserController extends Controller
     public function inscription(){
         $errors = [];
         if(isset($_POST['submit'])){
-            if($_POST['myForm']['login'] == ""){
-                $errors[] = "erreur 1";
-            }elseif(preg_match('/[a-zA-Z0-9]{3,20}/' , $_POST['myForm']['login']) == false){
-                $errors[] = "erreur 2";
+            if($_POST['myForm']['username'] == ""){
+                $errors['login'] = "Le champ login est vide";
+            }elseif(preg_match('/[a-zA-Z0-9]{3,20}/' , $_POST['myForm']['username']) == false){
+                $errors['login'] = "Le champ login ne respecte pas les conditions (3-20 caractère)";
             }elseif($_POST['myForm']['mdp'] == ""){
-                $errors[] = "erreur 3";
+                $errors['mdp'] = "Le champ mot de passe est vide";
             }elseif(preg_match('/[a-zA-Z0-9]{5,32}/',$_POST['myForm']['mdp']) == false){
-                $errors[] = "erreur 4";
+                $errors['mdp'] = "Le champ mot de passe ne respecte pas les conditions (5 à 32 caractère alphanumérique)";
             }elseif($_POST['myForm']['email'] == ""){
-                $errors[] = "erreur 5";
+                $errors['email'] = "Le champ email est vide";
             }elseif(preg_match('/^(([a-zA-Z]|[0-9])|([-]|[_]|[.]))+[@](([a-zA-Z0-9])|([-])){2,63}[.](([a-zA-Z0-9]){2,63})+$/', $_POST['myForm']['email']) == false){
-                $errors[] = "erreur 6";
+                $errors['email'] = "Merci de rentrer une adresse valide (exemple@exemple.com)";
             }
          if(!$errors){
+            $email = $_POST['myForm']['email'];
+            $username = $_POST['myForm']['username'];
             $manager = new UserManager();
-			$manager->insert($_POST['myForm']);
-			$this->redirectToRoute('home');
+            $mail = $manager->emailExists($email);
+            $user = $manager->usernameExists($username);
+                if($mail == false && $user == false){
+                    $_POST['myForm']['mdp'] = password_hash($_POST['myForm']['mdp'], PASSWORD_DEFAULT);
+			        $manager->insert($_POST['myForm']);
+			        $this->redirectToRoute('home');
+                    }else{
+                    $exist = "Login ou email déjà existant";
+                    echo $exist;
+                    }
 		}else{
-            var_dump($errors);
+            
         }
-		
-	}
-   $this->show('default/inscription');
-   }
+		  
+        }
+    $this->show('default/inscription',['errors' => $errors]);
+    }
 }
         
     
