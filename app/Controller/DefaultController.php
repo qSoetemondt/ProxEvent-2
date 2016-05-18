@@ -19,4 +19,8 @@ class DefaultController extends Controller
 	{
 		$this->show('default/test');
 	}
+	public function inscription()
+	{
+		$this->show('default/inscription');
+	}
 }
