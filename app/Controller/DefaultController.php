@@ -23,4 +23,8 @@ class DefaultController extends Controller
 	{
 		$this->show('default/inscription');
 	}
+	public function login()
+	{
+		$this->show('default/login');
+	}
 }
