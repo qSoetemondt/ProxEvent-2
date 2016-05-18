@@ -31,6 +31,7 @@
 </div>
 </form>
 
+<a href="<?= $this->url('oublie')?>">Mot de passe oublié ?</a>
 
 
 

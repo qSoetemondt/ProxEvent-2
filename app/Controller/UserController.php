@@ -36,7 +36,7 @@ class UserController extends Controller
                 if($mail == false && $user == false){
                     $_POST['myForm']['password'] = password_hash($_POST['myForm']['password'], PASSWORD_DEFAULT);
 			        $manager->insert($_POST['myForm']);
-			        $this->redirectToRoute('home');
+			        $this->redirectToRoute('login');
                     }else{
                     $exist = "Login ou email déjà existant";
                     echo $exist;
