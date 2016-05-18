@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.12
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 17 Mai 2016 à 13:57
--- Version du serveur :  5.6.25
--- Version de PHP :  5.6.11
+-- Généré le :  Mer 18 Mai 2016 à 17:20
+-- Version du serveur :  10.1.10-MariaDB
+-- Version de PHP :  5.5.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -29,10 +29,11 @@ USE `eventmanager`;
 --
 
 CREATE TABLE IF NOT EXISTS `categories` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL,
   `libelle` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `description` varchar(250) COLLATE utf8_unicode_ci NOT NULL
+  `description` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -64,7 +65,7 @@ INSERT INTO `categories` (`id`, `parent_id`, `libelle`, `description`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `events` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `titre` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
   `adresse` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
@@ -74,63 +75,37 @@ CREATE TABLE IF NOT EXISTS `events` (
   `date_debut` datetime NOT NULL,
   `date_fin` datetime NOT NULL,
   `payant` tinyint(1) NOT NULL,
-  `plus_un` int(11) NOT NULL
+  `plus_un` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `users`
+-- Structure de la table `wusers`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL,
-  `login` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+CREATE TABLE IF NOT EXISTS `wusers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `mdp` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Index pour les tables exportées
+-- Contenu de la table `wusers`
 --
 
---
--- Index pour la table `categories`
---
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`);
+INSERT INTO `wusers` (`id`, `username`, `email`, `password`) VALUES
+(1, 'Quilegan', 'quentin.soetemondt@gmail.com', 'azerty'),
+(2, 'Quilegan', 'quentin.soetemondt@gmail.com', ''),
+(3, 'Quilegan', 'quentin.soetemondt@gmail.com', '$2y$10$BzJQS0wRSqqQCoOmOaMr8e8kWEpnNgwdKUQWAWvVEe2xcOuPQQQo2'),
+(4, 'Quilegan', 'quentin.soetemondt@gmail.com', '$2y$10$QRAt3NLo68vAryElKErUX.aIxvGfBk4D8Mt5WAdprtQD2pkelmdGq'),
+(5, 'azerty', 'azerty@mail.fr', '$2y$10$fx6w5ZSSwlONFVNQqEp21u6wK8MXWyn0wQhY/Zg9n/B1Wkz/hGZrC'),
+(6, 'JohnDoe', 'batman@gotham.fr', '$2y$10$VGE1ZLqxS3QYE1y9nphITea6YSBQ9YOyXYG3tmWidAxzh9pYh6Fya'),
+(7, 'bloum', 'bloum@free.fr', '$2y$10$kYyGxYUKyo.jpW.sEugzZes3UQ8SqiGVc.X1UHH1cYwXcIQSFtFKC');
 
---
--- Index pour la table `events`
---
-ALTER TABLE `events`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT pour les tables exportées
---
-
---
--- AUTO_INCREMENT pour la table `categories`
---
-ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
---
--- AUTO_INCREMENT pour la table `events`
---
-ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT pour la table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
