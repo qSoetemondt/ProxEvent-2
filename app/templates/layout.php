@@ -5,16 +5,27 @@
 	<title><?= $this->e($title) ?></title>
 
 	<!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-	
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Appel des CSS de datepicker -->
+	<link rel="stylesheet" href="<?= $this->assetUrl('css/default.css')?>">
+	<link rel="stylesheet" href="<?= $this->assetUrl('css/default.date.css')?>">
+	<link rel="stylesheet" href="<?= $this->assetUrl('css/default.time.css')?>">
+
 	<!-- Appel à notre CSS -->
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
 </head>
 <body>
-	
-<?= $this->section('main_content') ?>
 
+	<div class="container">
+		<header>
+			<h1><?= $this->e($title) ?></h1>
+		</header>
 
+		<section>
+			<?= $this->section('main_content') ?>
+		</section>
 
 
 	<!-- Appel à jQuery -->
@@ -23,6 +34,9 @@
 	<!-- Appel JS bootstrap -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	
+
+	<!-- Appel à bootstrap -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 	<!-- Appel des scripts -->
 	<?= $this->section('scripts') ?>
