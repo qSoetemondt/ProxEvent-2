@@ -18,9 +18,9 @@ class UserController extends Controller
                 $errors['login'] = "Le champ login est vide";
             }elseif(preg_match('/[a-zA-Z0-9]{3,20}/' , $_POST['myForm']['username']) == false){
                 $errors['login'] = "Le champ login ne respecte pas les conditions (3-20 caractère)";
-            }elseif($_POST['myForm']['mdp'] == ""){
+            }elseif($_POST['myForm']['password'] == ""){
                 $errors['mdp'] = "Le champ mot de passe est vide";
-            }elseif(preg_match('/[a-zA-Z0-9]{5,32}/',$_POST['myForm']['mdp']) == false){
+            }elseif(preg_match('/[a-zA-Z0-9]{5,32}/',$_POST['myForm']['password']) == false){
                 $errors['mdp'] = "Le champ mot de passe ne respecte pas les conditions (5 à 32 caractère alphanumérique)";
             }elseif($_POST['myForm']['email'] == ""){
                 $errors['email'] = "Le champ email est vide";
@@ -34,7 +34,7 @@ class UserController extends Controller
             $mail = $manager->emailExists($email);
             $user = $manager->usernameExists($username);
                 if($mail == false && $user == false){
-                    $_POST['myForm']['mdp'] = password_hash($_POST['myForm']['mdp'], PASSWORD_DEFAULT);
+                    $_POST['myForm']['password'] = password_hash($_POST['myForm']['password'], PASSWORD_DEFAULT);
 			        $manager->insert($_POST['myForm']);
 			        $this->redirectToRoute('home');
                     }else{
@@ -47,6 +47,30 @@ class UserController extends Controller
 		  
         }
     $this->show('default/inscription',['errors' => $errors]);
+    }
+    
+    	public function login() 
+	{
+        $errors = [];
+		if(isset($_POST['connexion'])) {
+			$auth = new AuthentificationManager();
+			$userManager = new UserManager();
+			if($auth->isValidLoginInfo($_POST['myForm']['username'], $_POST['myForm']['password'])) {
+				$user = $userManager->getUserByUsernameOrEmail($_POST['myForm']['username']);
+				$auth->logUserIn($user);
+				$this->redirectToRoute('home');
+			}else{
+                $errors['user'] = "Le nom de compte ou le mot de passe sont faux";
+            }
+		}
+		$this->show('default/login',['errors' => $errors]);
+	}
+    
+    public function logout()
+    {
+        $auth = new AuthentificationManager();
+        $auth->logUserOut();
+        $this->redirectToRoute('home');
     }
 }
         

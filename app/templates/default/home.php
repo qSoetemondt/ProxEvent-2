@@ -29,8 +29,8 @@
 				  <li><a href="<?= $this->url('inscription')?>">Inscription</a></li>
             	  <li><a href="<?= $this->url('login')?>">Login</a></li>
 			 <?php }else{ ?>
-				 <li><a href="<?= $this->url('deconnexion')?>">Déconnexion</a></li>
-				 <li><a href="<?= $this->url('addEvent')?>">Ajout Evénement</a></li>
+				 <li><a href="<?= $this->url('logout')?>">Déconnexion</a></li>
+				 <li><a href="<?= $this->url('home')?>">Ajout Evénement</a></li>
 			<?php } ?>
             
             
