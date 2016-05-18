@@ -4,9 +4,9 @@ html, body {
 	color: #F8F8F2;
 }
 
-.container {
+/*.container {
 	margin: 50px;
-}
+}*/
 
 a {
 	text-decoration: none;
@@ -24,3 +24,4 @@ h1 {
 h2 {
 	color: #66D9EF;
 }
+

@@ -4,37 +4,33 @@
 	<meta charset="UTF-8">
 	<title><?= $this->e($title) ?></title>
 
-	<!-- Appel à la CSS jQuery Mobile -->
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    
+	<link rel="stylesheet" href="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+  <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	<!-- Appel à notre CSS -->
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
+	
 </head>
 <body>
-	<div class="container">
-		<header>
-			<h1>W :: <?= $this->e($title) ?></h1>
-		</header>
-
-		<section>
-			<?= $this->section('main_content') ?>
-		</section>
-
-		<footer>
-		</footer>
-	</div>
 
 
-	<!-- Appel à jQuery -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+<div data-role="page">
 
-	<!-- Appel à jQuery Mobile -->
-	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<div data-role="header">
+		<h1>W :: <?= $this->e($title) ?></h1>
+	</div><!-- /header -->
+	
+	<div role="main" class="ui-content">
+		<?= $this->section('main_content') ?>
+	</div><!-- /content -->
 
-	<!-- Appel des scripts -->
-	<?= $this->section('scripts') ?>
+	<div data-role="footer">
+		<?= $this->section('footer')?>
+	</div><!-- /footer -->
+</div><!-- /page -->
 
+	
 </body>
-</html>
-
-
+</html> 
