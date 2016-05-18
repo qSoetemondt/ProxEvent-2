@@ -14,5 +14,17 @@ class DefaultController extends Controller
 	{
 		$this->show('default/home');
 	}
-
+	
+	public function test()
+	{
+		$this->show('default/test');
+	}
+	public function inscription()
+	{
+		$this->show('default/inscription');
+	}
+	public function login()
+	{
+		$this->show('default/login');
+	}
 }
