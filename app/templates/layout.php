@@ -4,33 +4,40 @@
 	<meta charset="UTF-8">
 	<title><?= $this->e($title) ?></title>
 
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-    
-	<link rel="stylesheet" href="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-  <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-  <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	
 	<!-- Appel à notre CSS -->
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
-	
 </head>
 <body>
+	<div class="container">
+		<header>
+			<h1>W :: <?= $this->e($title) ?></h1>
+		</header>
 
+		<section>
+			<?= $this->section('main_content') ?>
+		</section>
 
-<div data-role="page">
+		<footer>
+			<?= $this->section('footer')?>
+		</footer>
+	</div>
 
-	<div data-role="header">
-		<h1>W :: <?= $this->e($title) ?></h1>
-	</div><!-- /header -->
-	
-	<div role="main" class="ui-content">
-		<?= $this->section('main_content') ?>
-	</div><!-- /content -->
-
-	<div data-role="footer">
-		<?= $this->section('footer')?>
-	</div><!-- /footer -->
-</div><!-- /page -->
 
 	
+	
+	<!-- Appel à jQuery -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+	
+	<!-- Appel JS bootstrap -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	
+	<!-- Appel des scripts -->
+	<?= $this->section('scripts') ?>
+
 </body>
-</html> 
+</html>
+
+
