@@ -46,7 +46,7 @@
             	  		<li><a href="<?= $this->url('login')?>">Login</a></li>
 			 	 		<?php }else{ ?>
 				 			<li><a href="<?= $this->url('logout')?>">Déconnexion</a></li>
-				 			<li><a href="<?= $this->url('addevent')?>">Ajout Evénement</a></li>
+				 			<li><a href="<?= $this->url('addEvent')?>">Ajout Evénement</a></li>
 				 		<?php } ?>         
           			</ul>
         		</div>
