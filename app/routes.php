@@ -10,4 +10,5 @@
 		// route vers le fichier json
 		['GET|POST', '/api/categories', 'Api#categories', 'apiCategories'],
 		['GET|POST','/oublie', 'User#oublie', 'oublie'],
+		
 	);

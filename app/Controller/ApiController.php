@@ -17,4 +17,9 @@ class ApiController extends Controller
 		echo $liste_categories;
 	}
 
+
+	public function apiEvent(){
+		 
+	}
+
 }
