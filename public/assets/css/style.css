@@ -15,14 +15,14 @@ h2 {
 	color: #66D9EF;
 }
 
-body > .container{
+/*body > .container{
 	padding-top:60px;
-}
+}*/
 
-html {
+/*html {
   position: relative;
   min-height: 100%;
-}
+}*/
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
@@ -35,17 +35,17 @@ body {
   height: 60px;
   background-color: #f5f5f5;
 }
-body > .container {
+/*body > .container {
   padding: 60px 15px 0;
-}
-.container .text-muted {
+}*/
+/*.container .text-muted {
   margin: 20px 0;
-}
+}*/
 
-.footer > .container {
+/*.footer > .container {
   padding-right: 15px;
   padding-left: 15px;
-}
+}*/
 
 code {
   font-size: 80%;
@@ -59,8 +59,39 @@ code {
     Carte
    ==================== */
 
-/* définition de la carte */
-#mapOk {
+/*
+  100% du viewport
+  pour la carte en plein écran
+*/
+html, #mapOk {
   width: 100vw;
   height: 100vh;
+}
+
+/* Position carte : arrière plan */
+section>#mapOk {
+  position: absolute;
+  z-index: -10;
+}
+
+
+/* ====================
+    Infos & menus page
+   ==================== */
+
+/* Pré-requis de position */
+body {
+  position: relative;
+}
+
+/* Position menus : premier plan */
+footer {
+  position: absolute;
+  z-index: 10;
+}
+
+/* Position entête de titre : milieu de plan */
+header {
+  position: absolute;
+  z-index: 1;
 }
