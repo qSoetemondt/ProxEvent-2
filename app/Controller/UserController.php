@@ -33,6 +33,7 @@ class UserController extends Controller
                 $manager = new UserManager();
                 $mail = $manager->emailExists($email);
                 $user = $manager->usernameExists($username);
+
                 if($mail == false && $user == false){
                     $_POST['myForm']['password'] = password_hash($_POST['myForm']['password'], PASSWORD_DEFAULT);
 			        $manager->insert($_POST['myForm']);
@@ -42,7 +43,6 @@ class UserController extends Controller
                     echo $exist;
                     }
 		     }
-		  
         }
     $this->show('default/inscription',['errors' => $errors]);
     }
