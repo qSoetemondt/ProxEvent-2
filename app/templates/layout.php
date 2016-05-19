@@ -15,6 +15,8 @@
 
 	<!-- Appel à notre CSS -->
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
+	<!-- Appel script (vendor) Modernizr -->
+	<script src="<?= $this->assetUrl('js/vendor/modernizr-2.8.3.min.js') ?>"></script>
 </head>
 <body>
 
@@ -59,6 +61,8 @@
 	<!-- Appel JS bootstrap -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	
+	<!-- Chargement de l'API Google Maps -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGNXG4UdnErAn4jfJ2lgwZ0OEGbT-6lws"></script>
 
 	<!-- Appel à bootstrap -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>

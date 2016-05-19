@@ -53,3 +53,14 @@ code {
 .row{
   margin: 0;
 }
+
+
+/* ====================
+    Carte
+   ==================== */
+
+/* définition de la carte */
+#mapOk {
+  width: 100vw;
+  height: 100vh;
+}
