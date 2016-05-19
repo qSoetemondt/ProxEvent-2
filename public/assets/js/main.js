@@ -32,7 +32,7 @@ $(document).ready(function() {
 		var map = new google.maps.Map($zoneMap[0], {
 			zoom: 15,
 			center: localCoords,
-			disableDefaultUI : true // masque l'interface par défaut de Google
+			disableDefaultUI : true, // masque l'interface par défaut de Google
 			mapTypeId: google.maps.MapTypeId.ROADMAP // affichage graphique par défaut
 		});
 
