@@ -27,23 +27,24 @@ class UserController extends Controller
             }elseif(preg_match('/^(([a-zA-Z]|[0-9])|([-]|[_]|[.]))+[@](([a-zA-Z0-9])|([-])){2,63}[.](([a-zA-Z0-9]){2,63})+$/', $_POST['myForm']['email']) == false){
                 $errors['email'] = "Merci de rentrer une adresse valide (exemple@exemple.com)";
             }
-         if(!$errors){
-            $email = $_POST['myForm']['email'];
-            $username = $_POST['myForm']['username'];
-            $manager = new UserManager();
-            $mail = $manager->emailExists($email);
-            $user = $manager->usernameExists($username);
-                if($mail == false && $user == false){
-                    $_POST['myForm']['password'] = password_hash($_POST['myForm']['password'], PASSWORD_DEFAULT);
-			        $manager->insert($_POST['myForm']);
-			        $this->redirectToRoute('login');
-                    }else{
-                    $exist = "Login ou email déjà existant";
-                    echo $exist;
-                    }
-		}else{
-            
-        }
+             if(!$errors){
+                $email = $_POST['myForm']['email'];
+                $username = $_POST['myForm']['username'];
+                $manager = new UserManager();
+                $mail = $manager->emailExists($email);
+                $user = $manager->usernameExists($username);
+                    if($mail == false && $user == false){
+                        $_POST['myForm']['password'] = password_hash($_POST['myForm']['password'], PASSWORD_DEFAULT);
+    			        $manager->insert($_POST['myForm']);
+    			        $this->redirectToRoute('login');
+                        }else{
+                        $exist = "Login ou email déjà existant";
+                        echo $exist;
+                        }
+    		}
+            else{
+                
+            }
 		  
         }
     $this->show('default/inscription',['errors' => $errors]);
