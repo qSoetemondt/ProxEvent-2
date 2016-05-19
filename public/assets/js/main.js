@@ -44,10 +44,43 @@ $(document).ready(function() {
 			title: 'Position actuelle'
 		});
 
-		// marqueurs des évènements locaux existants
-		// for (variable in objet) {
-		// 	instruction
-		// }
+		// ************************************************
+		// Chargement des événements ciblés, par appel AJAX
+		$.ajax({
+			url: '/api/events',
+			type: 'GET',
+			dataType: 'json',
+			// data: {param1: 'value1'},
+		})
+		.done(function(json) {
+			console.log(json);
+
+			$(json).each(function(index, el) {
+				$latitude = $(json)[index]['latitude'];
+				console.log($latitude);
+				$longitude = $(json)[index]['longitude'];
+				$titreEvent = $(json)[index]['titre'];
+
+				var $eventCoords = {
+					lat: $latitude,//48.837799072265625,
+					lng: $longitude//2.3342411518096924
+				};
+
+				// marqueur des coordonnées locales pour chaque event
+				var marker = new google.maps.Marker({
+					position: $eventCoords,
+					map: map,
+					draggable: false,	// le marqueur n'est pas déplaçable
+					title: $titreEvent
+				});
+			});
+		})
+		.fail(function(error) {
+			console.log(error);
+		})
+		.always(function() {
+			console.log("complete");
+		});
 	};
 
 	/*

@@ -7,5 +7,5 @@ use \W\Controller\Controller;
 class EventController extends Controller
 {
 
-	
+
 }
