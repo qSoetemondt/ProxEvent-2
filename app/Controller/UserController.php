@@ -33,19 +33,16 @@ class UserController extends Controller
                 $manager = new UserManager();
                 $mail = $manager->emailExists($email);
                 $user = $manager->usernameExists($username);
-                    if($mail == false && $user == false){
-                        $_POST['myForm']['password'] = password_hash($_POST['myForm']['password'], PASSWORD_DEFAULT);
-    			        $manager->insert($_POST['myForm']);
-    			        $this->redirectToRoute('login');
-                        }else{
-                        $exist = "Login ou email déjà existant";
-                        echo $exist;
-                        }
-    		}
-            else{
-                
-            }
-		  
+
+                if($mail == false && $user == false){
+                    $_POST['myForm']['password'] = password_hash($_POST['myForm']['password'], PASSWORD_DEFAULT);
+			        $manager->insert($_POST['myForm']);
+			        $this->redirectToRoute('login');
+                    }else{
+                    $exist = "Login ou email déjà existant";
+                    echo $exist;
+                    }
+		     }
         }
     $this->show('default/inscription',['errors' => $errors]);
     }
@@ -73,6 +70,16 @@ class UserController extends Controller
         $auth->logUserOut();
         $this->redirectToRoute('home');
     }
+    
+    public function oublie()
+    {
+        
+    }
+    
+    
+    
+    
+    
 }
         
     
