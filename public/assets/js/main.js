@@ -30,18 +30,24 @@ $(document).ready(function() {
 		
 		// Objet carte Google dans la div correspondante
 		var map = new google.maps.Map($zoneMap[0], {
-			'zoom': 15,
-			'center': localCoords,
-			'disableDefaultUI' : true // masque l'interface par défaut de Google
+			zoom: 15,
+			center: localCoords,
+			disableDefaultUI : true // masque l'interface par défaut de Google
+			mapTypeId: google.maps.MapTypeId.ROADMAP // affichage graphique par défaut
 		});
 
 		// marqueur des coordonnées locales
-		var marker = new google.maps.Marker({
+		var markerDefault = new google.maps.Marker({
 			position: localCoords,
 			map: map,
 			draggable: false,	// le marqueur n'est pas déplaçable
 			title: 'Position actuelle'
 		});
+
+		// marqueurs des évènements locaux existants
+		// for (variable in objet) {
+		// 	instruction
+		// }
 	};
 
 	/*
@@ -58,7 +64,7 @@ $(document).ready(function() {
 		console.info('Géolocalisation disponible.');
 
 		// utilise le service fourni par le navigateur
-		navigator.geolocation.getCurrentPosition(
+		navigator.geolocation.watchPosition(
 			// initialise la Google Map avec les coordonnées locales
 			function(position) {
 				// TODO : supprimer ces tests
