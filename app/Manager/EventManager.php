@@ -3,11 +3,11 @@
 namespace Manager;
 
 
-class EventManager extends \W\Manager\Manager 
+class EventManager extends \W\Manager\Manager
 {
 
 	public function getEvents(){
-		// Si événement pas commencé : on affiche les événements qui 
+		// Si événement pas commencé : on affiche les événements qui
 		// commencent dans moins de 2h
 
 		// Si événement commencé : on affiche les événements qui
@@ -30,4 +30,22 @@ class EventManager extends \W\Manager\Manager
 		return $stmt->fetchAll();
 	}
 
+	public function plusUnEvent(){
+			$ok = "ok";
+			$id = $_POST['plusun'];
+			$sql = "SELECT plus_un FROM events WHERE id = :id";
+			$stmt = $this->dbh->prepare($sql);
+			$stmt->bindValue(':id', $id);
+			$stmt->execute();
+			$valeur = $stmt->fetch();
+
+			$valeurplusun = ($valeur['plus_un'] + 1);
+
+			$sql = "UPDATE events SET plus_un = :plus_un WHERE id = :id";
+			$stmt = $this->dbh->prepare($sql);
+			$stmt->bindValue(":id", $id);
+			$stmt->bindValue(":plus_un", $valeurplusun);
+			$stmt->execute();
+			return $ok;
+	}
 }
