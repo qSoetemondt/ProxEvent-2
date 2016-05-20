@@ -49,6 +49,7 @@
 	        		</div>
 	        		<div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
 	          			<ul class="nav navbar-nav">
+							  
 				  			<?php if(!isset($_SESSION['user'])){?>
 					  		<li><a href="<?= $this->url('inscription')?>">Inscription</a></li>
 	            	  		<li><a href="<?= $this->url('login')?>">Login</a></li>

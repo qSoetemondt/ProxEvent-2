@@ -1,7 +1,7 @@
 <?php
 	
 	$w_routes = array(
-		['GET', '/', 'Default#home', 'home'],		
+		['GET|POST', '/', 'Default#home', 'home'],		
 		['GET|POST','/inscription', 'User#inscription', 'inscription'],
 		['GET|POST','/login', 'User#login', 'login'],
 		['GET|POST','/logout', 'User#logout', 'logout'],
@@ -12,5 +12,6 @@
 		// route vers le fichier json des événements
 		['GET', '/api/events', 'Api#apiEvent', 'apiEvent'],
 		['GET|POST','/oublie', 'User#oublie', 'oublie'],
+		
 
 	);

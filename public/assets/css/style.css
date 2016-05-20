@@ -74,6 +74,15 @@ section>#mapOk {
   z-index: -10;
 }
 
+/*Infobulle*/
+
+.infobulle > h3{
+  font-size : 1.2rem;
+  color: deeppink;
+}
+.infobulle > h4{
+  font-size : 1.1rem;
+}
 
 /* ====================
     Infos & menus page

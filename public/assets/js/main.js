@@ -43,7 +43,10 @@ $(document).ready(function() {
 			draggable: false,	// le marqueur n'est pas déplaçable
 			title: 'Position actuelle'
 		});
-
+		
+		
+		
+		
 		// ************************************************
 		// Chargement des événements ciblés, par appel AJAX
 		$.ajax({
@@ -54,13 +57,14 @@ $(document).ready(function() {
 		})
 		.done(function(json) {
 			console.log(json);
-
+			
 			$(json).each(function(index, el) {
 				$latitude = $(json)[index]['latitude'];
 				console.log($latitude);
 				$longitude = $(json)[index]['longitude'];
 				$titreEvent = $(json)[index]['titre'];
-
+				if($(json)[index]['payant'] == 0){ $payant = "Gratuit"}else{ $payant = "Payant"};
+				if($(json)[index]['description'] != ""){$description = $(json)[index]['description']}else{$description = "Aucune description"};
 				var $eventCoords = {
 					lat: $latitude,//48.837799072265625,
 					lng: $longitude//2.3342411518096924
@@ -71,8 +75,41 @@ $(document).ready(function() {
 					position: $eventCoords,
 					map: map,
 					draggable: false,	// le marqueur n'est pas déplaçable
-					title: $titreEvent
+					title: $titreEvent					
 				});
+				// Infobulle
+	
+				var contenuInfoBulle =	"<div class='infobulle'>"+
+										"<h3>Titre : "+$(json)[index]['titre']+ "</h3><br>" +
+										"<h4>Type d'évenement : " + $(json)[index]['libelle'] + "</h4><br>"+
+										"<p>Adresse : "+$(json)[index]['adresse'] + "</p><br>" +
+										"<p>Payant : "+ $payant + "</p><br>"+
+										"<p>Description : " + $description + "</p><br>" +
+										"<p>Heure de début : " + $(json)[index]['date_debut'] + "</p><br>" +
+										"<p>Heure de fin : " + $(json)[index]['date_fin'] + "</p><br>" +
+										"<p>Fiabilité : " + $(json)[index]['plus_un'] + 
+										"<form method='POST' action=''><input type='hidden' name='plusun' value='"+$(json)[index]['id']+"'><button type='submit' name='submit' style='margin-left:5px'><span class='glyphicon glyphicon-thumbs-up'></span></button></form></p><br>" +									
+										"</div>";
+				
+										
+				var infoBulle = new google.maps.InfoWindow( {
+					content: contenuInfoBulle,
+					shadowStyle: 1,
+         			padding: 0,
+          			backgroundColor: 'rgb(57,57,57)',
+          			borderRadius: 4,
+          			arrowSize: 10,
+          			borderWidth: 1,
+          			borderColor: '#2c2c2c',
+          			disableAutoPan: true,
+          			hideCloseButton: true,
+          			arrowPosition: 30,
+					
+					} )
+
+				google.maps.event.addListener(marker, 'click', function() {
+				infoBulle.open(map, marker);
+					});
 			});
 		})
 		.fail(function(error) {
@@ -141,5 +178,10 @@ $(document).ready(function() {
 	else {
 		error();
 	}
+
+	
+
+
+
 
 })
