@@ -8,22 +8,17 @@
 	<div id="mapError"></div>
 
 
-
-
-
-
-
- 
-
- 
 <?php $this->stop('main_content') ?>
 
+
+
 <?php $this->start('footer') ?>
-	
-   
+
 <?php $this->stop('footer') ?>
 
-<?php $this->start('scripts') ?>  
+
+
+<?php $this->start('scripts') ?>
 
 	<script src="<?= $this->assetUrl('js/main.js') ?>"></script>
 

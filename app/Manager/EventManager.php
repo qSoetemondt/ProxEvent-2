@@ -6,7 +6,6 @@ namespace Manager;
 class EventManager extends \W\Manager\Manager 
 {
 
-
 	public function getEvents(){
 		// Si événement pas commencé : on affiche les événements qui 
 		// commencent dans moins de 2h
@@ -21,7 +20,7 @@ class EventManager extends \W\Manager\Manager
 
 		$current = date("Y-m-d H:i:s", time());
 
-		$sql = "SELECT * FROM events WHERE date_debut <= :now_plus_2h OR (date_debut<=:now AND date_fin >=:now)";
+		$sql = "SELECT e.*, c.libelle FROM events as e, categories AS c WHERE ((date_debut >= :now AND date_debut <= :now_plus_2h) OR (date_debut<=:now AND date_fin >=:now)) AND e.categorie_id = c.id";
 
 		$stmt = $this->dbh->prepare($sql);
 		$stmt->bindValue(":now", $current);
@@ -30,6 +29,5 @@ class EventManager extends \W\Manager\Manager
 
 		return $stmt->fetchAll();
 	}
-
 
 }

@@ -1,10 +1,10 @@
 <?php $this->layout('layout', ['title' => 'Ajout d\'événement']) ?>
 
-<?php $this->start('main_content') ?>
+
+<?php $this->start('main_content'); ?>
 
 	<!-- Formulaire simplifié d'ajout d'événement -->
 	<form id="formEventId" class="form-horizontal" action="#" method="POST">
-
 		<!-- Bouton de choix d'un form complet ou non -->
 		<button type="button" class="btn btn-primary" id="btnOptId" name="btnOpt">Plus d'options</button>
 
@@ -18,7 +18,7 @@
 			<div class="col-sm-10">
 				<select id="selGratuitId" class="form-control" name="selGratuit" class="form-control">
 					<option value="0">Gratuit</option>
-					<option value="1">Payant</option>			
+					<option value="1">Payant</option>
 				</select>
 			</div>
 		</div>
@@ -32,6 +32,11 @@
       				<input type="text" class="form-control" name="titre" id="inputTitreId" placeholder="Titre de l'événement">
     			</div>
   			</div>
+
+			<input type="hidden" id="latitude" name="latitude" value="">
+			<input type="hidden" id="longitude" name="longitude" value="">
+			<input type="hidden" id="adresse" name="adresse" value="">
+
 
   			<div class="form-group">
     			<label for="inputDebutId" class="col-sm-2 control-label">Début</label>
@@ -53,8 +58,8 @@
   				</div>
   			</div>
 		</div>	<!-- Fin de facultatifForm -->
-		
-		<button type="submit" class="btn btn-primary" name="btn">Valider</button>
+
+		<button id="btnFormEvent" type="submit" class="btn btn-primary" name="btn">Valider</button>
 
 	</form>
 	</div>

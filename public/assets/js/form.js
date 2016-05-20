@@ -1,5 +1,45 @@
 $(document).ready(function() {
-	
+
+	//*************************************************************
+	// Gestion du passage de la géoloc au formulaire :
+
+	if (Modernizr.geolocation) {
+		console.info('Géolocalisation disponible.');
+
+		// utilise le service fourni par le navigateur
+		navigator.geolocation.watchPosition(
+			// initialise la Google Map avec les coordonnées locales
+			function(position) {
+				// récupère les coordonnées
+				latitude = position.coords.latitude;
+				longitude = position.coords.longitude;
+
+				console.log(position);
+
+				// Récupération de l'adresse formatée en fct des coords
+				geocoder = new google.maps.Geocoder();
+				var latlng = new google.maps.LatLng(latitude, longitude);
+
+				var adresse = '';
+				geocoder.geocode({'latLng': latlng}, function(results, status) {
+				    if (status == google.maps.GeocoderStatus.OK) {
+				    	adresse = (results[0].formatted_address);
+				    	console.log(adresse);
+				    	console.log(results[0]);
+						// Attribution de la valeur adresse le champ adresse
+				    	$('#adresse').val(adresse);
+					}
+				});
+
+				// Attribution des valeurs dans les champs coords
+				$('#latitude').val(latitude);
+				$('#longitude').val(longitude);
+			})
+	}
+
+
+
+
 	// Appel AJAX sur les catégories :
 	$.ajax({
 		url: '/api/categories',
@@ -13,14 +53,14 @@ $(document).ready(function() {
 		// Remplissage du form avec des checkboxes pour chaque catégorie principale :
 		$form = $('#rangeCategId');
 		$compteur = 0;
-		
+
 		// création de la première div de classe row
 		// pour les boutons radios catégories
 		$divRow = $('<div class="row">');
-		
-		$(json).each(function(index, el) 
+
+		$(json).each(function(index, el)
 		{
-			if ($(json)[index]['parent_id'] == 0) 
+			if ($(json)[index]['parent_id'] == 0)
 			{
 				if($compteur == 3)
 				{
@@ -29,7 +69,7 @@ $(document).ready(function() {
 					$divRadio = $('<div class="row">');
 					// remise du compteur à zéro
 					$compteur = 0;
-				}		
+				}
 
 				// Gestion des icones des catégories parent :
 				$id_categorie = $(json)[index]['id'];
@@ -100,7 +140,7 @@ $(document).ready(function() {
 	.always(function() {
 		console.log("complete");
 	});
-	
+
 
 	// Gestion des limites calendaires
 	// var $input = $('#inputDateDebutId').pickadate();
@@ -171,7 +211,7 @@ $(document).ready(function() {
 		})
 
 	// Gestion du choix d'un formulaire de création d'événement
-	// simplifié ou complet : au clic sur un bouton, on toggle 
+	// simplifié ou complet : au clic sur un bouton, on toggle
 	// le form complet ou non. Par défaut, form simplifié.
 	$optionnel = $('#facultatifForm');
 	$optionnel.hide();

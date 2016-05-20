@@ -57,8 +57,8 @@ $(document).ready(function() {
 
 			$(json).each(function(index, el) {
 				$latitude = $(json)[index]['latitude'];
-				console.log($latitude);
 				$longitude = $(json)[index]['longitude'];
+
 				$titreEvent = $(json)[index]['titre'];
 
 				var $eventCoords = {
@@ -100,14 +100,7 @@ $(document).ready(function() {
 		navigator.geolocation.watchPosition(
 			// initialise la Google Map avec les coordonnées locales
 			function(position) {
-				// TODO : supprimer ces tests
 				// récupère les coordonnées
-				// var messageLatitude = 'Latitude = ' + position.coords.latitude;
-				// var messageLongitude = 'Longitude = ' + position.coords.longitude;
-				// console.log( position );
-				// console.log( messageLatitude );
-				// console.log( messageLongitude );
-
 				initGoogleMap( position.coords.latitude, position.coords.longitude );
 			},
 			// Gère les erreurs

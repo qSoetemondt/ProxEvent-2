@@ -1,6 +1,4 @@
 <?php
-//|| empty($_POST['dateFin']) || empty($_POST['timeFin'])
-//$date_fin = date('Y-m-d H:i:s', strtotime('+2 hours'));
 namespace Controller;
 
 use \W\Controller\Controller;
@@ -10,9 +8,13 @@ class EventController extends Controller
 
 	public function insertNewEvent()
 	{
-		
+		// Récupération de l'id user :
+		$loggedUser = $this->getUser();
+		$id_user = $loggedUser['id'];
+
 		if(isset($_POST['btn']))
 		{	// Validation des champs dates et heures relatifs au début de l'évènement
+
 			if(empty($_POST['dateDebut_submit']))
 			{
 				$date_debut = date('Y-m-d',time());
@@ -68,19 +70,22 @@ class EventController extends Controller
 
 			$full_date_fin = $date_fin . " " . $time_fin;
 
-			// tableau associatif  de données relatives à l'évènement à insérer en BDD				
+			// tableau associatif  de données relatives à l'évènement à insérer en BDD
 			$data = [
 					 'id' => NULL,
-					 'user_id' => NULL,
-					 'titre' => $_POST['titre'],
-					 'adresse' => NULL,
-					 'latitude' => NULL,
-					 'longitude' => NULL,
+					 // Récupération de la variable $w_user
+					 'user_id' => $id_user,
+					 'titre' => htmlentities(strip_tags($_POST['titre'])),
+					 // Récupération des coordonnées de l'emplacement
+					 // où l'on se trouve
+					 'adresse' => $_POST['adresse'],
+					 'latitude' => $_POST['latitude'],
+					 'longitude' => $_POST['longitude'],
 					 'categorie_id' => $_POST['radCategorie'],
 					 'date_debut' => $full_date_debut,
 					 'date_fin' => $full_date_fin,
 					 'payant' => $_POST['selGratuit'],
-					 'plus_un' => NULL,
+					 'plus_un' => 1
 					];
 
 			$m = new \Manager\EventManager;
@@ -96,11 +101,5 @@ class EventController extends Controller
 		{
 			$this->show('default/addevent');
 		}
-		
 	}
-	
-	// public function addEvent(){
-	// 	// Redirection vers la page de formulaire
-	// 	$this->show('default/addevent');
-	// }
 }
