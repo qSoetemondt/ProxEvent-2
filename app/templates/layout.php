@@ -25,17 +25,18 @@
 </head>
 <body>
 
-
+	<div class="container">
 		<header>
 			<h1><?= $this->e($title) ?></h1>
 		</header>
 
 		<section>
 			<?= $this->section('main_content') ?>
-		</section>
-		
+		</section>		
+	</div>
+
 		<!-- Footer menu -->
-    	<footer>
+		<footer>
 	    	<nav class="navbar navbar-default navbar-fixed-bottom">
 	      		<div class="container">
 	        		<div class="navbar-header">
@@ -61,6 +62,7 @@
 	      		</div>
 	    	</nav>
     	</footer>
+
 
 	<!-- Appel à jQuery -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
