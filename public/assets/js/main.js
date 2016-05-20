@@ -21,8 +21,8 @@ $(document).ready(function() {
 	*/
 	var initGoogleMap = function(latitude, longitude) {
 		
-		// TODO latitude et longitude seront fournies
-		// par l'API HTML5 Geolocation
+		// latitude et longitude fournies
+		// par l'API HTML5 Geolocation du navigateur
 		var localCoords = {
 			lat: latitude,
 			lng: longitude
@@ -65,9 +65,22 @@ $(document).ready(function() {
 				$titreEvent = $(json)[index]['titre'];
 				if($(json)[index]['payant'] == 0){ $payant = "Gratuit"}else{ $payant = "Payant"};
 				if($(json)[index]['description'] != ""){$description = $(json)[index]['description']}else{$description = "Aucune description"};
+				$categorieEvent = $(json)[index]['categorie_id'];
+
 				var $eventCoords = {
 					lat: $latitude,//48.837799072265625,
 					lng: $longitude//2.3342411518096924
+				};
+
+				var icons = {
+					'1': 'icomoon-glass.png',
+					'2': 'icomoon-music.png',
+					'3': 'icomoon-camera.png',
+					'4': 'icomoon-heart.png',
+					'5': 'icomoon-earth.png',
+					'6': 'icomoon-point-right.png',
+					'7': 'icomoon-fire.png',
+					'8': 'linecons-vynil.png',
 				};
 
 				// marqueur des coordonnées locales pour chaque event
@@ -75,7 +88,8 @@ $(document).ready(function() {
 					position: $eventCoords,
 					map: map,
 					draggable: false,	// le marqueur n'est pas déplaçable
-					title: $titreEvent					
+					title: $titreEvent,
+					icon: '/assets/img/'+icons[$categorieEvent] // icône de marqueur personnalisée
 				});
 				// Infobulle
 	
@@ -111,6 +125,7 @@ $(document).ready(function() {
 				infoBulle.open(map, marker);
 					});
 			});
+
 		})
 		.fail(function(error) {
 			console.log(error);

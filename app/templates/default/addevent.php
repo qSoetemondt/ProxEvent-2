@@ -1,7 +1,9 @@
 <?php $this->layout('layout', ['title' => 'Ajout d\'événement']) ?>
 
 
+
 <?php $this->start('main_content'); ?>
+
 
 	<!-- Formulaire simplifié d'ajout d'événement -->
 	<form id="formEventId" class="form-horizontal" action="#" method="POST">
