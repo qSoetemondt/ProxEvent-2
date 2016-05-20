@@ -13,9 +13,4 @@ class DefaultController extends Controller
 		$this->show('default/home');
 	}
 
-	public function addEvent(){
-		// Redirection vers la page de formulaire
-		$this->show('default/addevent');
-	}
-
 }

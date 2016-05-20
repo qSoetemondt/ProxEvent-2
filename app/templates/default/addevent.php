@@ -17,8 +17,8 @@
 			<label for="selGratuitId" class="col-sm-2 control-label">Entrée</label>
 			<div class="col-sm-10">
 				<select id="selGratuitId" class="form-control" name="selGratuit" class="form-control">
-					<option>Gratuit</option>
-					<option>Payant</option>			
+					<option value="0">Gratuit</option>
+					<option value="1">Payant</option>			
 				</select>
 			</div>
 		</div>
@@ -36,20 +36,20 @@
   			<div class="form-group">
     			<label for="inputDebutId" class="col-sm-2 control-label">Début</label>
 				<div class="col-sm-5">
-  					<input type="text" class="datepicker form-control" name="dateDebut" id="inputDateDebutId">
+  					<input type="text" class="datepicker form-control" name="dateDebut" id="inputDateDebutId" data-value="<?= date('Y-m-d', time()); ?>">
   				</div>
 				<div class="col-sm-5">
-  					<input type="time" class="timepicker form-control" name="timeDebut" id="inputTimeDebutId">
+  					<input type="time" class="timepicker form-control" name="timeDebut" id="inputTimeDebutId" data-value="<?= date('H:i:s', time()) ?>">
   				</div>
   			</div>
 
  			<div class="form-group">
     			<label for="inputFinId" class="col-sm-2 control-label">Fin</label>
 				<div class="col-sm-5">
-  					<input type="text" class="datepicker form-control" name="dateFin" id="inputDateFinId">
+  					<input type="text" class="datepicker form-control" name="dateFin" id="inputDateFinId" data-value="<?= date('Y-m-d', time()) ?>">
   				</div>
 				<div class="col-sm-5">
-  					<input type="time" class="timepicker form-control" name="timeFin" id="inputTimeFinId">
+  					<input type="time" class="timepicker form-control" name="timeFin" id="inputTimeFinId" data-value="<?= date('H:i:s', strtotime('+2 hours')) ?>">
   				</div>
   			</div>
 		</div>	<!-- Fin de facultatifForm -->

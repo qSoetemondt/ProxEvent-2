@@ -3,7 +3,9 @@
 namespace Manager;
 
 
-class EventManager extends \W\Manager\Manager {
+class EventManager extends \W\Manager\Manager 
+{
+
 
 	public function getEvents(){
 		// Si événement pas commencé : on affiche les événements qui 
@@ -28,7 +30,6 @@ class EventManager extends \W\Manager\Manager {
 
 		return $stmt->fetchAll();
 	}
-
 
 
 }
