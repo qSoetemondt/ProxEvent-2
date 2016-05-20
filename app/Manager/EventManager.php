@@ -14,7 +14,7 @@ class EventManager extends \W\Manager\Manager {
 
 		// Si événement terminé : on ne l'affiche pas
 
-		$time_limite_debut = strtotime("+2hour");
+		$time_limite_debut = strtotime("+2 hours");
 		$time_limite_debut = date("Y-m-d H:i:s", $time_limite_debut);
 
 		$current = date("Y-m-d H:i:s", time());

@@ -1,10 +1,8 @@
-<?php $this->layout('layout', ['title' => 'proxEvent']) ?>
+<?php $this->layout('layout', ['title' => 'Ajout d\'événement']) ?>
 
 <?php $this->start('main_content') ?>
 
 	<!-- Formulaire simplifié d'ajout d'événement -->
-	<h1>Ajout d'événement</h1>
-
 	<form id="formEventId" class="form-horizontal" action="#" method="POST">
 
 		<!-- Bouton de choix d'un form complet ou non -->
