@@ -167,7 +167,7 @@ $(document).ready(function() {
 		console.log("complete");
 	});
 
-
+	
 	// Gestion des limites calendaires
 	// var $input = $('#inputDateDebutId').pickadate();
 

@@ -10,6 +10,7 @@
 
 		<!-- Div de rangement des catégories -->
 		<div class="form-group" id="rangeCategId">
+		<?php if (isset($erreur)){ echo $erreur;} ?>
 		</div>
 
 		<!-- Caractère payant ou non : -->
@@ -46,8 +47,7 @@
 			<div class="form-group">
 				<label for="inputDescriptionId" class="col-sm-2 control-label">Description</label>
 				<div class="col-sm-10">
-					<textarea id="inputDescriptionId" class="form-control" row="2" name="description" placeholder="Description de l'événement (facultatif)">
-					</textarea>
+					<textarea id="inputDescriptionId" class="form-control" row="2" name="description" placeholder="Description de l'événement (facultatif)"></textarea>
 				</div>
 			</div>
 
