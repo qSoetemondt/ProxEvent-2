@@ -9,12 +9,11 @@ class EventController extends Controller
 	public function insertNewEvent()
 	{
 		// Récupération de l'id user :
-		$loggedUser = $this->getUser();
-		$id_user = $loggedUser['id'];
+    	$loggedUser = $this->getUser();
+    	$id_user = $loggedUser['id'];
 
 		if(isset($_POST['btn']))
 		{	// Validation des champs dates et heures relatifs au début de l'évènement
-
 			if(empty($_POST['dateDebut_submit']))
 			{
 				$date_debut = date('Y-m-d',time());
@@ -102,5 +101,7 @@ class EventController extends Controller
 		{
 			$this->show('default/addevent');
 		}
+
 	}
+
 }
