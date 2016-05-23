@@ -1,7 +1,5 @@
 <?php $this->layout('layout', ['title' => 'Ajout d\'événement']) ?>
 
-
-
 <?php $this->start('main_content'); ?>
 
 
@@ -31,14 +29,27 @@
 			<div class="form-group">
     			<label for="inputTitreId" class="col-sm-2 control-label">Titre</label>
     			<div class="col-sm-10">
-      				<input type="text" class="form-control" name="titre" id="inputTitreId" placeholder="Titre de l'événement">
+      				<input type="text" class="form-control" name="titre" id="inputTitreId" placeholder="Titre de l'événement (facultatif)">
     			</div>
   			</div>
 
 			<input type="hidden" id="latitude" name="latitude" value="">
 			<input type="hidden" id="longitude" name="longitude" value="">
-			<input type="hidden" id="adresse" name="adresse" value="">
 
+			<div class="form-group">
+				<label for="inputAdresseId" class="col-sm-2 control-label">Adresse</label>
+				<div class="col-sm-10">
+					<input type="text" id="inputAdresseId" onClick="this.select();" class="form-control" name="adresse" value="" placeholder="Adresse de l'événement">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="inputDescriptionId" class="col-sm-2 control-label">Description</label>
+				<div class="col-sm-10">
+					<textarea id="inputDescriptionId" class="form-control" row="2" name="description" placeholder="Description de l'événement (facultatif)">
+					</textarea>
+				</div>
+			</div>
 
   			<div class="form-group">
     			<label for="inputDebutId" class="col-sm-2 control-label">Début</label>
