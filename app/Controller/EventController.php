@@ -78,14 +78,15 @@ class EventController extends Controller
 					 'titre' => htmlentities(strip_tags($_POST['titre'])),
 					 // Récupération des coordonnées de l'emplacement
 					 // où l'on se trouve
-					 'adresse' => $_POST['adresse'],
+					 'adresse' => htmlentities(strip_tags($_POST['adresse'])),
 					 'latitude' => $_POST['latitude'],
 					 'longitude' => $_POST['longitude'],
 					 'categorie_id' => $_POST['radCategorie'],
 					 'date_debut' => $full_date_debut,
 					 'date_fin' => $full_date_fin,
 					 'payant' => $_POST['selGratuit'],
-					 'plus_un' => 1
+					 'plus_un' => 1,
+					 'description' => htmlentities(strip_tags($_POST['description']))
 					];
 
 			$m = new \Manager\EventManager;
