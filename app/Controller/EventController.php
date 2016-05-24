@@ -15,7 +15,8 @@ class EventController extends Controller
 
 		if(isset($_POST['btn']))
 		{	
-			if(empty($_POST['radCategorie'])){
+			if(empty($_POST['radCategorie']))
+			{
 				$erreur = "Veuillez sélectionner une catégorie";
 			}
 			// Condition, en fonction la sélection d'une catégorie, de la soumission du formulaire et de l'insertion en BDD de l'évènement

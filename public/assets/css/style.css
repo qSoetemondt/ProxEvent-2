@@ -19,6 +19,17 @@ h2 {
 /* TEST OFF */
 body > .container{
 	padding-top:60px;
+  width: 100%;
+  margin: 0;
+}
+
+#formEventId{
+  margin: 0 auto;
+  width: 80%;
+}
+
+.col-xs-4{
+  padding-left: 5em;
 }
 
 html {
@@ -57,7 +68,7 @@ body > .container {
 code {
   font-size: 80%;
 }
-.row{
+.row {
   margin: 0;
 }
 
@@ -106,10 +117,36 @@ footer {
   z-index: 10;
 }
 
-/* Position entête de titre : milieu de plan */
-header {
-  position: absolute;
-  z-index: 1;
+/* ==========================
+   Style Form Ajout Evenement
+   ========================== */
+
+h1 {
+  text-align: center;
 }
 
+#formEventId {
+  margin-top: 50px;
+  padding-top: 20px;
+}
+
+input[type=radio] + label {
+  color: #000000;
+  font-style: italic;
+}
+
+
+input[type=radio]:checked + span {
+  /*color: #FF0000;*/
+  background: #FF0000;
+  color: #fff;
+  font-style: normal;
+}
+
+input[type=radio]:checked + span + label {
+  /*color: #FF0000;*/
+  background: #FF0000;
+  color: #fff;
+  font-style: normal;
+}
 

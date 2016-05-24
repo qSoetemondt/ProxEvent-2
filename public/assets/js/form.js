@@ -142,12 +142,14 @@ $(document).ready(function() {
 
 				// Création d'un élément de ligne
 				$elementRow = $('<div class="col-xs-4">');
-				
+				$elementPack = $('<div class = "pack">');
 				// Remplissage des balises dans la balise elementRow :
 					// on cache le bouton radio pour ne voir que le glyphicon
-				$elementRow.append($spanIcon);
-				$elementRow.append($input.hide());
-				$elementRow.append($label);
+				$elementPack.append($input.hide());
+ 				// $elementPack.append($input);
+				$elementPack.append($spanIcon);
+				$elementPack.append($label);
+				$elementRow.append($elementPack)
 				// Insertion du texte dans la balsie label
 				$label.append($libelle);
 
@@ -168,6 +170,14 @@ $(document).ready(function() {
 	.always(function() {
 		console.log("complete");
 	});
+
+	// Gestion de l'encadré de la catégorie sélectionnée
+	
+
+
+
+
+
 
 	// Gestion des limites calendaires
 	// var $input = $('#inputDateDebutId').pickadate();

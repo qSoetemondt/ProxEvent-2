@@ -1,10 +1,5 @@
 <?php $this->layout('layout', ['title' => 'Ajoute un évènement']) ?>
 
-<?php $this->start('style') ?>
-
-	<link rel="stylesheet" href="<?= $this->assetUrl('css/addevent.css') ?>">
-
-<?php $this->stop('style') ?>
 
 <?php $this->start('main_content'); ?>
 
@@ -75,10 +70,10 @@
   			</div>
 		</div>	<!-- Fin de facultatifForm -->
 
-		<!-- Bouton de choix d'un form complet ou non -->
-		<button type="button" class="btn btn-primary" id="btnOptId" name="btnOpt">Plus d'options</button>
 		<!-- Bouton de soumission du form au serveur -->
 		<button id="btnFormEvent" type="submit" class="btn btn-primary pull-right" name="btn">Valider</button>
+		<!-- Bouton de choix d'un form complet ou non -->
+		<button type="button" class="btn btn-primary pull-right" id="btnOptId" name="btnOpt">Plus d'options</button>
 
 	</form>
 	</div>
