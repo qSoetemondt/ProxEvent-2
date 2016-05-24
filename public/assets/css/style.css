@@ -23,14 +23,6 @@ body > .container{
   margin: 0;
 }
 
-#formEventId{
-  margin: 0 auto;
-  width: 80%;
-}
-
-.col-xs-4{
-  padding-left: 5em;
-}
 
 html {
   position: relative;
@@ -126,27 +118,36 @@ h1 {
 }
 
 #formEventId {
+  margin: 0 auto;
+
   margin-top: 50px;
   padding-top: 20px;
+
+  width: 80%;
 }
 
-input[type=radio] + label {
+/*input[type=radio] + label {
   color: #000000;
   font-style: italic;
 }
+*/
 
-
-input[type=radio]:checked + span {
+/*input[type=radio]:checked + span {*/
   /*color: #FF0000;*/
-  background: #FF0000;
+/*  background: #FF0000;
+  color: #fff;
+  font-style: normal;
+}*/
+
+/*input[type=radio]:checked + span + label {
+*/  /*color: #FF0000;*/
+ /* background: #FF0000;
   color: #fff;
   font-style: normal;
 }
+*/
 
-input[type=radio]:checked + span + label {
-  /*color: #FF0000;*/
-  background: #FF0000;
-  color: #fff;
-  font-style: normal;
+.focused {
+  background-color: #0277BD;
+  border-radius: 5px;
 }
-

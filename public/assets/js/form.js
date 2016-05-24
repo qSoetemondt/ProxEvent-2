@@ -172,8 +172,17 @@ $(document).ready(function() {
 	});
 
 	// Gestion de l'encadré de la catégorie sélectionnée
-	
+	$(document).on('click', 'input[type=radio]', function(){
 
+		 $('input[type=radio]').parent().removeClass('focused');
+		 
+		 $categorieFocused = $('input[type=radio]:checked').parent();
+
+		 $categorieFocused.addClass('focused');
+
+
+	});
+	
 
 
 

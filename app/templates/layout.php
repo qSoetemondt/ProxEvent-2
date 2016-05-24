@@ -18,7 +18,7 @@
 
 	<!-- Appel à notre CSS -->
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
-	
+
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/demo.css')?>">
 	
 	<!-- === SCRIPTS JS === -->
@@ -73,7 +73,7 @@
 	menuElement: document.querySelector( '.meny' ),
 	contentsElement: document.querySelector( '.contents' ),
 // [optional] alignement du menu (top/right/bottom/left)
-	position: Meny.getQuery().p || 'bottom',
+	position: Meny.getQuery().p || 'left',
 // [optional] hauteur du menu (pour la position top ou bottom)
 	height: 200,
 // [optional] largeur du menu (pour la position left ou right)
