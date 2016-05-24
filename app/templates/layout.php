@@ -18,14 +18,29 @@
 
 	<!-- Appel à notre CSS -->
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
+	
+	<link rel="stylesheet" href="<?= $this->assetUrl('css/demo.css')?>">
+	
 	<!-- === SCRIPTS JS === -->
 	<!-- Appel script (vendor) Modernizr -->
 	<script src="<?= $this->assetUrl('js/vendor/modernizr-2.8.3.min.js') ?>"></script>
 
 </head>
 <body>
-
-	<div class="container">
+<div class="meny">
+	<ul class="nav navbar-nav">
+							<li><a href="<?= $this->url('home')?>">Accueil</a></li>  
+				  			<?php if(!isset($_SESSION['user'])){?>
+					  		<li><a href="<?= $this->url('inscription')?>">Inscription</a></li>
+	            	  		<li><a href="<?= $this->url('login')?>">Login</a></li>
+				 	 		<?php }else{ ?>
+					 			<li><a href="<?= $this->url('logout')?>">Déconnexion</a></li>
+					 			<li><a href="<?= $this->url('addEvent')?>">Ajout Evénement</a></li>
+					 		<?php } ?>         
+	          			</ul>
+</div>
+	<div class="meny-arrow"></div>
+	<div class="contents">
 		<header>
 			<h1><?= $this->e($title) ?></h1>
 		</header>
@@ -35,35 +50,7 @@
 		</section>
 	</div>
 
-		<!-- Footer menu -->
 
-    	<footer>
-	    	<nav class="navbar navbar-default navbar-fixed-bottom">
-	      		<div class="container">
-	        		<div class="navbar-header">
-	          			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-	            			<span class="sr-only">Toggle navigation</span>
-	            			<span class="icon-bar"></span>
-	            			<span class="icon-bar"></span>
-	            			<span class="icon-bar"></span>
-	          			</button>
-	          			<a class="navbar-brand" href="<?= $this->url('home')?>">ProxEvent</a>
-	        		</div>
-	        		<div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
-	          			<ul class="nav navbar-nav">
-
-				  			<?php if(!isset($_SESSION['user'])){?>
-					  		<li><a href="<?= $this->url('inscription')?>">Inscription</a></li>
-	            	  		<li><a href="<?= $this->url('login')?>">Login</a></li>
-				 	 		<?php }else{ ?>
-					 			<li><a href="<?= $this->url('logout')?>">Déconnexion</a></li>
-					 			<li><a href="<?= $this->url('addEvent')?>">Ajout Evénement</a></li>
-					 		<?php } ?>
-	          			</ul>
-	        		</div>
-	      		</div>
-	    	</nav>
-    	</footer>
 
 
 	<!-- Appel à jQuery -->
@@ -80,6 +67,31 @@
 
 	<!-- Appel des scripts -->
 	<?= $this->section('scripts') ?>
+	<script src="<?= $this->assetUrl('js/meny.js')?>"></script>
+<script>
+	var meny = Meny.create({
+	menuElement: document.querySelector( '.meny' ),
+	contentsElement: document.querySelector( '.contents' ),
+// [optional] alignement du menu (top/right/bottom/left)
+	position: Meny.getQuery().p || 'bottom',
+// [optional] hauteur du menu (pour la position top ou bottom)
+	height: 200,
+// [optional] largeur du menu (pour la position left ou right)
+	width: 260,
+// [optional] distance de d�clenchement du menu par rapport au menu
+	threshold: 40,
+// [optional] utilisation des mouvement de la souris pour l'ouverture ou la fermeture
+	mouse: true,
+// [optional] utilisation de l'approche
+	touch: true
+	});
+
+	if( Meny.getQuery().u && Meny.getQuery().u.match( /^http/gi ) ) {
+		var contents = document.querySelector( '.contents' );
+		contents.style.padding = '0px';
+		contents.innerHTML = '<div class="cover"></div><iframe src="'+ Meny.getQuery().u +'" style="width: 100%; height: 100%; border: 0; position: absolute;"></iframe>';
+	}
+</script>
 
 </body>
 </html>
