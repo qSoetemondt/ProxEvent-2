@@ -138,15 +138,21 @@ input[type=radio] + label {
 
 input[type=radio]:checked + span {
   /*color: #FF0000;*/
-  background: #FF0000;
   color: #fff;
   font-style: normal;
 }
 
 input[type=radio]:checked + span + label {
   /*color: #FF0000;*/
-  background: #FF0000;
   color: #fff;
   font-style: normal;
 }
 
+
+.focused{
+  margin-top: 0.2em;
+  background: #0277BD;
+  border-radius: 5px;
+  padding-left: 0.5em;
+  width: 55%;
+}

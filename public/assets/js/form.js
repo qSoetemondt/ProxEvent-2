@@ -42,9 +42,9 @@ $(document).ready(function() {
 						//Implémentation de l'autocomplétion pour l'adresse
 						var autocomplete = new google.maps.places.Autocomplete($inpAdress[0], options);
 
-						// Au changement d'adresse dans le champ : et 
+						// Au changement d'adresse dans le champ : et
 						google.maps.event.addListener(autocomplete, 'place_changed', function() {
-							// l'auto completion se declenche 
+							// l'auto completion se declenche
 						    var place = autocomplete.getPlace();
 						    var new_adresse = place.formatted_address;
 
@@ -172,7 +172,14 @@ $(document).ready(function() {
 	});
 
 	// Gestion de l'encadré de la catégorie sélectionnée
-	
+	$(document).on('click', 'input[type = radio]', function(event) {
+		// Si il y a une catégorie de sélectionnée, on enlève son style :
+		$('input[type = radio]').parent().removeClass('focused');
+		// on cible la div parent du bouton radio cliqué
+		$categorieFocused = $('input[type = radio]:checked').parent();
+		// on ajoute le style :
+		$categorieFocused.addClass('focused');
+	});
 
 
 
@@ -192,7 +199,7 @@ $(document).ready(function() {
 	});
 
 	pickerDateDebut = $date_debut.pickadate('picker');
-	// Affectation de la sélection de la date limite inférieure de début 
+	// Affectation de la sélection de la date limite inférieure de début
 	// = date du jour :
 	pickerDateDebut.set('min', true);
 
@@ -227,8 +234,8 @@ $(document).ready(function() {
 		format: 'HH:i',
 	});
 
-	// Affectation de la limite inférieure du time de fin 
-	// en fonction du time de début rentré par l'utilisateur 
+	// Affectation de la limite inférieure du time de fin
+	// en fonction du time de début rentré par l'utilisateur
 	// TODO : (si date_debut == date_fin)
 	pickerTimeFin = $time_fin.pickatime('picker');
 	pickerTimeFin.set('interval', 15);
@@ -248,7 +255,7 @@ $(document).ready(function() {
 	})
 	pickerDateDebut.render(true);
 
-	
+
 	// Geston de la date de fin :
 	pickerDateFin.on({
 		open: function(){
@@ -262,15 +269,15 @@ $(document).ready(function() {
 	pickerTimeDebut.on({
 		close: function(){
 			time_fin_min = pickerTimeDebut.get('value');
-			// Réaffectation du time de fin limite en fonction 
+			// Réaffectation du time de fin limite en fonction
 			// du changement de time début (si même date):
 			if ($('#inputDateDebutId').val() === $('#inputDateFinId').val()) {
 				if($('#inputTimeDebutId').val() > $('#inputTimeFinId').val())
 				{
-					
+
 					$('#inputTimeFinId').val($('#inputTimeDebutId').val());
 				}
-			}		
+			}
 		}
 	});
 
