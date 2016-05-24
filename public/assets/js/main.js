@@ -72,6 +72,7 @@ $(document).ready(function() {
 					lng: $longitude//2.3342411518096924
 				};
 
+				// Association numéro de catégorie <=> icône 
 				var icons = {
 					'1': 'icomoon-glass.png',
 					'2': 'icomoon-music.png',
@@ -82,6 +83,11 @@ $(document).ready(function() {
 					'7': 'icomoon-fire.png',
 					'8': 'linecons-vynil.png',
 				};
+				// Gestion des icônes pour les sous-catégories (id>8) :
+				// attribution de l'id de catégorie parent
+				if ($categorieEvent > 8) {
+					$categorieEvent = $(json)[index]['parent_id'];
+				}
 
 				// marqueur des coordonnées locales pour chaque event
 				var marker = new google.maps.Marker({
