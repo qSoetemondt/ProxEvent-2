@@ -131,25 +131,29 @@ $(document).ready(function() {
 				}
 
 				// Création du label
-				$label = $('<label class="radio-inline">');
+				$label = $('<label for="'+ $id_categorie +'" class="radio-inline">');
 				// création de l'input de type radio
-				$input = $('<input type="radio" name="radCategorie" value="'+$id_categorie+'">');
+				$input = $('<input id="'+ $id_categorie +'" type="radio" name="radCategorie" value="'+ $id_categorie +'">');
 
 				// console.log('libelle : ');
 				$libelle = $(json)[index]['libelle'];
 				//console.log($libelle);
 				//console.log(typeof($libelle));
 
-				// Remplissage des balises :
-				$label.append($spanIcon);
-					// on cache le bouton radio pour ne voir que le glyphicon
-				$label.append($input.hide());
-				$label.append($libelle);
-
 				// Création d'un élément de ligne
 				$elementRow = $('<div class="col-xs-4">');
-				$elementRow.append($label);
+				$elementPack = $('<div class = "pack">');
+				// Remplissage des balises dans la balise elementRow :
+					// on cache le bouton radio pour ne voir que le glyphicon
+				$elementPack.append($input.hide());
+ 				// $elementPack.append($input);
+				$elementPack.append($spanIcon);
+				$elementPack.append($label);
+				$elementRow.append($elementPack)
+				// Insertion du texte dans la balsie label
+				$label.append($libelle);
 
+				// Insertion de toutes les balises nécessaires dans la balise form
 				$divRow.append($elementRow);
 				$form.append($divRow);
 
@@ -166,6 +170,13 @@ $(document).ready(function() {
 	.always(function() {
 		console.log("complete");
 	});
+
+	// Gestion de l'encadré de la catégorie sélectionnée
+	
+
+
+
+
 
 
 	// Gestion des limites calendaires
