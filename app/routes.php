@@ -18,6 +18,8 @@
 
 		// Route vers le form d'ajout d'événement
 		['GET|POST', '/addevent', 'Event#insertNewEvent', 'addEvent'],
-		// ['GET|POST', '/addevent/[:latitude]/[:longitude]/', 'Event#insertNewEvent', 'addEvent'],
+
+		//Route vers une sous catégorie en fonction d'une catégorie parent
+		['GET|POST', '/api/subcategories/[:id]', 'Api#subCategories', 'apiSubCategories'],
 
 	);

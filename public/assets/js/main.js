@@ -20,14 +20,14 @@ $(document).ready(function() {
 		Initialise une carte selon l'API Google
 	*/
 	var initGoogleMap = function(latitude, longitude) {
-		
+
 		// latitude et longitude fournies
 		// par l'API HTML5 Geolocation du navigateur
 		var localCoords = {
 			lat: latitude,
 			lng: longitude
 		};
-		
+
 		// Objet carte Google dans la div correspondante
 		var map = new google.maps.Map($zoneMap[0], {
 			zoom: 15,
@@ -43,10 +43,10 @@ $(document).ready(function() {
 			draggable: false,	// le marqueur n'est pas déplaçable
 			title: 'Position actuelle'
 		});
-		
-		
-		
-		
+
+
+
+
 		// ************************************************
 		// Chargement des événements ciblés, par appel AJAX
 		$.ajax({
@@ -56,21 +56,30 @@ $(document).ready(function() {
 			// data: {param1: 'value1'},
 		})
 		.done(function(json) {
-			console.log(json);
-			
+			// console.log(json);
 			$(json).each(function(index, el) {
 				$latitude = $(json)[index]['latitude'];
 				$longitude = $(json)[index]['longitude'];
 
 				$titreEvent = $(json)[index]['titre'];
 				if($(json)[index]['payant'] == 0){ $payant = "Gratuit"}else{ $payant = "Payant"};
+
 				if($(json)[index]['description'] != ""){$description = $(json)[index]['description']}else{$description = "Aucune description"};
-				$categorieEvent = $(json)[index]['categorie_id'];
+
+				var $categorieEvent = $(json)[index]['categorie_id'];
 
 				var $eventCoords = {
 					lat: $latitude,//48.837799072265625,
 					lng: $longitude//2.3342411518096924
 				};
+
+
+				// Gestion des icônes pour les sous-catégories (id>8) :
+				// attribution de l'id de catégorie parent
+				if ($categorieEvent > 8) {
+					$categorieEvent = $(json)[index]['parent_id'];
+				}
+
 
 				// Association numéro de catégorie <=> icône 
 				var icons = {
@@ -98,7 +107,8 @@ $(document).ready(function() {
 					icon: '/assets/img/'+icons[$categorieEvent] // icône de marqueur personnalisée
 				});
 				// Infobulle
-	
+
+
 				var contenuInfoBulle =	"<div class='infobulle'>"+
 										"<h3>Titre : "+$(json)[index]['titre']+ "</h3><br>" +
 										"<h4>Type d'évenement : " + $(json)[index]['libelle'] + "</h4><br>"+
@@ -107,11 +117,11 @@ $(document).ready(function() {
 										"<p>Description : " + $description + "</p><br>" +
 										"<p>Heure de début : " + $(json)[index]['date_debut'] + "</p><br>" +
 										"<p>Heure de fin : " + $(json)[index]['date_fin'] + "</p><br>" +
-										"<p>Fiabilité : " + $(json)[index]['plus_un'] + 
-										"<form method='POST' action=''><input type='hidden' name='plusun' value='"+$(json)[index]['id']+"'><button type='submit' name='submit' style='margin-left:5px'><span class='glyphicon glyphicon-thumbs-up'></span></button></form></p><br>" +									
+										"<p>Fiabilité : " + $(json)[index]['plus_un'] +
+										"<form method='POST' action=''><input type='hidden' name='plusun' value='"+$(json)[index]['id']+"'><button type='submit' name='submit' style='margin-left:5px'><span class='glyphicon glyphicon-thumbs-up'></span></button></form></p><br>" +
 										"</div>";
-				
-										
+
+
 				var infoBulle = new google.maps.InfoWindow( {
 					content: contenuInfoBulle,
 					shadowStyle: 1,
@@ -124,7 +134,7 @@ $(document).ready(function() {
           			disableAutoPan: true,
           			hideCloseButton: true,
           			arrowPosition: 30,
-					
+
 					} )
 
 				google.maps.event.addListener(marker, 'click', function() {
@@ -167,7 +177,7 @@ $(document).ready(function() {
 				$zoneError.show(); // affiche la zone des erreurs
 
 				switch(error.code) {
-					
+
 					case error.PERMISSION_DENIED:
 						$zoneError.text('problèmes de droit.');
 						break;
@@ -193,7 +203,7 @@ $(document).ready(function() {
 		error();
 	}
 
-	
+
 
 
 

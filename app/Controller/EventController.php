@@ -14,7 +14,7 @@ class EventController extends Controller
     	$id_user = $loggedUser['id'];
 
 		if(isset($_POST['btn']))
-		{	
+		{
 			if(empty($_POST['radCategorie']))
 			{
 				$erreur = "Veuillez sélectionner une catégorie";
@@ -78,6 +78,20 @@ class EventController extends Controller
 
 				$full_date_fin = $date_fin . " " . $time_fin;
 
+				// gestion des sous-catégories éventuelles :
+				if(empty($_POST['radSubCategorie']))
+				{
+					$id_categorie = $_POST['radCategorie'];
+				}
+				else
+				{
+					$id_categorie = $_POST['radSubCategorie'];
+				}
+
+
+
+
+
 				// tableau associatif  de données relatives à l'évènement à insérer en BDD
 				$data = [
 						 'id' => NULL,
@@ -89,7 +103,8 @@ class EventController extends Controller
 						 'adresse' => htmlentities(strip_tags($_POST['adresse'])),
 						 'latitude' => $_POST['latitude'],
 						 'longitude' => $_POST['longitude'],
-						 'categorie_id' => $_POST['radCategorie'],
+						 // 'categorie_id' => $_POST['radCategorie'],
+						 'categorie_id' => $id_categorie,
 						 'date_debut' => $full_date_debut,
 						 'date_fin' => $full_date_fin,
 						 'payant' => $_POST['selGratuit'],

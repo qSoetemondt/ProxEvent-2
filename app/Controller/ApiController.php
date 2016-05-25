@@ -17,6 +17,15 @@ class ApiController extends Controller
 		echo $liste_categories;
 	}
 
+	public function subCategories($id_categorie_parent){
+		$m = new \Manager\CategorieManager();
+		// Récupération des sous catégories d'une catégorie parent
+		$subCategories = $m->get_sub_categories($id_categorie_parent);
+		$liste_sub_categories = json_encode($subCategories);
+		echo $liste_sub_categories;
+	}
+
+
 	// Fonction qui récupère les events ciblés et les encode en json
 	public function apiEvent(){
 		 $m = new \Manager\EventManager();
