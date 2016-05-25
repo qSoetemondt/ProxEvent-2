@@ -8,7 +8,12 @@
 	<form id="formEventId" class="form-horizontal" action="#" method="POST">
 		<!-- Div de rangement des catégories -->
 		<div class="form-group" id="rangeCategId">
-		<?php if (isset($erreur)){ echo $erreur;} ?>
+			<h2>Type d'événement</h2>
+			<?php if (isset($erreur)){ echo $erreur;} ?>
+		</div>
+
+		<!-- Apparition des sous catégories : -->
+		<div class="form-group" id="rangeSubCategId">
 		</div>
 
 		<!-- Caractère payant ou non : -->
@@ -70,8 +75,10 @@
   			</div>
 		</div>	<!-- Fin de facultatifForm -->
 
+
 		<!-- Bouton de soumission du form au serveur -->
 		<button id="btnFormEvent" type="submit" class="btn btn-primary pull-right" name="btn">Valider</button>
+
 		<!-- Bouton de choix d'un form complet ou non -->
 		<button type="button" class="btn btn-primary pull-right" id="btnOptId" name="btnOpt">Plus d'options</button>
 

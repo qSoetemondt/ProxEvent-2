@@ -42,9 +42,9 @@ $(document).ready(function() {
 						//Implémentation de l'autocomplétion pour l'adresse
 						var autocomplete = new google.maps.places.Autocomplete($inpAdress[0], options);
 
-						// Au changement d'adresse dans le champ : et 
+						// Au changement d'adresse dans le champ : et
 						google.maps.event.addListener(autocomplete, 'place_changed', function() {
-							// l'auto completion se declenche 
+							// l'auto completion se declenche
 						    var place = autocomplete.getPlace();
 						    var new_adresse = place.formatted_address;
 
@@ -63,7 +63,8 @@ $(document).ready(function() {
 						});
 					}
 				});
-			})
+			}
+		)
 	}
 
 	// Appel AJAX sur les catégories :
@@ -91,7 +92,7 @@ $(document).ready(function() {
 				if($compteur == 3)
 				{	//console.log("création div row");
 					// création d'une nouvelle div de classe radio
-					$divRadio = $('<div class="row">');
+					$divRow = $('<div class="row">');
 					// remise du compteur à zéro
 					$compteur = 0;
 				}
@@ -170,22 +171,87 @@ $(document).ready(function() {
 		console.log("complete");
 	});
 
-	
 
+	// Gestion de la réaction au clic d'une catégorie parent :
 	// Gestion de l'encadré de la catégorie sélectionnée
-	$(document).on('click', 'input[type=radio]', function(){
+	$(document).on('click', 'input[name = "radCategorie"]', function(event) {
+		// Si il y a une catégorie de sélectionnée, on enlève son style :
+		$('input[type = radio]').parent().removeClass('focused');
+		// on cible la div parent du bouton radio cliqué
+		$categorieFocused = $('input[type = radio]:checked').parent();
+		// on ajoute le style :
+		$categorieFocused.addClass('focused');
 
-		 $('input[type=radio]').parent().removeClass('focused');
-		 
-		 $categorieFocused = $('input[type=radio]:checked').parent();
+		// Récupération de l'id de la catégorie cliquée :
+		$id_categorie_parent = $('input[name = "radCategorie"]:checked').attr('id');
 
-		 $categorieFocused.addClass('focused');
+		// lecture des sous-catégories :
+		$.ajax({
+			// TODO : A gerer dans les routes avec un paramètre id
+			url: '/api/subcategories/' + $id_categorie_parent,
+			type: 'GET',
+			dataType: 'json',
+			// data: {param1: 'value1'},
+		})
+		.done(function(json) {
+			console.log(json);
+			// Ajout de toutes les catégories parents dans un bloc
+			// qui apparaît en dessous
+			$elementSub = $('#rangeSubCategId');
+			// on le vide à cahque fois sinon cumulation des sous-catégories
+			$elementSub.empty();
 
+			// Création du label du select
+			$label_sub = $('<label for="selSubCatId" class="col-sm-2 control-label">Sous-type (facultatif)</label>');
+			$elementSub.append($label_sub);
+			// Création du select
+			$select_sub = $('<select id="selSubCatId" class="form-control" name="selSub" class="form-control">');
+			$option_no_select = $('<option selected disabled>');
+			$option_no_select.append("Sous-type d'événement (facultatif)");
+			$select_sub.append($option_no_select);
+
+			$col_sm_10 = $('<div class="col-sm-10">');
+			$elementSub.append($col_sm_10);
+
+			var compteur = 0;
+
+			// parcours des sous catégories :
+			$(json).each(function(index, el) {
+				compteur++;
+
+				$id_categorie_sub = $(json)[index]['id'];
+
+				// création des options du select
+				$option_sub = $('<option value = "' + $id_categorie_sub + '">')
+				$text_option_sub = $(json)[index]['libelle'];
+
+				$option_sub.append($text_option_sub);
+				$select_sub.append($option_sub);
+
+				// Ajout dans le bloc
+				$elementSub.append($select_sub);
+			});
+			$col_sm_10.append($select_sub);
+
+			if(compteur !== 0)
+			{
+				$elementSub.css('display', 'block');
+			}
+			else
+			{
+				$elementSub.css('display', 'none');
+			}
+
+
+		})
+		.fail(function(error) {
+			console.log(error);
+		})
+		.always(function() {
+			console.log("complete");
+		});
 
 	});
-	
-
-
 
 
 
@@ -202,7 +268,7 @@ $(document).ready(function() {
 	});
 
 	pickerDateDebut = $date_debut.pickadate('picker');
-	// Affectation de la sélection de la date limite inférieure de début 
+	// Affectation de la sélection de la date limite inférieure de début
 	// = date du jour :
 	pickerDateDebut.set('min', true);
 
@@ -237,8 +303,8 @@ $(document).ready(function() {
 		format: 'HH:i',
 	});
 
-	// Affectation de la limite inférieure du time de fin 
-	// en fonction du time de début rentré par l'utilisateur 
+	// Affectation de la limite inférieure du time de fin
+	// en fonction du time de début rentré par l'utilisateur
 	// TODO : (si date_debut == date_fin)
 	pickerTimeFin = $time_fin.pickatime('picker');
 	pickerTimeFin.set('interval', 15);
@@ -258,7 +324,7 @@ $(document).ready(function() {
 	})
 	pickerDateDebut.render(true);
 
-	
+
 	// Geston de la date de fin :
 	pickerDateFin.on({
 		open: function(){
@@ -272,15 +338,15 @@ $(document).ready(function() {
 	pickerTimeDebut.on({
 		close: function(){
 			time_fin_min = pickerTimeDebut.get('value');
-			// Réaffectation du time de fin limite en fonction 
+			// Réaffectation du time de fin limite en fonction
 			// du changement de time début (si même date):
 			if ($('#inputDateDebutId').val() === $('#inputDateFinId').val()) {
 				if($('#inputTimeDebutId').val() > $('#inputTimeFinId').val())
 				{
-					
+
 					$('#inputTimeFinId').val($('#inputTimeDebutId').val());
 				}
-			}		
+			}
 		}
 	});
 
