@@ -73,12 +73,12 @@
 	menuElement: document.querySelector( '.meny' ),
 	contentsElement: document.querySelector( '.contents' ),
 // [optional] alignement du menu (top/right/bottom/left)
-	position: Meny.getQuery().p || 'bottom',
+	position: Meny.getQuery().p || 'right',
 // [optional] hauteur du menu (pour la position top ou bottom)
 	height: 200,
 // [optional] largeur du menu (pour la position left ou right)
 	width: 260,
-// [optional] distance de d�clenchement du menu par rapport au menu
+// [optional] distance de déclenchement du menu par rapport au menu
 	threshold: 40,
 // [optional] utilisation des mouvement de la souris pour l'ouverture ou la fermeture
 	mouse: true,
