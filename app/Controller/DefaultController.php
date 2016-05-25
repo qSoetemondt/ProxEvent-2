@@ -11,7 +11,7 @@ use \W\Security\AuthentificationManager;
 class DefaultController extends Controller
 {
 
-	/** Page d'accueil par défaut */
+	/* Page d'accueil par défaut */
 	public function home()
 	{
 		if(isset($_SESSION['user'])){

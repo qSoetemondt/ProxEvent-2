@@ -118,18 +118,27 @@ h1 {
   text-align: center;
 }
 
+
 #formEventId{
   margin: 0 auto;
   width: 90%;
+
   margin-top: 50px;
   padding-top: 20px;
+
+  width: 80%;
 }
 
-input[type=radio] + label {
-  color: #000000;
-  font-style: italic;
+#triCategorieId {
+  text-align: center;
+
+
 }
 
+.focused {
+  background-color: #0277BD;
+  border-radius: 5px;
+}
 
 input[type=radio]:checked + span {
   color: #fff;
@@ -197,3 +206,4 @@ label{
 #rangeSubCategId{
   display: none;
 }
+

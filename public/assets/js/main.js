@@ -4,6 +4,47 @@
 
 $(document).ready(function() {
 
+
+	$.ajax({
+		url: '/api/categories',
+		type: 'GET',
+		dataType: 'json',
+		
+	})
+	.done(function(json) {
+		console.log(json);
+
+		$(json).each(function(index, el) {
+			if($(json)[index]['parent_id'] == 0)
+			{
+				$div_checkbox = $('<div class="checkbox-inline">');
+				
+				$input_checkbox = $('<input type="checkbox" checked>');
+				$categorie = $(json)[index]['libelle'];
+
+				$input_checkbox.attr('value', $categorie);
+				$input_checkbox.attr('id', $categorie + "Box");
+
+				$label_checkbox = $('<label for="' + $categorie + 'Box">' + $categorie + '</label>');
+
+				$div_checkbox.append($input_checkbox);
+				$div_checkbox.append($label_checkbox);
+	
+				$('#triCategorieId').append($div_checkbox);
+			}
+
+			
+		});
+		
+	})
+	.fail(function(error) {
+		console.log(error);
+	})
+	.always(function() {
+		console.log("complete");
+	});
+	
+
 	/*
 		Récupération des références sur les objets
 	*/
@@ -44,8 +85,12 @@ $(document).ready(function() {
 			title: 'Position actuelle'
 		});
 
-
-
+		
+		// gestion du filtre d'affichage par catégorie:
+			// Initialisation du tableau de marker d'événements
+			// enrichi des catégories
+		var gmarkers = [];
+		
 
 		// ************************************************
 		// Chargement des événements ciblés, par appel AJAX
@@ -57,6 +102,7 @@ $(document).ready(function() {
 		})
 		.done(function(json) {
 			// console.log(json);
+
 			$(json).each(function(index, el) {
 				$latitude = $(json)[index]['latitude'];
 				$longitude = $(json)[index]['longitude'];
@@ -106,8 +152,50 @@ $(document).ready(function() {
 					title: $titreEvent,
 					icon: '/assets/img/'+icons[$categorieEvent] // icône de marqueur personnalisée
 				});
-				// Infobulle
 
+
+				// TODO : filtrer les markers de GoogleMap par catégorie
+				// création d'un tableau d'objets markers surchargés de la propriété mycategory 
+				marker['mycategory'] = $(json)[index]['libelle'];
+				gmarkers.push(marker);
+				// // fonction pour montrer les marqueurs en fonction des catégories choisies dans les checkbox (home.php)
+				function show(category){
+					for( var i=0; i<gmarkers.length; i++ ){
+						if (gmarkers[i].mycategory == category) {
+							gmarkers[i].setVisible(true);
+					    }
+					}
+					// document.getElementById(category+"Box").checked = true;
+				}
+				// fonction pour cacher les marqueurs en fonction des catégories choisies dans les checkbox (home.php)
+				function hide(category) {
+			        for ( var i=0; i<gmarkers.length; i++ ) {
+				        if (gmarkers[i].mycategory == category) {
+				          gmarkers[i].setVisible(false);
+				        }
+			      	}
+			    }
+
+			    // fonction pour montrer ou cacher des marqueurs en réaction au clic sur les checkbox
+				function boxclick(box,category) {
+			        if (box.checked) {
+			        	this.checked = true;
+			          	show(category);
+
+			        } else {
+			        	this.checked = false;
+			        	hide(category);
+			        }
+			    }
+
+			 
+			  
+			    $('input[type=checkbox]').on('click', $('input[type=checkbox]') ,function(event) {
+			    	$categorie_traitee = $(this).val();
+			    	boxclick(this, $categorie_traitee);
+			    });  
+
+				// Infobulle
 
 				var contenuInfoBulle =	"<div class='infobulle'>"+
 										"<h3>Titre : "+$(json)[index]['titre']+ "</h3><br>" +
@@ -149,6 +237,7 @@ $(document).ready(function() {
 		.always(function() {
 			console.log("complete");
 		});
+
 	};
 
 	/*
@@ -202,10 +291,5 @@ $(document).ready(function() {
 	else {
 		error();
 	}
-
-
-
-
-
 
 })

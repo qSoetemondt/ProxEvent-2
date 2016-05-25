@@ -34,4 +34,6 @@ class ApiController extends Controller
 		 $liste_events = json_encode($events, JSON_NUMERIC_CHECK);
 		 echo $liste_events;
 	}
+
+
 }
