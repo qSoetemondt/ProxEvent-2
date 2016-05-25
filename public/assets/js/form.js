@@ -74,7 +74,7 @@ $(document).ready(function() {
 		// data: {param1: 'value1'},
 	})
 	.done(function(json) {
-		console.log(json);
+		//console.log(json);
 
 		// Remplissage du form avec des checkboxes pour chaque catégorie principale :
 		$form = $('#rangeCategId');
@@ -89,8 +89,7 @@ $(document).ready(function() {
 			if ($(json)[index]['parent_id'] == 0)
 			{
 				if($compteur == 3)
-				{
-					//console.log("création div row");
+				{	//console.log("création div row");
 					// création d'une nouvelle div de classe radio
 					$divRadio = $('<div class="row">');
 					// remise du compteur à zéro
@@ -170,6 +169,8 @@ $(document).ready(function() {
 	.always(function() {
 		console.log("complete");
 	});
+
+	
 
 	// Gestion de l'encadré de la catégorie sélectionnée
 	$(document).on('click', 'input[type=radio]', function(){

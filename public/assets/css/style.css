@@ -126,26 +126,10 @@ h1 {
   width: 80%;
 }
 
-/*input[type=radio] + label {
-  color: #000000;
-  font-style: italic;
-}
-*/
+#triCategorieId {
+  text-align: center;
 
-/*input[type=radio]:checked + span {*/
-  /*color: #FF0000;*/
-/*  background: #FF0000;
-  color: #fff;
-  font-style: normal;
-}*/
-
-/*input[type=radio]:checked + span + label {
-*/  /*color: #FF0000;*/
- /* background: #FF0000;
-  color: #fff;
-  font-style: normal;
 }
-*/
 
 .focused {
   background-color: #0277BD;

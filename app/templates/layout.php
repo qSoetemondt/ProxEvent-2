@@ -73,7 +73,7 @@
 	menuElement: document.querySelector( '.meny' ),
 	contentsElement: document.querySelector( '.contents' ),
 // [optional] alignement du menu (top/right/bottom/left)
-	position: Meny.getQuery().p || 'left',
+	position: Meny.getQuery().p || 'bottom',
 // [optional] hauteur du menu (pour la position top ou bottom)
 	height: 200,
 // [optional] largeur du menu (pour la position left ou right)

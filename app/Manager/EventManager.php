@@ -48,4 +48,6 @@ class EventManager extends \W\Manager\Manager
 			$stmt->execute();
 			return $ok;
 	}
+
+	
 }

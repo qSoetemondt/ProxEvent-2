@@ -2,14 +2,10 @@
 
 <?php $this->start('main_content') ?>
 
-	<input type="checkbox" id="inpCheckSoireeId"><label for="inpCheckSoireeId">Soirée</label>
-	<input type="checkbox" id="inpCheckConcertId"><label for="inpCheckConcertId">Concert</label>
-	<input type="checkbox" id="inpCheckExpoId"><label for="inpCheckExpoId">Expo</label>
-	<input type="checkbox" id="inpCheckSportId"><label for="inpCheckSportId">Sport</label>
-	<input type="checkbox" id="inpCheckForumId"><label for="inpCheckForumId">Forum</label>
-	<input type="checkbox" id="inpCheckSalonId"><label for="inpCheckSalonId">Salon</label>
-	<input type="checkbox" id="inpCheckPerformingId"><label for="inpCheckPerformingId">Performing</label>
-	<input type="checkbox" id="inpCheckFestivalId"><label for="inpCheckFestivalId">Festival</label>
+	<!-- checkbox de tri des évènements par catégorie(s) -->
+	<div id="triCategorieId">
+		
+	</div>
 
 	<!-- Appel Google map -->
 	<div id="mapOk"></div>
@@ -22,7 +18,6 @@
 <?php $this->start('footer') ?>
 
 <?php $this->stop('footer') ?>
-
 
 
 <?php $this->start('scripts') ?>
