@@ -235,15 +235,18 @@ $(document).ready(function() {
 			});
 			$col_sm_10.append($select_sub);
 
+			// Gestion du bloc sous-catégorie
 			if(compteur !== 0)
 			{
-				$elementSub.css('display', 'block');
+				if ($elementSub.css('display') == 'none')
+				{
+					$elementSub.css('display', 'block').hide().toggle(250);
+				}
 			}
 			else
 			{
-				$elementSub.css('display', 'none');
+				$elementSub.css('display', 'none').show().toggle(250);
 			}
-
 
 		})
 		.fail(function(error) {

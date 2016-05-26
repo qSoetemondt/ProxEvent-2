@@ -20,7 +20,7 @@ class EventManager extends \W\Manager\Manager
 
 			$current = date("Y-m-d H:i:s", time());
 		
-			$sql = "SELECT e.*, c.libelle FROM events as e,
+			$sql = "SELECT e.*, c.libelle, c.parent_id FROM events as e,
 			categories AS c WHERE ((date_debut >= :now AND date_debut <= :now_plus_2h)
 			OR (date_debut<=:now AND date_fin >=:now)) AND e.categorie_id = c.id";
 			$stmt = $this->dbh->prepare($sql);
@@ -52,7 +52,7 @@ class EventManager extends \W\Manager\Manager
 
 			$current = date("Y-m-d H:i:s", time());
 		
-			$sql = "SELECT e.*, c.libelle FROM events as e, categories AS c WHERE ((date_debut >= :now AND date_debut <= :now_plus_2h) OR (date_debut<=:now AND date_fin >=:now)) AND e.categorie_id = c.id";
+			$sql = "SELECT e.*, c.libelle, c.parent_id FROM events as e, categories AS c WHERE ((date_debut >= :now AND date_debut <= :now_plus_2h) OR (date_debut<=:now AND date_fin >=:now)) AND e.categorie_id = c.id";
 			$stmt = $this->dbh->prepare($sql);
 			$stmt->bindValue(":now", $current);
 			$stmt->bindValue(":now_plus_2h", $time_limite_debut);

@@ -17,30 +17,63 @@
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/default.time.css')?>">
 
 	<!-- Appel à notre CSS -->
-	<link rel="stylesheet" href="<?= $this->assetUrl('css/demo.css')?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
 
-	
-	
+
 	<!-- === SCRIPTS JS === -->
 	<!-- Appel script (vendor) Modernizr -->
 	<script src="<?= $this->assetUrl('js/vendor/modernizr-2.8.3.min.js') ?>"></script>
 
 </head>
 <body>
-<div class="meny">
-	<ul class="nav navbar-nav">
-							<li><a href="<?= $this->url('home')?>">Accueil</a></li>  
-				  			<?php if(!isset($_SESSION['user'])){?>
-					  		<li><a href="<?= $this->url('inscription')?>">Inscription</a></li>
-	            	  		<li><a href="<?= $this->url('login')?>">Login</a></li>
-				 	 		<?php }else{ ?>
-					 			<li><a href="<?= $this->url('logout')?>">Déconnexion</a></li>
-					 			<li><a href="<?= $this->url('addEvent')?>">Ajout Evénement</a></li>
-					 		<?php } ?>         
-	          			</ul>
-</div>
-	<div class="meny-arrow"></div>
+
+	<nav class="navbar navbar-default navbar-fixed-bottom ourMenu">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<a href="<?= $this->url('home')?>">
+						<button type="button" class="btn btn-default btn-menu">Accueil</button>
+					</a>
+				</li>
+				<?php
+				if(!isset($_SESSION['user']))
+				{
+				?>
+			  		<li>
+			  			<a href="<?= $this->url('inscription')?>">
+			  				<button type="button" class="btn btn-default btn-menu">Inscription</button>
+			  			</a>
+			  		</li>
+			  		<li>
+			  			<a href="<?= $this->url('login')?>">
+			  				<button type="button" class="btn btn-default btn-menu">Login</button>
+			  			</a>
+			  		</li>
+		 		<?php
+		 		}
+		 		else
+		 		{
+		 		?>
+					<li>
+						<a href="<?= $this->url('logout')?>">
+							<button type="button" class="btn btn-default btn-menu">Déconnexion</button>
+						</a>
+					</li>
+					<li>
+						<a href="<?= $this->url('addEvent')?>">
+							<button  type="button" class="btn btn-default btn-menu">Ajout Evénement</button>
+						</a>
+					</li>
+				<?php
+				}
+				?>
+			</ul>
+	    </div>
+	  </div>
+	</nav>
+
+
 	<div class="contents">
 		<header>
 			<h1><?= $this->e($title) ?></h1>
@@ -68,31 +101,6 @@
 
 	<!-- Appel des scripts -->
 	<?= $this->section('scripts') ?>
-	<script src="<?= $this->assetUrl('js/meny.js')?>"></script>
-<script>
-	var meny = Meny.create({
-	menuElement: document.querySelector( '.meny' ),
-	contentsElement: document.querySelector( '.contents' ),
-// [optional] alignement du menu (top/right/bottom/left)
-	position: Meny.getQuery().p || 'right',
-// [optional] hauteur du menu (pour la position top ou bottom)
-	height: 200,
-// [optional] largeur du menu (pour la position left ou right)
-	width: 260,
-// [optional] distance de d�clenchement du menu par rapport au menu
-	threshold: 40,
-// [optional] utilisation des mouvement de la souris pour l'ouverture ou la fermeture
-	mouse: true,
-// [optional] utilisation de l'approche
-	touch: true
-	});
-
-	if( Meny.getQuery().u && Meny.getQuery().u.match( /^http/gi ) ) {
-		var contents = document.querySelector( '.contents' );
-		contents.style.padding = '0px';
-		contents.innerHTML = '<div class="cover"></div><iframe src="'+ Meny.getQuery().u +'" style="width: 100%; height: 100%; border: 0; position: absolute;"></iframe>';
-	}
-</script>
 
 </body>
 </html>
