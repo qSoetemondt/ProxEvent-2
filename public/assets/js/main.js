@@ -13,8 +13,7 @@ $(document).ready(function() {
 		dataType: 'json',
 	})
 	.done(function(json) {
-		console.log(json);
-		//
+		
 		$(json).each(function(index, el) {
 			if($(json)[index]['parent_id'] == 0)
 			{
