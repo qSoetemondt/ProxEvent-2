@@ -34,6 +34,8 @@ body {
   font: 16px sans-serif;
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  position: relative;
+  overflow: hidden;
 }
 .footer {
   position: absolute;
@@ -104,15 +106,22 @@ section>#mapOk {
     Infos & menus page
    ==================== */
 
-/* Pré-requis de position */
-body {
-  position: relative;
-}
-
 /* Position menus : premier plan */
 footer {
   position: absolute;
   z-index: 10;
+}
+
+.ourMenu{
+  width: 100%;
+  clear: both;
+  position: fixed;
+  background: rgba(0,0,0,0);
+  border: none;
+}
+
+.btn-menu{
+    box-shadow: 3px 4px 5px #888888;
 }
 
 /* ==========================
@@ -121,6 +130,7 @@ footer {
 
 h1 {
   text-align: center;
+  margin-top: 0.15em;
 }
 
 

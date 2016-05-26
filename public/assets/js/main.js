@@ -85,7 +85,6 @@ $(document).ready(function() {
 			title: 'Position actuelle'
 		});
 
-
 		// gestion du filtre d'affichage par catégorie:
 			// Initialisation du tableau de marker d'événements
 			// enrichi des catégories
@@ -124,8 +123,8 @@ $(document).ready(function() {
 				var $categorieEvent = $(json)[index]['categorie_id'];
 
 				var $eventCoords = {
-					lat: $latitude,//48.837799072265625,
-					lng: $longitude//2.3342411518096924
+					lat: $latitude,		//48.837799072265625,
+					lng: $longitude		//2.3342411518096924
 				};
 
 				// Gestion des icônes pour les sous-catégories (id>8) :
@@ -156,24 +155,26 @@ $(document).ready(function() {
 				var marker = new google.maps.Marker({
 					position: $eventCoords,
 					map: map,
-					draggable: false,	// le marqueur n'est pas déplaçable
+					// le marqueur n'est pas déplaçable :
+					draggable: false,
 					title: $titreEvent,
-					icon: '/assets/img/'+icons[$categorieEvent] // icône de marqueur personnalisée
+					// icône de marqueur personnalisée :
+					icon: '/assets/img/'+icons[$categorieEvent],
+					// Gestion de l'apparition des markers (anim) :
+					animation: google.maps.Animation.DROP
 				});
 
 
-				// TODO : filtrer les markers de GoogleMap par catégorie
 				// création d'un tableau d'objets markers surchargés de la propriété mycategory
 				marker['mycategory'] = $(json)[index]['libelle'];
 				gmarkers.push(marker);
-				// // fonction pour montrer les marqueurs en fonction des catégories choisies dans les checkbox (home.php)
+				// fonction pour montrer les marqueurs en fonction des catégories choisies dans les checkbox (home.php)
 				function show(category){
 					for( var i=0; i<gmarkers.length; i++ ){
 						if (gmarkers[i].mycategory == category) {
 							gmarkers[i].setVisible(true);
 					    }
 					}
-					// document.getElementById(category+"Box").checked = true;
 				}
 				// fonction pour cacher les marqueurs en fonction des catégories choisies dans les checkbox (home.php)
 				function hide(category) {
