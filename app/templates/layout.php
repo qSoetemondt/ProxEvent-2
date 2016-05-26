@@ -27,7 +27,7 @@
 	<script src="<?= $this->assetUrl('js/persist-min.js') ?>"></script>
 
 </head>
-<body>
+<body onload='load_data();'>
 
 	<nav class="navbar navbar-default navbar-fixed-bottom ourMenu">
 	  <div class="container-fluid">
@@ -103,13 +103,6 @@
 
 	<!-- Appel des scripts -->
 	<?= $this->section('scripts') ?>
-
-	if( Meny.getQuery().u && Meny.getQuery().u.match( /^http/gi ) ) {
-		var contents = document.querySelector( '.contents' );
-		contents.style.padding = '0px';
-		contents.innerHTML = '<div class="cover"></div><iframe src="'+ Meny.getQuery().u +'" style="width: 100%; height: 100%; border: 0; position: absolute;"></iframe>';
-	}
-</script>
 
 </body>
 </html>

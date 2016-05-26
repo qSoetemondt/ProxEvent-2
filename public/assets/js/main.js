@@ -2,13 +2,24 @@
 	Logique de géolocalisation
   ==============================*/
 
+// global object
+var store;
+
+function load_data() {
+  // load persistent store after the DOM has loaded
+  store = new Persist.Store('eventAdd');
+  console.log(store);
+}
+
+// save data in store
+if (store != "undefined") {
+	// store.set('add', 'nothing added yet');
+console.log(store);
+}
+
+
+
 $(document).ready(function() {
-	if (typeof eventState != "undefined") {
-		val = eventState.get('added');
-	}
-	else {
-		eventState = new Persist.Store('eventAdd');
-	}
 
 	$.ajax({
 		url: '/api/categories',
@@ -68,7 +79,7 @@ $(document).ready(function() {
 	var initGoogleMap = function(latitude, longitude) {
 		
 		if (typeof val != "undefined") {
-			console.log('this is val :');
+			console.log('this is val when map is init :');
 			console.log(val);
 		}
 		else {

@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+valnew = eventState.get('added');
+console.log(valnew);
 	//*************************************************************
 	// Gestion du passage de la géoloc au formulaire :
 
@@ -385,13 +387,16 @@ $(document).ready(function() {
 	});
 
 	// 
-	s('#btn').on('click', '#btn', function(event) {
-		if (typof eventState != "undefined") {
-			eventState.set('added', 'coucou');
+	$('#btnFormEvent').click(function(event) {
+		if (typeof eventState != "undefined") {
+			eventState.set('added', 'je suis modifié lol');
+			// console.log('la statique est déj défini, elle doit avoir stocké coucou dedans ');
 		}
 		else {
-			eventState = new Persist.Store('eventAdd');
-			eventState.set('added', 'coucou');	
+			// eventState = new Persist.Store('eventAdd');
+			// eventState.set('added', 'coucou');
+			// console.log('la statique a été défini, on a stocké coucou dedans ');
+
 		}
 	});
 
