@@ -59,72 +59,94 @@ $(document).ready(function() {
 			console.log(json);
 			
 			$(json).each(function(index, el) {
-				$latitude = $(json)[index]['latitude'];
-				$longitude = $(json)[index]['longitude'];
-
-				$titreEvent = $(json)[index]['titre'];
-				if($(json)[index]['payant'] == 0){ $payant = "Gratuit"}else{ $payant = "Payant"};
-				if($(json)[index]['description'] != ""){$description = $(json)[index]['description']}else{$description = "Aucune description"};
-				$categorieEvent = $(json)[index]['categorie_id'];
-
-				var $eventCoords = {
-					lat: $latitude,//48.837799072265625,
-					lng: $longitude//2.3342411518096924
-				};
-
-				var icons = {
-					'1': 'icomoon-glass.png',
-					'2': 'icomoon-music.png',
-					'3': 'icomoon-camera.png',
-					'4': 'icomoon-heart.png',
-					'5': 'icomoon-earth.png',
-					'6': 'icomoon-point-right.png',
-					'7': 'icomoon-fire.png',
-					'8': 'linecons-vynil.png',
-				};
-
-				// marqueur des coordonnées locales pour chaque event
-				var marker = new google.maps.Marker({
-					position: $eventCoords,
-					map: map,
-					draggable: false,	// le marqueur n'est pas déplaçable
-					title: $titreEvent,
-					icon: '/assets/img/'+icons[$categorieEvent] // icône de marqueur personnalisée
-				});
-				// Infobulle
-	
-				var contenuInfoBulle =	"<div class='infobulle'>"+
-										"<h3>Titre : "+$(json)[index]['titre']+ "</h3><br>" +
-										"<h4>Type d'évenement : " + $(json)[index]['libelle'] + "</h4><br>"+
-										"<p>Adresse : "+$(json)[index]['adresse'] + "</p><br>" +
-										"<p>Payant : "+ $payant + "</p><br>"+
-										"<p>Description : " + $description + "</p><br>" +
-										"<p>Heure de début : " + $(json)[index]['date_debut'] + "</p><br>" +
-										"<p>Heure de fin : " + $(json)[index]['date_fin'] + "</p><br>" +
-										"<p>Fiabilité : " + $(json)[index]['plus_un'] + 
-										"<form method='POST' action=''><input type='hidden' name='plusun' value='"+$(json)[index]['id']+"'><button type='submit' name='submit' style='margin-left:5px'><span class='glyphicon glyphicon-thumbs-up'></span></button></form></p><br>" +									
-										"</div>";
 				
-										
-				var infoBulle = new google.maps.InfoWindow( {
-					content: contenuInfoBulle,
-					shadowStyle: 1,
-         			padding: 0,
-          			backgroundColor: 'rgb(57,57,57)',
-          			borderRadius: 4,
-          			arrowSize: 10,
-          			borderWidth: 1,
-          			borderColor: '#2c2c2c',
-          			disableAutoPan: true,
-          			hideCloseButton: true,
-          			arrowPosition: 30,
-					
-					} )
+					console.log($(json)[index]['event_id']);
+					$latitude = $(json)[index]['latitude'];
+					$longitude = $(json)[index]['longitude'];
 
-				google.maps.event.addListener(marker, 'click', function() {
-				infoBulle.open(map, marker);
+					$titreEvent = $(json)[index]['titre'];
+					if($(json)[index]['payant'] == 0){ $payant = "Gratuit"}else{ $payant = "Payant"};
+					if($(json)[index]['description'] != ""){$description = $(json)[index]['description']}else{$description = "Aucune description"};
+					$categorieEvent = $(json)[index]['categorie_id'];
+
+					var $eventCoords = {
+						lat: $latitude,//48.837799072265625,
+						lng: $longitude//2.3342411518096924
+					};
+
+					var icons = {
+						'1': 'icomoon-glass.png',
+						'2': 'icomoon-music.png',
+						'3': 'icomoon-camera.png',
+						'4': 'icomoon-heart.png',
+						'5': 'icomoon-earth.png',
+						'6': 'icomoon-point-right.png',
+						'7': 'icomoon-fire.png',
+						'8': 'linecons-vynil.png',
+					};
+
+					// marqueur des coordonnées locales pour chaque event
+					var marker = new google.maps.Marker({
+						position: $eventCoords,
+						map: map,
+						draggable: false,	// le marqueur n'est pas déplaçable
+						title: $titreEvent,
+						icon: '/assets/img/'+icons[$categorieEvent] // icône de marqueur personnalisée
 					});
-			});
+					// Infobulle
+					
+					
+					if($(json)[index]['vote'] == undefined){
+						$form = "";
+					}else if(Object.keys($(json)[index]['vote']) == ""){
+						$form = "<form method='POST' action=''><input type='hidden' name='plusun' value='"+$(json)[index]['id']+"'><button type='submit' name='submit' style='margin-left:5px'><span class='glyphicon glyphicon-thumbs-up'></span></button></form></p><br>";
+					}else{
+						if($(json)[index]['vote'] != undefined){
+							for(i = 0; i< $(json)[index]['vote'].length; i++){
+								if($(json)[index]['vote'][i]['event_id'] == $(json)[index]['id']){
+									$form = " Vous avez déjà voté!"
+									break;
+								}else{
+									$form = "<form method='POST' action=''><input type='hidden' name='plusun' value='"+$(json)[index]['id']+"'><button type='submit' name='submit' style='margin-left:5px'><span class='glyphicon glyphicon-thumbs-up'></span></button></form></p><br>";
+								}
+							}
+						
+						}
+					}
+					
+					var contenuInfoBulle =	"<div class='infobulle'>"+
+											"<h3>Titre : "+$(json)[index]['titre']+ "</h3><br>" +
+											"<h4>Type d'évenement : " + $(json)[index]['libelle'] + "</h4><br>"+
+											"<p>Adresse : "+$(json)[index]['adresse'] + "</p><br>" +
+											"<p>Payant : "+ $payant + "</p><br>"+
+											"<p>Description : " + $description + "</p><br>" +
+											"<p>Heure de début : " + $(json)[index]['date_debut'] + "</p><br>" +
+											"<p>Heure de fin : " + $(json)[index]['date_fin'] + "</p><br>" +
+											"<p>Fiabilité : " + $(json)[index]['plus_un'] + 
+											$form +				
+											"</div>";
+					
+											
+					var infoBulle = new google.maps.InfoWindow( {
+						content: contenuInfoBulle,
+						shadowStyle: 1,
+						padding: 0,
+						backgroundColor: 'rgb(57,57,57)',
+						borderRadius: 4,
+						arrowSize: 10,
+						borderWidth: 1,
+						borderColor: '#2c2c2c',
+						disableAutoPan: true,
+						hideCloseButton: true,
+						arrowPosition: 30,
+						
+						} )
+
+					google.maps.event.addListener(marker, 'click', function() {
+					infoBulle.open(map, marker);
+						});
+				
+		});
 
 		})
 		.fail(function(error) {

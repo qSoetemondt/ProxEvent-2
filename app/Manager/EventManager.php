@@ -20,12 +20,31 @@ class EventManager extends \W\Manager\Manager
 
 			$current = date("Y-m-d H:i:s", time());
 		
-			$sql = "SELECT e.*, c.libelle, v.user_id, v.event_id FROM events as e, categories AS c WHERE ((date_debut >= :now AND date_debut <= :now_plus_2h) OR (date_debut<=:now AND date_fin >=:now)) AND e.categorie_id = c.id";
+			$sql = "SELECT e.*, c.libelle FROM events as e,
+			categories AS c WHERE ((date_debut >= :now AND date_debut <= :now_plus_2h)
+			OR (date_debut<=:now AND date_fin >=:now)) AND e.categorie_id = c.id";
 			$stmt = $this->dbh->prepare($sql);
 			$stmt->bindValue(":now", $current);
 			$stmt->bindValue(":now_plus_2h", $time_limite_debut);
 			$stmt->execute();
-			return $stmt->fetchAll();
+			$events = $stmt->fetchAll();
+			
+			// $sql = "SELECT * FROM vote_user WHERE user_id = :id";
+			// $stmt = $this->dbh->prepare($sql);
+			// $stmt->bindValue(":id", $_SESSION['user']['id']);
+			// $stmt->execute();
+			// $votes = $stmt->fetchAll();
+			
+			foreach ($events as $key => $event) {
+				$sql = "SELECT * FROM vote_user WHERE user_id = :id";
+				$stmt = $this->dbh->prepare($sql);
+				$stmt->bindValue(":id", $_SESSION['user']['id']);
+				$stmt->execute();
+				$votes = $stmt->fetchAll();
+				$events[$key]['vote'] = $votes;
+			}
+			// var_dump($events);
+			return $events;
 			
 		}else{
 			$time_limite_debut = strtotime("+2 hours");
@@ -43,16 +62,7 @@ class EventManager extends \W\Manager\Manager
 		
 	}
 	
-	public function getVoteUser(){
-		$sql = "SELECT * FROM vote_user WHERE user_id = :id";
-		$stmt = $this->dbh->prepare($sql);
-		$stmt->bindValue(":id", $_SESSION['user']['id']);
-		$stmt->execute();
-		$voteuser = $stmt->fetchAll();
-		$_SESSION['user']['vote'] = $voteuser;
-		
-		
-	}
+
 
 	public function plusUnEvent(){
 			
@@ -65,27 +75,25 @@ class EventManager extends \W\Manager\Manager
 
 			$valeurplusun = ($valeur['plus_un'] + 1);
 			
-			$sql = "SELECT * FROM vote_user WHERE user_id = :id";
+			$sql = "SELECT user_id, event_id FROM vote_user WHERE user_id = :id AND event_id = :event";
 			$stmt = $this->dbh->prepare($sql);
 			$stmt->bindValue(":id", $_SESSION['user']['id']);
+			$stmt->bindValue(":event", $_POST['plusun'] );
 			$stmt->execute();
-			$voteuser = $stmt->fetchAll();
-			$_SESSION['user']['vote'] = $voteuser;
-			for($i = 0; $i<count($voteuser); $i++){
-				if($_SESSION['user']['vote'][$i]['event_id'] != $id){
-					
-					$sql = "INSERT INTO vote_user (event_id, user_id) VALUES (:event_id, :user_id)";
-					$stmt = $this->dbh->prepare($sql);
-					$stmt->bindValue(":event_id", $id);
-					$stmt->bindValue(":user_id", $_SESSION['user']['id']);
-					$stmt->execute();
-					
-					$sql = "UPDATE events SET plus_un = :plus_un WHERE id = :id";
-					$stmt = $this->dbh->prepare($sql);
-					$stmt->bindValue(":id", $id);
-					$stmt->bindValue(":plus_un", $valeurplusun);
-					$stmt->execute();
-				}
+			$voteuser = $stmt->fetch();
+			if(!$voteuser){
+				$sql = "INSERT INTO vote_user (event_id, user_id) VALUES (:event_id, :user_id)";
+				$stmt = $this->dbh->prepare($sql);
+				$stmt->bindValue(":event_id", $id);
+				$stmt->bindValue(":user_id", $_SESSION['user']['id']);
+				$stmt->execute();
+				
+				$sql = "UPDATE events SET plus_un = :plus_un WHERE id = :id";
+				$stmt = $this->dbh->prepare($sql);
+				$stmt->bindValue(":id", $id);
+				$stmt->bindValue(":plus_un", $valeurplusun);
+				$stmt->execute();
+				
 					
 			}
 				
