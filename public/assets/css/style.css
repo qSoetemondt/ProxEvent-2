@@ -89,6 +89,11 @@ section>#mapOk {
 .infobulle > h4{
   font-size : 1.1rem;
 }
+.Event{
+  margin: 0;
+}
+
+
 
 /* ====================
     Infos & menus page
