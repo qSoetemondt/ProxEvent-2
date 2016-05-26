@@ -19,7 +19,7 @@ $(document).ready(function() {
 			if($(json)[index]['parent_id'] == 0)
 			{
 				$div_checkbox = $('<div class="checkbox-inline">');
-				
+
 				$input_checkbox = $('<input type="checkbox" checked>');
 				$categorie = $(json)[index]['libelle'];
 
@@ -30,7 +30,7 @@ $(document).ready(function() {
 
 				$div_checkbox.append($input_checkbox);
 				$div_checkbox.append($label_checkbox);
-	
+
 				$('#triCategorieId').append($div_checkbox);
 			}
 		});
@@ -41,7 +41,7 @@ $(document).ready(function() {
 	.always(function() {
 		console.log("complete");
 	});
-	
+
 
 	/*
 		Récupération des références sur les objets
@@ -83,12 +83,11 @@ $(document).ready(function() {
 			title: 'Position actuelle'
 		});
 
-		
+
 		// gestion du filtre d'affichage par catégorie:
 			// Initialisation du tableau de marker d'événements
 			// enrichi des catégories
 		var gmarkers = [];
-		
 
 		/* ================================================
 		   Chargement des évènements ciblés, par appel AJAX
@@ -100,13 +99,22 @@ $(document).ready(function() {
 		})
 		.done(function(json) {
 			$(json).each(function(index, el) {
+				
 				$latitude = $(json)[index]['latitude'];
 				$longitude = $(json)[index]['longitude'];
-
 				$titreEvent = $(json)[index]['titre'];
-				if($(json)[index]['payant'] == 0){ $payant = "Gratuit"}else{ $payant = "Payant"};
+				
+				if($(json)[index]['payant'] == 0){
+					$payant = "Gratuit"
+				}else{ 
+					$payant = "Payant"
+				};
 
-				if($(json)[index]['description'] != ""){$description = $(json)[index]['description']}else{$description = "Aucune description"};
+				if($(json)[index]['description'] != ""){
+					$description = $(json)[index]['description']
+				}else{
+					$description = "Aucune description"
+				};
 
 				var $categorieEvent = $(json)[index]['categorie_id'];
 
@@ -115,13 +123,11 @@ $(document).ready(function() {
 					lng: $longitude//2.3342411518096924
 				};
 
-
 				// Gestion des icônes pour les sous-catégories (id>8) :
 				// attribution de l'id de catégorie parent
 				if ($categorieEvent > 8) {
 					$categorieEvent = $(json)[index]['parent_id'];
 				}
-
 
 				var icons = {
 					'1': 'icomoon-glass.png',
@@ -179,46 +185,67 @@ $(document).ready(function() {
 			        	hide(category);
 			        }
 			    }
+
 			 	// Au clic sur une checkbox, on applique l'action de filtrage avec la fonction boxclick		  
-			    $('input[type=checkbox]').on('click', $('input[type=checkbox]') ,function(event) {
+			   $('input[type=checkbox]').on('click', $('input[type=checkbox]') ,function(event) {
 			    	$categorie_traitee = $(this).val();
 			    	boxclick(this, $categorie_traitee);
-			    });  
+			    });
+					
+					// Infobulle
+					
+					if($(json)[index]['vote'] == undefined){
+						$form = "";
+					}else if(Object.keys($(json)[index]['vote']) == ""){
+						$form = "<form method='POST' action=''><input type='hidden' name='plusun' value='"+$(json)[index]['id']+"'><button type='submit' name='submit' style='margin-left:5px'><span class='glyphicon glyphicon-thumbs-up'></span></button></form></p><br>";
+					}else{
+						if($(json)[index]['vote'] != undefined){
+							for(i = 0; i< $(json)[index]['vote'].length; i++){
+								if($(json)[index]['vote'][i]['event_id'] == $(json)[index]['id']){
+									$form = " Vous avez déjà voté!"
+									break;
+								}else{
+									$form = "<form method='POST' action=''><input type='hidden' name='plusun' value='"+$(json)[index]['id']+"'><button type='submit' name='submit' style='margin-left:5px'><span class='glyphicon glyphicon-thumbs-up'></span></button></form></p><br>";
+								}
+							}
+						
+						}
+					}
+					
+					var contenuInfoBulle =	"<div class='infobulle'>"+
+											"<h3>Titre : "+$(json)[index]['titre']+ "</h3><br>" +
+											"<h4>Type d'évenement : " + $(json)[index]['libelle'] + "</h4><br>"+
+											"<p>Adresse : "+$(json)[index]['adresse'] + "</p><br>" +
+											"<p>Payant : "+ $payant + "</p><br>"+
+											"<p>Description : " + $description + "</p><br>" +
+											"<p>Heure de début : " + $(json)[index]['date_debut'] + "</p><br>" +
+											"<p>Heure de fin : " + $(json)[index]['date_fin'] + "</p><br>" +
+											"<p>Fiabilité : " + $(json)[index]['plus_un'] + 
+											$form +				
+											"</div>";
+					
+											
+					var infoBulle = new google.maps.InfoWindow( {
+						content: contenuInfoBulle,
+						shadowStyle: 1,
+						padding: 0,
+						backgroundColor: 'rgb(57,57,57)',
+						borderRadius: 4,
+						arrowSize: 10,
+						borderWidth: 1,
+						borderColor: '#2c2c2c',
+						disableAutoPan: true,
+						hideCloseButton: true,
+						arrowPosition: 30,
+						
+						} )
 
+					google.maps.event.addListener(marker, 'click', function() {
+					infoBulle.open(map, marker);
+						});
+				
+		});
 
-				// Infobulle
-				var contenuInfoBulle =	"<div class='infobulle'>"+
-										"<h3>Titre : "+$(json)[index]['titre']+ "</h3><br>" +
-										"<h4>Type d'évenement : " + $(json)[index]['libelle'] + "</h4><br>"+
-										"<p>Adresse : "+$(json)[index]['adresse'] + "</p><br>" +
-										"<p>Payant : "+ $payant + "</p><br>"+
-										"<p>Description : " + $description + "</p><br>" +
-										"<p>Heure de début : " + $(json)[index]['date_debut'] + "</p><br>" +
-										"<p>Heure de fin : " + $(json)[index]['date_fin'] + "</p><br>" +
-										"<p>Fiabilité : " + $(json)[index]['plus_un'] +
-										"<form method='POST' action=''><input type='hidden' name='plusun' value='"+$(json)[index]['id']+"'><button type='submit' name='submit' style='margin-left:5px'><span class='glyphicon glyphicon-thumbs-up'></span></button></form></p><br>" +
-										"</div>";
-
-
-				var infoBulle = new google.maps.InfoWindow( {
-					content: contenuInfoBulle,
-					shadowStyle: 1,
-         			padding: 0,
-          			backgroundColor: 'rgb(57,57,57)',
-          			borderRadius: 4,
-          			arrowSize: 10,
-          			borderWidth: 1,
-          			borderColor: '#2c2c2c',
-          			disableAutoPan: true,
-          			hideCloseButton: true,
-          			arrowPosition: 30,
-
-					} )
-
-				google.maps.event.addListener(marker, 'click', function() {
-				infoBulle.open(map, marker);
-					});
-			});
 
 		})
 		.fail(function(error) {
