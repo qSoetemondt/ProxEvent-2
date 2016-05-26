@@ -22,4 +22,5 @@
 		//Route vers une sous catégorie en fonction d'une catégorie parent
 		['GET|POST', '/api/subcategories/[:id]', 'Api#subCategories', 'apiSubCategories'],
 
+
 	);
