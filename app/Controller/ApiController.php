@@ -30,9 +30,8 @@ class ApiController extends Controller
 	public function apiEvent(){
 		 $m = new \Manager\EventManager();
 		 $events = $m->getEvents();
-
 		 $liste_events = json_encode($events, JSON_NUMERIC_CHECK);
-		 echo $liste_events;
+		 echo $liste_events; 
 	}
 
 

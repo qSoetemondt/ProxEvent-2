@@ -19,6 +19,7 @@
 	<!-- Appel à notre CSS -->
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
 
+
 	<!-- === SCRIPTS JS === -->
 	<!-- Appel script (vendor) Modernizr -->
 	<script src="<?= $this->assetUrl('js/vendor/modernizr-2.8.3.min.js') ?>"></script>
@@ -100,7 +101,6 @@
 
 	<!-- Appel des scripts -->
 	<?= $this->section('scripts') ?>
-
 
 </body>
 </html>
