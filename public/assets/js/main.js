@@ -4,6 +4,47 @@
 
 $(document).ready(function() {
 
+
+	$.ajax({
+		url: '/api/categories',
+		type: 'GET',
+		dataType: 'json',
+
+	})
+	.done(function(json) {
+		console.log(json);
+
+		$(json).each(function(index, el) {
+			if($(json)[index]['parent_id'] == 0)
+			{
+				$div_checkbox = $('<div class="checkbox-inline">');
+
+				$input_checkbox = $('<input type="checkbox" checked>');
+				$categorie = $(json)[index]['libelle'];
+
+				$input_checkbox.attr('value', $categorie);
+				$input_checkbox.attr('id', $categorie + "Box");
+
+				$label_checkbox = $('<label for="' + $categorie + 'Box">' + $categorie + '</label>');
+
+				$div_checkbox.append($input_checkbox);
+				$div_checkbox.append($label_checkbox);
+
+				$('#triCategorieId').append($div_checkbox);
+			}
+
+
+		});
+
+	})
+	.fail(function(error) {
+		console.log(error);
+	})
+	.always(function() {
+		console.log("complete");
+	});
+
+
 	/*
 		Récupération des références sur les objets
 	*/
@@ -20,14 +61,14 @@ $(document).ready(function() {
 		Initialise une carte selon l'API Google
 	*/
 	var initGoogleMap = function(latitude, longitude) {
-		
+
 		// latitude et longitude fournies
 		// par l'API HTML5 Geolocation du navigateur
 		var localCoords = {
 			lat: latitude,
 			lng: longitude
 		};
-		
+
 		// Objet carte Google dans la div correspondante
 		var map = new google.maps.Map($zoneMap[0], {
 			zoom: 15,
@@ -43,10 +84,14 @@ $(document).ready(function() {
 			draggable: false,	// le marqueur n'est pas déplaçable
 			title: 'Position actuelle'
 		});
-		
-		
-		
-		
+
+
+		// gestion du filtre d'affichage par catégorie:
+			// Initialisation du tableau de marker d'événements
+			// enrichi des catégories
+		var gmarkers = [];
+
+
 		// ************************************************
 		// Chargement des événements ciblés, par appel AJAX
 		$.ajax({
@@ -56,45 +101,101 @@ $(document).ready(function() {
 			// data: {param1: 'value1'},
 		})
 		.done(function(json) {
-			console.log(json);
-			
+			// console.log(json);
+
 			$(json).each(function(index, el) {
 				
-					console.log($(json)[index]['event_id']);
-					$latitude = $(json)[index]['latitude'];
-					$longitude = $(json)[index]['longitude'];
+				$latitude = $(json)[index]['latitude'];
+				$longitude = $(json)[index]['longitude'];
+				$titreEvent = $(json)[index]['titre'];
+				
+				if($(json)[index]['payant'] == 0){
+					$payant = "Gratuit"
+				}else{ 
+					$payant = "Payant"
+				};
 
-					$titreEvent = $(json)[index]['titre'];
-					if($(json)[index]['payant'] == 0){ $payant = "Gratuit"}else{ $payant = "Payant"};
-					if($(json)[index]['description'] != ""){$description = $(json)[index]['description']}else{$description = "Aucune description"};
-					$categorieEvent = $(json)[index]['categorie_id'];
+				if($(json)[index]['description'] != ""){
+					$description = $(json)[index]['description']
+				}else{
+					$description = "Aucune description"
+				};
 
-					var $eventCoords = {
-						lat: $latitude,//48.837799072265625,
-						lng: $longitude//2.3342411518096924
-					};
+				var $categorieEvent = $(json)[index]['categorie_id'];
 
-					var icons = {
-						'1': 'icomoon-glass.png',
-						'2': 'icomoon-music.png',
-						'3': 'icomoon-camera.png',
-						'4': 'icomoon-heart.png',
-						'5': 'icomoon-earth.png',
-						'6': 'icomoon-point-right.png',
-						'7': 'icomoon-fire.png',
-						'8': 'linecons-vynil.png',
-					};
+				var $eventCoords = {
+					lat: $latitude,//48.837799072265625,
+					lng: $longitude//2.3342411518096924
+				};
 
-					// marqueur des coordonnées locales pour chaque event
-					var marker = new google.maps.Marker({
-						position: $eventCoords,
-						map: map,
-						draggable: false,	// le marqueur n'est pas déplaçable
-						title: $titreEvent,
-						icon: '/assets/img/'+icons[$categorieEvent] // icône de marqueur personnalisée
-					});
-					// Infobulle
+				// Gestion des icônes pour les sous-catégories (id>8) :
+				// attribution de l'id de catégorie parent
+				if ($categorieEvent > 8) {
+					$categorieEvent = $(json)[index]['parent_id'];
+				}
+
+				var icons = {
+					'1': 'icomoon-glass.png',
+					'2': 'icomoon-music.png',
+					'3': 'icomoon-camera.png',
+					'4': 'icomoon-heart.png',
+					'5': 'icomoon-earth.png',
+					'6': 'icomoon-point-right.png',
+					'7': 'icomoon-fire.png',
+					'8': 'linecons-vynil.png',
+				};
+
+				// marqueur des coordonnées locales pour chaque event
+				var marker = new google.maps.Marker({
+					position: $eventCoords,
+					map: map,
+					draggable: false,	// le marqueur n'est pas déplaçable
+					title: $titreEvent,
+					icon: '/assets/img/'+icons[$categorieEvent] // icône de marqueur personnalisée
+				});
+
+
+				// TODO : filtrer les markers de GoogleMap par catégorie
+				// création d'un tableau d'objets markers surchargés de la propriété mycategory
+				marker['mycategory'] = $(json)[index]['libelle'];
+				gmarkers.push(marker);
+				// // fonction pour montrer les marqueurs en fonction des catégories choisies dans les checkbox (home.php)
+				function show(category){
+					for( var i=0; i<gmarkers.length; i++ ){
+						if (gmarkers[i].mycategory == category) {
+							gmarkers[i].setVisible(true);
+					    }
+					}
+					// document.getElementById(category+"Box").checked = true;
+				}
+				// fonction pour cacher les marqueurs en fonction des catégories choisies dans les checkbox (home.php)
+				function hide(category) {
+			        for ( var i=0; i<gmarkers.length; i++ ) {
+				        if (gmarkers[i].mycategory == category) {
+				          gmarkers[i].setVisible(false);
+				        }
+			      	}
+			    }
+
+			    // fonction pour montrer ou cacher des marqueurs en réaction au clic sur les checkbox
+				function boxclick(box,category) {
+			        if (box.checked) {
+			        	this.checked = true;
+			          	show(category);
+
+			        } else {
+			        	this.checked = false;
+			        	hide(category);
+			        }
+			    }
+
+
+			    $('input[type=checkbox]').on('click', $('input[type=checkbox]') ,function(event) {
+			    	$categorie_traitee = $(this).val();
+			    	boxclick(this, $categorie_traitee);
+			    });
 					
+					// Infobulle
 					
 					if($(json)[index]['vote'] == undefined){
 						$form = "";
@@ -155,6 +256,7 @@ $(document).ready(function() {
 		.always(function() {
 			console.log("complete");
 		});
+
 	};
 
 	/*
@@ -183,7 +285,7 @@ $(document).ready(function() {
 				$zoneError.show(); // affiche la zone des erreurs
 
 				switch(error.code) {
-					
+
 					case error.PERMISSION_DENIED:
 						$zoneError.text('problèmes de droit.');
 						break;
@@ -208,10 +310,5 @@ $(document).ready(function() {
 	else {
 		error();
 	}
-
-	
-
-
-
 
 })

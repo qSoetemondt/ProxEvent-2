@@ -22,7 +22,6 @@
 
 	
 	
-
 	<!-- === SCRIPTS JS === -->
 	<!-- Appel script (vendor) Modernizr -->
 	<script src="<?= $this->assetUrl('js/vendor/modernizr-2.8.3.min.js') ?>"></script>

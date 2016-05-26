@@ -1,15 +1,19 @@
-<?php $this->layout('layout', ['title' => 'Ajout d\'événement']) ?>
+<?php $this->layout('layout', ['title' => 'Ajoute un évènement']) ?>
+
 
 <?php $this->start('main_content'); ?>
 
 
 	<!-- Formulaire simplifié d'ajout d'événement -->
 	<form id="formEventId" class="form-horizontal" action="#" method="POST">
-		<!-- Bouton de choix d'un form complet ou non -->
-		<button type="button" class="btn btn-primary" id="btnOptId" name="btnOpt">Plus d'options</button>
-
 		<!-- Div de rangement des catégories -->
 		<div class="form-group" id="rangeCategId">
+			<h2>Type d'événement</h2>
+			<?php if (isset($erreur)){ echo $erreur;} ?>
+		</div>
+
+		<!-- Apparition des sous catégories : -->
+		<div class="form-group" id="rangeSubCategId">
 		</div>
 
 		<!-- Caractère payant ou non : -->
@@ -71,7 +75,12 @@
   			</div>
 		</div>	<!-- Fin de facultatifForm -->
 
-		<button id="btnFormEvent" type="submit" class="btn btn-primary" name="btn">Valider</button>
+
+		<!-- Bouton de soumission du form au serveur -->
+		<button id="btnFormEvent" type="submit" class="btn btn-primary pull-right" name="btn">Valider</button>
+
+		<!-- Bouton de choix d'un form complet ou non -->
+		<button type="button" class="btn btn-primary pull-right" id="btnOptId" name="btnOpt">Plus d'options</button>
 
 	</form>
 	</div>

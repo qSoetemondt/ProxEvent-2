@@ -15,10 +15,14 @@ h2 {
 	color: #66D9EF;
 }
 
+
 /* TEST OFF */
 body > .container{
 	padding-top:60px;
+  width: 100%;
+  margin: 0;
 }
+
 
 html {
   position: relative;
@@ -27,6 +31,7 @@ html {
 /* END OF TEST OFF */
 
 body {
+  font: 16px sans-serif;
   /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
@@ -56,7 +61,7 @@ body > .container {
 code {
   font-size: 80%;
 }
-.row{
+.row {
   margin: 0;
 }
 
@@ -110,8 +115,100 @@ footer {
   z-index: 10;
 }
 
-/* Position entête de titre : milieu de plan */
-header {
-  position: absolute;
-  z-index: 1;
+/* ==========================
+   Style Form Ajout Evenement
+   ========================== */
+
+h1 {
+  text-align: center;
 }
+
+
+#formEventId{
+  margin: 0 auto;
+  width: 90%;
+
+  margin-top: 50px;
+  padding-top: 20px;
+
+  width: 80%;
+}
+
+#triCategorieId {
+  text-align: center;
+
+
+}
+
+.focused {
+  background-color: #0277BD;
+  border-radius: 5px;
+}
+
+input[type=radio]:checked + span {
+  color: #fff;
+  font-style: normal;
+}
+
+input[type=radio]:checked + span + label {
+  /*color: #FF0000;*/
+  color: #fff;
+  font-style: normal;
+}
+
+
+.radio-inline{
+  padding: 0em;
+  padding-left: 0.5em;
+}
+
+label{
+  font-size: 0.8em;
+}
+
+
+/* classe de sélection d'une catégorie
+ lors de l'ajout d'événement */
+
+.focused{
+  background: #0277BD;
+  border-radius: 5px;
+  /*padding-left: 0.5em;*/
+
+}
+
+#rangeCategId{
+  margin-bottom: 4em;
+}
+
+/* bouton "Plus d'options" */
+#btnOptId{
+  margin-right: 0.5em;
+}
+
+.col-xs-4{
+  padding: 0;
+}
+
+.row{
+  margin-bottom: 0.75em;
+}
+
+.pack{
+  /*text-align: center;*/
+  line-height: 1.5em;
+  /*width: 60%;*/
+  padding-left: 30%;
+  margin: 0 auto;
+}
+
+.glyphicon{
+  /*padding-top: 0.5em;*/
+  line-height: 1.5em;
+}
+
+/* Gestion des sous-catégories */
+#rangeSubCategId{
+  display: none;
+}
+
