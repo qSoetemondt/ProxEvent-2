@@ -135,10 +135,18 @@ h1 {
 
 }
 
-.focused {
-  background-color: #0277BD;
-  border-radius: 5px;
+/* Gestion des labels des checkbox de filtrage d'évènement */
+
+input[type=checkbox]:checked + label {
+  color: #F92672;
 }
+
+input[type=checkbox] + label {
+  color: #000;
+}
+
+/* Gestion du style des labels et des icônes 
+ dans le formulaire d'ajout d'évènement */
 
 input[type=radio]:checked + span {
   color: #fff;

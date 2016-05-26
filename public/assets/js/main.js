@@ -148,11 +148,11 @@ $(document).ready(function() {
 				});
 
 
-				// TODO : filtrer les markers de GoogleMap par catégorie
+				// Filtrage les markers de GoogleMap par catégorie:
 				// création d'un tableau d'objets markers surchargés de la propriété mycategory 
 				marker['mycategory'] = $(json)[index]['libelle'];
 				gmarkers.push(marker);
-				// // fonction pour montrer les marqueurs en fonction des catégories choisies dans les checkbox (home.php)
+				// fonction pour montrer les marqueurs en fonction des catégories choisies 
 				function show(category){
 					for( var i=0; i<gmarkers.length; i++ ){
 						if (gmarkers[i].mycategory == category) {
@@ -161,7 +161,7 @@ $(document).ready(function() {
 					}
 					// document.getElementById(category+"Box").checked = true;
 				}
-				// fonction pour cacher les marqueurs en fonction des catégories choisies dans les checkbox (home.php)
+				// fonction pour cacher les marqueurs en fonction des catégories choisies 
 				function hide(category) {
 			        for ( var i=0; i<gmarkers.length; i++ ) {
 				        if (gmarkers[i].mycategory == category) {
@@ -170,7 +170,7 @@ $(document).ready(function() {
 			      	}
 			    }
 
-			    // fonction pour montrer ou cacher des marqueurs en réaction au clic sur les checkbox
+			    // fonction pour montrer ou cacher des marqueurs en réaction au clic sur une des checkbox en fonction de l'état de la checkbox
 				function boxclick(box,category) {
 			        if (box.checked) {
 			        	this.checked = true;
@@ -181,16 +181,16 @@ $(document).ready(function() {
 			        	hide(category);
 			        }
 			    }
-
-			 
-			  
+			 	// Au clic sur une checkbox, on applique l'action de filtrage avec la fonction boxclick		  
 			    $('input[type=checkbox]').on('click', $('input[type=checkbox]') ,function(event) {
 			    	$categorie_traitee = $(this).val();
 			    	boxclick(this, $categorie_traitee);
 			    });  
 
-				// Infobulle
 
+
+
+				// Infobulle
 				var contenuInfoBulle =	"<div class='infobulle'>"+
 										"<h3>Titre : "+$(json)[index]['titre']+ "</h3><br>" +
 										"<h4>Type d'évenement : " + $(json)[index]['libelle'] + "</h4><br>"+
