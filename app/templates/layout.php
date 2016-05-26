@@ -17,9 +17,10 @@
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/default.time.css')?>">
 
 	<!-- Appel à notre CSS -->
+	<link rel="stylesheet" href="<?= $this->assetUrl('css/demo.css')?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
 
-	<link rel="stylesheet" href="<?= $this->assetUrl('css/demo.css')?>">
+	
 	
 	<!-- === SCRIPTS JS === -->
 	<!-- Appel script (vendor) Modernizr -->

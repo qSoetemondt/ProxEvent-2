@@ -141,7 +141,13 @@ h2 {
 		max-width: 90%;
 	}
 	.contents p {
-		margin: 10px 0 10px 0;
+		margin: 0;
 		font-size: 16px;
 		line-height: 1.32;
+	}
+	.contents h3{
+		margin:0;
+	}
+	.contents h4{
+		margin:0;
 	}
