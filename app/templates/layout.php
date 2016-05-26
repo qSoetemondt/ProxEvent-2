@@ -10,7 +10,7 @@
 
 	<!-- Appel de la CSS reset -->
 	<!-- <link rel="stylesheet" href="<?= $this->assetUrl('css/normalize.css')?>"> -->
-
+	
 	<!-- Appel des CSS de datepicker -->
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/default.css')?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/default.date.css')?>">

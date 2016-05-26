@@ -4,16 +4,17 @@
 
 $(document).ready(function() {
 
-
+	/* ===========================================================
+		Génération dynamique des checkbox de filtrage d'évènements
+	   =========================================================== */
 	$.ajax({
 		url: '/api/categories',
 		type: 'GET',
 		dataType: 'json',
-		
 	})
 	.done(function(json) {
 		console.log(json);
-
+		//
 		$(json).each(function(index, el) {
 			if($(json)[index]['parent_id'] == 0)
 			{
@@ -32,10 +33,7 @@ $(document).ready(function() {
 	
 				$('#triCategorieId').append($div_checkbox);
 			}
-
-			
 		});
-		
 	})
 	.fail(function(error) {
 		console.log(error);
@@ -92,17 +90,15 @@ $(document).ready(function() {
 		var gmarkers = [];
 		
 
-		// ************************************************
-		// Chargement des événements ciblés, par appel AJAX
+		/* ================================================
+		   Chargement des évènements ciblés, par appel AJAX
+		   ================================================ */
 		$.ajax({
 			url: '/api/events',
 			type: 'GET',
 			dataType: 'json',
-			// data: {param1: 'value1'},
 		})
 		.done(function(json) {
-			// console.log(json);
-
 			$(json).each(function(index, el) {
 				$latitude = $(json)[index]['latitude'];
 				$longitude = $(json)[index]['longitude'];
@@ -148,7 +144,9 @@ $(document).ready(function() {
 				});
 
 
-				// Filtrage les markers de GoogleMap par catégorie:
+				/*
+					Filtrage des markers de GoogleMap par catégorie:
+				*/
 				// création d'un tableau d'objets markers surchargés de la propriété mycategory 
 				marker['mycategory'] = $(json)[index]['libelle'];
 				gmarkers.push(marker);
@@ -186,8 +184,6 @@ $(document).ready(function() {
 			    	$categorie_traitee = $(this).val();
 			    	boxclick(this, $categorie_traitee);
 			    });  
-
-
 
 
 				// Infobulle

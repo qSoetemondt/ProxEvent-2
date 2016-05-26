@@ -130,9 +130,11 @@ h1 {
 }
 
 #triCategorieId {
+  margin: 0 auto;
   text-align: center;
-
-
+  border: 1px solid #F92672;
+  border-radius: 5px;
+  width: 50%;
 }
 
 /* Gestion des labels des checkbox de filtrage d'évènement */
