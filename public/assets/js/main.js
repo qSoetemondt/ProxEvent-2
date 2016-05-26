@@ -3,7 +3,12 @@
   ==============================*/
 
 $(document).ready(function() {
-
+	if (typeof eventState != "undefined") {
+		val = eventState.get('added');
+	}
+	else {
+		eventState = new Persist.Store('eventAdd');
+	}
 
 	$.ajax({
 		url: '/api/categories',
@@ -61,7 +66,15 @@ $(document).ready(function() {
 		Initialise une carte selon l'API Google
 	*/
 	var initGoogleMap = function(latitude, longitude) {
-
+		
+		if (typeof val != "undefined") {
+			console.log('this is val :');
+			console.log(val);
+		}
+		else {
+			console.log('nothing in val');
+		}
+		
 		// latitude et longitude fournies
 		// par l'API HTML5 Geolocation du navigateur
 		var localCoords = {

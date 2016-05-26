@@ -384,4 +384,15 @@ $(document).ready(function() {
 		});
 	});
 
+	// 
+	s('#btn').on('click', '#btn', function(event) {
+		if (typof eventState != "undefined") {
+			eventState.set('added', 'coucou');
+		}
+		else {
+			eventState = new Persist.Store('eventAdd');
+			eventState.set('added', 'coucou');	
+		}
+	});
+
 });
