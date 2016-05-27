@@ -1,3 +1,4 @@
+
 a {
 	text-decoration: none;
 	color: #A6E22E;
@@ -8,7 +9,7 @@ a:hover {
 }
 
 h1 {
-	color: #F92672;
+	color: #234;
 }
 
 h2 {
@@ -36,6 +37,15 @@ body {
   margin-bottom: 60px;
   position: relative;
   overflow: hidden;
+  background: #B6D1EC;
+}
+.btn{
+  color:#234;
+  background: #86AAD3;
+}
+.form-control{
+  color: #234;
+  background: #86AAD3;
 }
 .footer {
   position: absolute;
