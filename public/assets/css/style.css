@@ -36,16 +36,6 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
   position: relative;
-  overflow: hidden;
-  background: #B6D1EC;
-}
-.btn{
-  color:#234;
-  background: #86AAD3;
-}
-.form-control{
-  color: #234;
-  background: #86AAD3;
 }
 .footer {
   position: absolute;

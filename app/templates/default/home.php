@@ -14,16 +14,8 @@
 
 <?php $this->stop('main_content') ?>
 
-
-<?php $this->start('footer') ?>
-
-<?php $this->stop('footer') ?>
-
-
 <?php $this->start('scripts') ?>
 
 	<script src="<?= $this->assetUrl('js/main.js') ?>"></script>
 
 <?php $this->stop('scripts') ?>
-
-<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">

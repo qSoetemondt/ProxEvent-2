@@ -2,8 +2,19 @@
 	Logique de géolocalisation
   ==============================*/
 
-$(document).ready(function() {
+// data storage over page refresh
+// Check if "key" exists in the storage
+		var value = $.jStorage.get("key");
+		if(!value){
+		    // if not - load the data from the server
+		    // value = load_data_from_server()
+		    // and save it
+		    $.jStorage.set("key","coucou");
+		}
+console.log(value);
 
+
+$(document).ready(function() {
 
 	$.ajax({
 		url: '/api/categories',
@@ -103,14 +114,14 @@ $(document).ready(function() {
 			// console.log(json);
 
 			$(json).each(function(index, el) {
-				
+
 				$latitude = $(json)[index]['latitude'];
 				$longitude = $(json)[index]['longitude'];
 				$titreEvent = $(json)[index]['titre'];
-				
+
 				if($(json)[index]['payant'] == 0){
 					$payant = "Gratuit"
-				}else{ 
+				}else{
 					$payant = "Payant"
 				};
 
@@ -133,6 +144,8 @@ $(document).ready(function() {
 					$categorieEvent = $(json)[index]['parent_id'];
 				}
 
+
+				// Association numéro de catégorie <=> icône 
 				var icons = {
 					'1': 'icomoon-glass.png',
 					'2': 'icomoon-music.png',
@@ -143,6 +156,11 @@ $(document).ready(function() {
 					'7': 'icomoon-fire.png',
 					'8': 'linecons-vynil.png',
 				};
+				// Gestion des icônes pour les sous-catégories (id>8) :
+				// attribution de l'id de catégorie parent
+				if ($categorieEvent > 8) {
+					$categorieEvent = $(json)[index]['parent_id'];
+				}
 
 				// marqueur des coordonnées locales pour chaque event
 				var marker = new google.maps.Marker({
@@ -195,60 +213,136 @@ $(document).ready(function() {
 			    	$categorie_traitee = $(this).val();
 			    	boxclick(this, $categorie_traitee);
 			    });
-					
-					// Infobulle
-					
-					if($(json)[index]['vote'] == undefined){
-						$form = "";
-					}else if(Object.keys($(json)[index]['vote']) == ""){
-						$form = "<form method='POST' action=''><input type='hidden' name='plusun' value='"+$(json)[index]['id']+"'><button type='submit' name='submit' style='margin-left:5px'><span class='glyphicon glyphicon-thumbs-up'></span></button></form></p><br>";
-					}else{
-						if($(json)[index]['vote'] != undefined){
-							for(i = 0; i< $(json)[index]['vote'].length; i++){
-								if($(json)[index]['vote'][i]['event_id'] == $(json)[index]['id']){
-									$form = " Vous avez déjà voté!"
-									break;
-								}else{
-									$form = "<form method='POST' action=''><input type='hidden' name='plusun' value='"+$(json)[index]['id']+"'><button type='submit' name='submit' style='margin-left:5px'><span class='glyphicon glyphicon-thumbs-up'></span></button></form></p><br>";
-								}
-							}
-						
-						}
-					}
-					
-					var contenuInfoBulle =	"<div class='infobulle'>"+
-											"<h3>Titre : "+$(json)[index]['titre']+ "</h3><br>" +
-											"<h4>Type d'évenement : " + $(json)[index]['libelle'] + "</h4><br>"+
-											"<p>Adresse : "+$(json)[index]['adresse'] + "</p><br>" +
-											"<p>Payant : "+ $payant + "</p><br>"+
-											"<p>Description : " + $description + "</p><br>" +
-											"<p>Heure de début : " + $(json)[index]['date_debut'] + "</p><br>" +
-											"<p>Heure de fin : " + $(json)[index]['date_fin'] + "</p><br>" +
-											"<p>Fiabilité : " + $(json)[index]['plus_un'] + 
-											$form +				
-											"</div>";
-					
-											
-					var infoBulle = new google.maps.InfoWindow( {
-						content: contenuInfoBulle,
-						shadowStyle: 1,
-						padding: 0,
-						backgroundColor: 'rgb(57,57,57)',
-						borderRadius: 4,
-						arrowSize: 10,
-						borderWidth: 1,
-						borderColor: '#2c2c2c',
-						disableAutoPan: true,
-						hideCloseButton: true,
-						arrowPosition: 30,
-						
-						} )
 
-					google.maps.event.addListener(marker, 'click', function() {
-					infoBulle.open(map, marker);
-						});
-				
-		});
+				// Infobulle
+
+				if($(json)[index]['vote'] == undefined)
+				{
+					$form = "";
+				}
+				else if(Object.keys($(json)[index]['vote']) == "")
+				{
+					$form = "<form method='POST' action=''><input type='hidden' name='plusun' value='"+$(json)[index]['id']+"'><button type='submit' name='submit' style='margin-left:5px'><span class='glyphicon glyphicon-thumbs-up'></span></button></form></p><br>";
+				}
+				else
+				{
+					if($(json)[index]['vote'] != undefined)
+					{
+						for(i = 0; i< $(json)[index]['vote'].length; i++)
+						{
+							if($(json)[index]['vote'][i]['event_id'] == $(json)[index]['id'])
+							{
+								$form = " Vous avez déjà voté!"
+								break;
+							}
+							else
+							{
+								$form = "<form method='POST' action=''><input type='hidden' name='plusun' value='"+$(json)[index]['id']+"'><button type='submit' name='submit' style='margin-left:5px'><span class='glyphicon glyphicon-thumbs-up'></span></button></form></p><br>";
+							}
+						}
+
+					}
+				}
+
+				var contenuInfoBulle =	"<div class='infobulle'>"+
+										"<h3>Titre : "+$(json)[index]['titre']+ "</h3><br>" +
+										"<h4>Type d'évenement : " + $(json)[index]['libelle'] + "</h4><br>"+
+										"<p>Adresse : "+$(json)[index]['adresse'] + "</p><br>" +
+										"<p>Payant : "+ $payant + "</p><br>"+
+										"<p>Description : " + $description + "</p><br>" +
+										"<p>Heure de début : " + $(json)[index]['date_debut'] + "</p><br>" +
+										"<p>Heure de fin : " + $(json)[index]['date_fin'] + "</p><br>" +
+										"<p>Fiabilité : " + $(json)[index]['plus_un'] +
+										$form +
+										"</div>" + "<form action=\"\" method=\"POST\" name=\"direction\" id=\"direction\"><input type=\"hidden\" name=\"origin\" id=\"origin\"><input type=\"hidden\" name=\"destination\" id=\"destination\" value=\""+$(json)[index]['adresse']+"\"><select id=\"modeGps\"><option value=\"WALKING\" selected>A pied</option><option value=\"DRIVING\">En voiture</option><option value=\"BICYCLING\">A vélo</option><option value=\"TRANSIT\">En transport</option></select><button id=\"gpsId\" type=\"button\">S'y rendre depuis position</button></form>";
+
+
+				direction = new google.maps.DirectionsRenderer({
+				    map   : map,
+				})
+
+				calculate = function()
+				{
+					var selectMode = $('#modeGps').val();
+					console.log(selectMode);
+
+				    origin = localCoords;
+				    console.log(origin);
+
+				    // destination = $eventCoords;
+				    $destination = $('#destination').val();
+				    console.log($destination);
+
+				    if(origin && $destination){
+				        var request = {
+				            origin      : origin,
+				            destination : $destination,
+				            // Type de transport :
+				            // travelMode  : google.maps.DirectionsTravelMode.WALKING
+				            travelMode : google.maps.TravelMode[selectMode]
+				        }
+						// Service de calcul d'itinéraire
+				        var directionsService = new google.maps.DirectionsService();
+
+				        // Envoie de la requête pour calculer le parcours
+				        directionsService.route(request, function(response, status){
+				            if(status == google.maps.DirectionsStatus.OK){
+				            	console.log('OK');
+				            	// Trace l'itinéraire sur la carte et les différentes étapes du
+				            	// parcours :
+				                direction.setDirections(response);
+				            }
+				        });
+				    }
+
+				    infoBulle.close();
+				};
+
+
+				// Gestion des infos bulles : ouverture et fermeture pour éviter
+				// d'en avoir plusieurs d'ouverts
+				infoBulle = "";
+				google.maps.event.addListener(marker, 'click', function(){
+					if(!infoBulle){
+						infoBulle = new google.maps.InfoWindow({
+												content: contenuInfoBulle,
+												shadowStyle: 1,
+												padding: 0,
+												backgroundColor: 'rgb(57,57,57)',
+												borderRadius: 4,
+												arrowSize: 10,
+												borderWidth: 1,
+												borderColor: '#2c2c2c',
+												disableAutoPan: true,
+												hideCloseButton: true,
+												arrowPosition: 30,
+
+						})
+
+						infoBulle.open(map, marker);
+					}
+					else
+					{
+						infoBulle.close();
+						infoBulle.open(map, marker);
+						infoBulle.setContent(contenuInfoBulle);
+					}
+
+					// Fermeture de l'info bulle si on clique sur la map, n'importe ou :
+					google.maps.event.addListener(map, 'click', function(){
+						if(infoBulle){
+							infoBulle.close();
+						}
+					});
+
+				});
+
+				// Au clic, on affiche l'itinéraire depuis notre position
+				$(document).on('click', '#gpsId', function(event) {
+					calculate();
+				});
+
+			});
 
 		})
 		.fail(function(error) {
