@@ -29,8 +29,19 @@
 
 	<nav class="navbar navbar-default navbar-fixed-bottom ourMenu">
 	  <div class="container-fluid">
+	    
 	    <div class="navbar-header">
-			<ul class="nav navbar-nav navbar-right">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+	      	</button>
+		</div>
+
+		<div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+	      	<ul class="nav navbar-nav ">
+				
 				<li>
 					<a href="<?= $this->url('home')?>">
 						<button type="button" class="btn btn-default btn-menu">Accueil</button>
@@ -68,10 +79,12 @@
 				<?php
 				}
 				?>
-			</ul>
+			</ul>		
 	    </div>
 	  </div>
 	</nav>
+
+	
 
 
 	<div class="contents">
@@ -95,9 +108,6 @@
 
 	<!-- Chargement de l'API Google Maps -->
 	<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAGNXG4UdnErAn4jfJ2lgwZ0OEGbT-6lws"></script>
-
-	<!-- Appel à bootstrap -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 	<!-- Appel des scripts -->
 	<?= $this->section('scripts') ?>

@@ -7,9 +7,7 @@ a:hover {
 	color: #A6E22E;
 }
 
-h1 {
-	color: #F92672;
-}
+
 
 h2 {
 	color: #66D9EF;
@@ -130,13 +128,15 @@ footer {
 
 h1 {
   text-align: center;
-  margin-top: 0.15em;
+  padding-top: 0.15em;
+  font-weight: bold;
+  color: #616161;
+  margin: 0;
+  background-color: #03A9F4;
 }
-
 
 #formEventId{
   margin: 0 auto;
-  width: 90%;
 
   margin-top: 50px;
   padding-top: 20px;
@@ -145,21 +145,36 @@ h1 {
 }
 
 #triCategorieId {
+  background-color: #03A9F4;
+  position: absolute ;
   margin: 0 auto;
   text-align: center;
-  border: 1px solid #F92672;
-  border-radius: 5px;
-  width: 50%;
+  
+  height: 40px;
+  width: 100%;
+
+  line-height: 40px;
+  padding: 0;
 }
 
 /* Gestion des labels des checkbox de filtrage d'évènement */
 
+
 input[type=checkbox]:checked + label {
-  color: #F92672;
+  color: #616161;
+  background: #0091EA;
+  border-radius: 5px;
+  padding: 0 10px;
+  box-shadow: 4px 4px 5px #BDBDBD;
 }
 
 input[type=checkbox] + label {
-  color: #000;
+  color: #BDBDBD;
+  
+}
+
+input[type=checkbox] {
+  display: none;
 }
 
 /* Gestion du style des labels et des icônes 
@@ -231,4 +246,3 @@ label{
 #rangeSubCategId{
   display: none;
 }
-

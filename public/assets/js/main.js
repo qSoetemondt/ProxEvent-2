@@ -17,7 +17,7 @@ $(document).ready(function() {
 		$(json).each(function(index, el) {
 			if($(json)[index]['parent_id'] == 0)
 			{
-				$div_checkbox = $('<div class="checkbox-inline">');
+				$div_checkbox = $('<li class="checkbox-inline">');
 
 				$input_checkbox = $('<input type="checkbox" checked>');
 				$categorie = $(json)[index]['libelle'];
