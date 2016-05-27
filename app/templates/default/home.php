@@ -2,6 +2,7 @@
 
 <?php $this->start('main_content') ?>
 
+
 <nav class="navbar navbar-default navbar-fixed-top">
   	<div class="container-fluid">	
 		 <!-- Brand and toggle get grouped for better mobile display -->
@@ -21,6 +22,7 @@
 			<ul id="triCategorieId" class="nav navbar-nav">
 			</ul>
 		</div>
+
 	</div>
 </nav>
 
@@ -33,16 +35,8 @@
 
 <?php $this->stop('main_content') ?>
 
-
-<?php $this->start('footer') ?>
-
-<?php $this->stop('footer') ?>
-
-
 <?php $this->start('scripts') ?>
 
 	<script src="<?= $this->assetUrl('js/main.js') ?>"></script>
 
 <?php $this->stop('scripts') ?>
-
-<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">

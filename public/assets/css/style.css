@@ -1,3 +1,4 @@
+
 a {
 	text-decoration: none;
 	color: #A6E22E;
@@ -7,6 +8,10 @@ a:hover {
 	color: #A6E22E;
 }
 
+
+h1 {
+	color: #234;
+}
 
 
 h2 {
@@ -33,8 +38,8 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
   position: relative;
-  overflow: hidden;
 }
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -111,9 +116,6 @@ footer {
 }
 
 .ourMenu{
-  width: 100%;
-  clear: both;
-  position: fixed;
   background: rgba(0,0,0,0);
   border: none;
 }
@@ -121,6 +123,50 @@ footer {
 .btn-menu{
     box-shadow: 3px 4px 5px #888888;
 }
+
+#burgerId{
+  background: #90CAF9;
+  margin-left: 0.9em;
+}
+
+/* Couleur du burger menu */
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #fff;
+}
+
+
+/* Gestion pour les tablettes
+  et devices plus petits */
+@media screen and (max-width: 767px) {
+  /* gestion du menu */
+  li{
+    text-align: center;
+  }
+
+  #formEventId{
+    padding-bottom: 3em;
+  }
+
+  .ourBurgerMenu{
+    background: rgba(144, 202, 249, 0.75);
+  }
+
+  .btn-menu{
+    width: 100%;
+  }
+
+  /*
+    Gestion des labels dans le form addevent :
+    afin de conserver une homogénéité de présentation
+    (tous les labels se mettent sous les icones, en dessous de 768 px)
+  */
+  .glyphicon{
+    display: block;
+  }
+
+
+}
+
 
 /* ==========================
    Style Form Ajout Evenement
@@ -149,12 +195,14 @@ h1 {
   position: absolute ;
   margin: 0 auto;
   text-align: center;
+
   
   height: 40px;
   width: 100%;
 
   line-height: 40px;
   padding: 0;
+
 }
 
 /* Gestion des labels des checkbox de filtrage d'évènement */
@@ -246,3 +294,4 @@ label{
 #rangeSubCategId{
   display: none;
 }
+

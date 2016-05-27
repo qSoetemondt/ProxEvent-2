@@ -23,28 +23,30 @@
 	<!-- === SCRIPTS JS === -->
 	<!-- Appel script (vendor) Modernizr -->
 	<script src="<?= $this->assetUrl('js/vendor/modernizr-2.8.3.min.js') ?>"></script>
-
 </head>
+
 <body>
 
+	<!-- Gestion du menu Bootstrap -->
 	<nav class="navbar navbar-default navbar-fixed-bottom ourMenu">
 	  <div class="container-fluid">
-	    
-	    <div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1" aria-expanded="false">
-		        <span class="sr-only">Toggle navigation</span>
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>
-	      	</button>
-		</div>
 
-		<div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
-	      	<ul class="nav navbar-nav ">
-				
+
+	    <div class="navbar-header">
+		    <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#bs-navbar-collapse-1" aria-expanded="false" id="burgerId">
+		      	<span class="sr-only">Toggle navigation</span>
+	        	<span class="icon-bar"></span>
+	        	<span class="icon-bar"></span>
+	        	<span class="icon-bar"></span>
+	      	</button>
+      	</div>
+
+		<div class="collapse navbar-collapse ourBurgerMenu" id="bs-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+
 				<li>
 					<a href="<?= $this->url('home')?>">
-						<button type="button" class="btn btn-default btn-menu">Accueil</button>
+						<button type="button" class="btn  btn-primary btn-menu">Accueil</button>
 					</a>
 				</li>
 				<?php
@@ -53,12 +55,12 @@
 				?>
 			  		<li>
 			  			<a href="<?= $this->url('inscription')?>">
-			  				<button type="button" class="btn btn-default btn-menu">Inscription</button>
+			  				<button type="button" class="btn  btn-primary btn-menu">Inscription</button>
 			  			</a>
 			  		</li>
 			  		<li>
 			  			<a href="<?= $this->url('login')?>">
-			  				<button type="button" class="btn btn-default btn-menu">Login</button>
+			  				<button type="button" class="btn  btn-primary btn-menu">Login</button>
 			  			</a>
 			  		</li>
 		 		<?php
@@ -68,12 +70,12 @@
 		 		?>
 					<li>
 						<a href="<?= $this->url('logout')?>">
-							<button type="button" class="btn btn-default btn-menu">Déconnexion</button>
+							<button type="button" class="btn btn-primary btn-menu">Déconnexion</button>
 						</a>
 					</li>
 					<li>
 						<a href="<?= $this->url('addEvent')?>">
-							<button  type="button" class="btn btn-default btn-menu">Ajout Evénement</button>
+							<button  type="button" class="btn btn-primary btn-menu">Ajout Evénement</button>
 						</a>
 					</li>
 				<?php
@@ -107,9 +109,15 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 	<!-- Chargement de l'API Google Maps -->
-	<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAGNXG4UdnErAn4jfJ2lgwZ0OEGbT-6lws"></script>
 
-	<!-- Appel des scripts -->
+	<script src="https://maps.googleapis.com/maps/api/js?libraries=places&language=fr&key=AIzaSyAGNXG4UdnErAn4jfJ2lgwZ0OEGbT-6lws"></script>
+
+	<!-- === SCRIPTS CUSTOM JS === -->
+	<!-- Appel à jstorage -->
+	<script src="<?= $this->assetUrl('js/jstorage.js') ?>"></script>
+	
+	<!-- Appel des scripts spécifiques -->
+
 	<?= $this->section('scripts') ?>
 
 </body>
