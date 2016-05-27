@@ -1,7 +1,5 @@
 $(document).ready(function() {
 
-valnew = eventState.get('added');
-console.log(valnew);
 	//*************************************************************
 	// Gestion du passage de la géoloc au formulaire :
 
@@ -388,13 +386,13 @@ console.log(valnew);
 
 	// Gestion de la persistance d'info à la soumission du formulaire
 	$('#btnFromEvent').click(function(e) {
+				var value = $.jStorage.get("key");
 		if(!value){
 		    // if not - load the data from the server
-		    value = load_data_from_server()
+		    // value = load_data_from_server()
 		    // and save it
-		    $.jStorage.set("key",1);
+		    $.jStorage.set("key","me revoila");
 		}
-		console.log(value);
 	});
 
 });
