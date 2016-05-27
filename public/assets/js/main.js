@@ -2,21 +2,16 @@
 	Logique de géolocalisation
   ==============================*/
 
-// global object
-var store;
-
-function load_data() {
-  // load persistent store after the DOM has loaded
-  store = new Persist.Store('eventAdd');
-  console.log(store);
+// data storage over page refresh
+// Check if "key" exists in the storage
+var value = $.jStorage.get("key");
+if(!value){
+    // if not - load the data from the server
+    value = load_data_from_server()
+    // and save it
+    $.jStorage.set("key",value);
 }
-
-// save data in store
-if (store != "undefined") {
-	// store.set('add', 'nothing added yet');
-console.log(store);
-}
-
+console.log(value);
 
 
 $(document).ready(function() {

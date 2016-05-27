@@ -386,18 +386,4 @@ console.log(valnew);
 		});
 	});
 
-	// 
-	$('#btnFormEvent').click(function(event) {
-		if (typeof eventState != "undefined") {
-			eventState.set('added', 'je suis modifié lol');
-			// console.log('la statique est déj défini, elle doit avoir stocké coucou dedans ');
-		}
-		else {
-			// eventState = new Persist.Store('eventAdd');
-			// eventState.set('added', 'coucou');
-			// console.log('la statique a été défini, on a stocké coucou dedans ');
-
-		}
-	});
-
 });
