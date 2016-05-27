@@ -386,4 +386,15 @@ console.log(valnew);
 		});
 	});
 
+	// Gestion de la persistance d'info à la soumission du formulaire
+	$('#btnFromEvent').click(function(e) {
+		if(!value){
+		    // if not - load the data from the server
+		    value = load_data_from_server()
+		    // and save it
+		    $.jStorage.set("key",1);
+		}
+		console.log(value);
+	});
+
 });

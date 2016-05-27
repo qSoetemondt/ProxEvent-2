@@ -4,13 +4,13 @@
 
 // data storage over page refresh
 // Check if "key" exists in the storage
-var value = $.jStorage.get("key");
-if(!value){
-    // if not - load the data from the server
-    value = load_data_from_server()
-    // and save it
-    $.jStorage.set("key",value);
-}
+		var value = $.jStorage.get("key");
+		if(!value){
+		    // if not - load the data from the server
+		    // value = load_data_from_server()
+		    // and save it
+		    $.jStorage.set("key","coucou");
+		}
 console.log(value);
 
 
@@ -72,15 +72,7 @@ $(document).ready(function() {
 		Initialise une carte selon l'API Google
 	*/
 	var initGoogleMap = function(latitude, longitude) {
-		
-		if (typeof val != "undefined") {
-			console.log('this is val when map is init :');
-			console.log(val);
-		}
-		else {
-			console.log('nothing in val');
-		}
-		
+
 		// latitude et longitude fournies
 		// par l'API HTML5 Geolocation du navigateur
 		var localCoords = {
