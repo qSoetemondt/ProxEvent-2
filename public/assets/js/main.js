@@ -2,8 +2,19 @@
 	Logique de géolocalisation
   ==============================*/
 
-$(document).ready(function() {
+// data storage over page refresh
+// Check if "key" exists in the storage
+		var value = $.jStorage.get("key");
+		if(!value){
+		    // if not - load the data from the server
+		    // value = load_data_from_server()
+		    // and save it
+		    $.jStorage.set("key","coucou");
+		}
+console.log(value);
 
+
+$(document).ready(function() {
 
 	$.ajax({
 		url: '/api/categories',
@@ -131,6 +142,8 @@ $(document).ready(function() {
 					$categorieEvent = $(json)[index]['parent_id'];
 				}
 
+
+				// Association numéro de catégorie <=> icône 
 				var icons = {
 					'1': 'icomoon-glass.png',
 					'2': 'icomoon-music.png',
@@ -141,6 +154,11 @@ $(document).ready(function() {
 					'7': 'icomoon-fire.png',
 					'8': 'linecons-vynil.png',
 				};
+				// Gestion des icônes pour les sous-catégories (id>8) :
+				// attribution de l'id de catégorie parent
+				if ($categorieEvent > 8) {
+					$categorieEvent = $(json)[index]['parent_id'];
+				}
 
 				// marqueur des coordonnées locales pour chaque event
 				var marker = new google.maps.Marker({

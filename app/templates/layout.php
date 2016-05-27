@@ -23,8 +23,8 @@
 	<!-- === SCRIPTS JS === -->
 	<!-- Appel script (vendor) Modernizr -->
 	<script src="<?= $this->assetUrl('js/vendor/modernizr-2.8.3.min.js') ?>"></script>
-
 </head>
+
 <body>
 
 	<!-- Gestion du menu Bootstrap -->
@@ -107,7 +107,11 @@
 	<!-- Chargement de l'API Google Maps -->
 	<script src="https://maps.googleapis.com/maps/api/js?libraries=places&language=fr&key=AIzaSyAGNXG4UdnErAn4jfJ2lgwZ0OEGbT-6lws"></script>
 
-	<!-- Appel des scripts -->
+	<!-- === SCRIPTS CUSTOM JS === -->
+	<!-- Appel à jstorage -->
+	<script src="<?= $this->assetUrl('js/jstorage.js') ?>"></script>
+	
+	<!-- Appel des scripts spécifiques -->
 	<?= $this->section('scripts') ?>
 
 </body>
