@@ -12,6 +12,7 @@
             <?php if(isset($errors['login'])){
                 echo $errors['login'];
             }?>
+            <span>De 3 à 20 caractères (caractère autorisé alphanumérique - _ @)</span>
         </div>
     </div>
 
@@ -22,6 +23,7 @@
             <?php if(isset($errors['mdp'])){
                 echo $errors['mdp'];
             }?>
+            <span>De 5 à 32 caractères (caractère autorisé alphanumérique - _ @)</span>
         </div>
     </div>
 </div>
@@ -33,6 +35,7 @@
             <?php if(isset($errors['email'])){
                 echo $errors['email'];
             }?>
+            <span>Email valide sous format : exemple@exemple.com</span>
         </div>
     </div>
 </div>
