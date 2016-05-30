@@ -74,7 +74,7 @@ class ApiController extends Controller
 			if($date_fin == "0")
 			{
 				list($annee,$mois,$jour,$h,$m,$s) = sscanf($date_debut,"%d-%d-%d %d:%d:%d");
-				$h = 2;
+				$h += 2;
 				$timestamp = mktime($h,$m,$s,$mois,$jour,$annee);
 				$date_fin = date('Y-m-d H:i:s',$timestamp);
 			}
