@@ -1,37 +1,41 @@
-<?php $this->layout('layout', ['title' => 'Inscription']) ?>
+<?php $this->layout('layout', ['title' => 'Login']) ?>
 
 
 
 <?php $this->start('main_content') ?>
-<?php if(isset($errors['user'])){
-        echo "<h3>".$errors['user']."</h3>";
-    }?>
-<form method="POST">
+
+<form method="POST" id="formLogin">
 <div class="row">
     
-    <div class="col-md-offset-2 col-md-3">
+    <div class="col-md-offset-1 col-md-5">
         <div class="form-group">
-            <label for="Login">Login</label>
+            <label class='labelForm' for="Login">Login</label>
             <input type="text" class="form-control" id="login" placeholder="Login" name="myForm[username]" value="<?= (isset($_POST['myForm']['username']))?$_POST['myForm']['username']:''?>">
         </div>
     </div>
 
-    <div class="col-md-offset-1 col-md-3">
+    <div class=" col-md-5">
         <div class="form-group">
-            <label for="Password">Mot de passe</label>
+            <label class='labelForm' for="Password">Mot de passe</label>
             <input type="password" class="form-control" id="password" placeholder="Mot de passe" name="myForm[password]">
         </div>
     </div>
 </div>
-
+<h3 class='errorForm'>
+<?php if(isset($errors['user'])){
+        echo $errors['user'];
+    }?>
+</h3>
 <div class="row">
-    <div class="col-md-offset-5 col-md-1">
-        <button type="submit" class="btn btn-primary" name="connexion">Connexion</button>
+    <div id="btnLogin">
+        <button class="btn btn-primary" href="<?= $this->url('oublie')?>">Mot de passe oublié ?</a>
+        <button type="submit" class="btn btn-primary" id="btnLog" name="connexion">Connexion</button>
     </div>
 </div>
+
 </form>
 
-<a href="<?= $this->url('oublie')?>">Mot de passe oublié ?</a>
+
 
 
 

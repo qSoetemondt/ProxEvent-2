@@ -15,7 +15,7 @@ h1 {
   line-height: 1.7em;
   font-weight: bold;
   color: #FFF;
-  background-color: rgba(144, 202, 249, 0.75);
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 h2 {
@@ -41,6 +41,10 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
   position: relative;
+  background-image: url('http://127.0.0.1/assets/img/bg-png.png');
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.3);
+
 }
 
 .footer {
@@ -56,6 +60,7 @@ body {
 
 body > .container {
   padding: 60px 15px 0;
+  width: 100%;
 }
 .container .text-muted {
   margin: 20px 0;
@@ -86,6 +91,7 @@ code {
 html, #mapOk {
   width: 100vw;
   height: 100vh;
+
 }
 
 /* Position carte : arrière plan */
@@ -106,24 +112,63 @@ section>#mapOk {
 .Event{
   margin: 0;
 }
-
-/* Gestion de l'apparition du message de création d'event */
-#msgAddEventId{
-  display: none;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background: #009688;
-  opacity: 0.9;
-  line-height: 2em;
-  font-size: 1.1em;
-  color: #fff;
-  width: 20em;
-
+/* ====================
+   Formulaire
+   ==================== */
+.info{
+  font-size: 0.8em;
+  color: black;
+  background: rgba(255,255,255,0.6);
+  padding: 0 7px 0 9px;
+  border-radius: 1em;
+}
+#login{
+  background: #AAA;
+}
+.errorForm{
+  color: white;
+  padding: 0 7px 0 9px;
+  border-radius: 1em;
   text-align: center;
-  top: 15em;
-  left: 10em;
-  margin: 0 auto;
-  position: absolute;
+  width: 50%;
+  margin:5px auto;
+  height: 1.5em;
+}
+.labelForm{
+  color: white;
+  font-size: 1.2em;
+}
+#forminscription{
+  margin:0 auto;
+  width:70em;
+  border-radius: 20px;
+  height: 19em;
+  padding-top: 1.2em;
+  margin-top: 11em;
+  vertical-align: middle;
+  background-color: rgba(255,255,255,0.3);
+}
+#formLogin{
+  margin:0 auto;
+  width:70em;
+  border-radius: 20px;
+  height: 14em;
+  margin-top: 13em;
+  padding-top: 1.2em;
+  vertical-align: middle;
+  background-color: rgba(255,255,255,0.3);
+}
+#btnLogin{
+  margin:0 auto;
+  display: block;
+  text-align: center;
+
+}
+
+
+#btnLog{
+  padding-left: 3.337em;
+  padding-right: 3.337em;
 }
 
 
@@ -140,6 +185,7 @@ footer {
 .ourMenu{
   background: rgba(0,0,0,0);
   border: none;
+  width: 500px;
 }
 
 .btn-menu{
