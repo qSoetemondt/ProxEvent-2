@@ -34,6 +34,9 @@ class ApiController extends Controller
 		 echo $liste_events;
 	}
 
+	// Pour le passage des paramètres à l'url, il faut utiliser des "," et non des "."
+	// pour les latitudes et les longitudes, et utiliser urldecode sur les strings
+
 	public function insertNewEvent($id_user,$titre,$adresse,$latitude, $longitude, $categorie_id, $date_debut, $date_fin, $payant, $description)
 	{
 		$erreur = "";
@@ -85,19 +88,19 @@ class ApiController extends Controller
 				 'id' => NULL,
 				 // Récupération de la variable $w_user
 				 'user_id' => $id_user,
-				 'titre' => htmlentities(strip_tags($titre)),
+				 'titre' => urldecode(htmlentities(strip_tags($titre))),
 				 // Récupération des coordonnées de l'emplacement
 				 // où l'on se trouve
-				 'adresse' => htmlentities(strip_tags($adresse)),
-				 'latitude' => $latitude,
-				 'longitude' => $longitude,
+				 'adresse' => urldecode(htmlentities(strip_tags($adresse))),
+				 'latitude' => str_replace(",", ".", $latitude),
+				 'longitude' => str_replace(",", ".", $longitude),
 				 // 'categorie_id' => $_POST['radCategorie'],
 				 'categorie_id' => $categorie_id,
 				 'date_debut' => $date_debut,
 				 'date_fin' => $date_fin,
 				 'payant' => $payant,
 				 'plus_un' => 1,
-				 'description' => htmlentities(strip_tags($description))
+				 'description' => urldecode(htmlentities(strip_tags($description)))
 					];
 			if(!$erreur)
 			{
