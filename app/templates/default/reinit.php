@@ -14,14 +14,14 @@
                 <div class="col-md-offset-2 col-md-3">
                     <div class="form-group">
                         <label for="mot_de_passe">Nouveau mot de passe</label>
-                        <input type="password" class="form-control" id="mot_de_passe" name="mot_de_passe"       placeholder="Votre mot de passe">
+                        <input type="password" class="form-control" id="mot_de_passe" name="mot_de_passe" placeholder="Votre mot de passe">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-offset-2 col-md-3">
                         <div class="form-group">
                             <label for="conf_mot_de_passe">confirmation mot de passe</label>
-                            <input type="password" class="form-control" id="conf_mot_de_passe" name="       conf_mot_de_passe" placeholder="confirmer votre mot de passe">
+                            <input type="password" class="form-control" id="conf_mot_de_passe" name="conf_mot_de_passe" placeholder="confirmer votre mot de passe">
                         </div>
                     </div>
                     <div class="row">

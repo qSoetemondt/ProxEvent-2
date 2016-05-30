@@ -8,11 +8,14 @@ a:hover {
 	color: #A6E22E;
 }
 
-
 h1 {
-	color: #234;
+  text-align: center;
+  padding-top: 0.15em;
+  font-weight: bold;
+  color: #FFF;
+  margin: 0;
+  background-color: rgba(144, 202, 249, 0.75);
 }
-
 
 h2 {
 	color: #66D9EF;
@@ -25,7 +28,6 @@ body > .container{
   width: 100%;
   margin: 0;
 }
-
 
 html {
   position: relative;
@@ -50,6 +52,7 @@ body {
 }
 
 /* TEST OFF */
+
 body > .container {
   padding: 60px 15px 0;
 }
@@ -72,7 +75,7 @@ code {
 
 
 /* ====================
-    Carte
+          Carte
    ==================== */
 
 /*
@@ -102,7 +105,6 @@ section>#mapOk {
 .Event{
   margin: 0;
 }
-
 
 
 /* ====================
@@ -135,94 +137,80 @@ footer {
 }
 
 
-/* Gestion pour les tablettes
-  et devices plus petits */
-@media screen and (max-width: 767px) {
-  /* gestion du menu */
-  li{
-    text-align: center;
-  }
 
-  #formEventId{
-    padding-bottom: 3em;
-  }
+/*
+* Gestion des labels des checkbox de filtrage d'évènement 
+*/
 
-  .ourBurgerMenu{
-    background: rgba(144, 202, 249, 0.75);
-  }
-
-  .btn-menu{
-    width: 100%;
-  }
-
-  /*
-    Gestion des labels dans le form addevent :
-    afin de conserver une homogénéité de présentation
-    (tous les labels se mettent sous les icones, en dessous de 768 px)
-  */
-  .glyphicon{
-    display: block;
-  }
-
-
-}
-
-
-/* ==========================
-   Style Form Ajout Evenement
-   ========================== */
-
-h1 {
+#navBurgerTri {
   text-align: center;
-  padding-top: 0.15em;
-  font-weight: bold;
-  color: #616161;
-  margin: 0;
-  background-color: #03A9F4;
+  background-color: rgba(144, 202, 249, 0.75);
+  margin-bottom: 0px;
+  border-width: 0px;
 }
 
-#formEventId{
-  margin: 0 auto;
-
-  margin-top: 50px;
-  padding-top: 20px;
-
-  width: 80%;
+input[type=checkbox]:checked + label {
+  color: #FFF;
+  background-color: #0091EA;
+  border-radius: 5px;
+  padding: 0 10px;
+  box-shadow: 4px 4px 5px #BDBDBD;
+  opacity: 0.9;
 }
 
-#triCategorieId {
-  background-color: #03A9F4;
+input[type=checkbox] + label {
+  color: #FFF;
+  background-color: #0091EA;
+  border-radius: 5px;
+  padding: 0 10px;
+  box-shadow: 4px 4px 5px #BDBDBD;
+  opacity: 0.4;
+}
+
+input[type=checkbox] {
+  display: none;
+}
+
+label.triEventByCategory:hover {
+  background-color: #00B0FF;
+}
+
+input[type=checkbox]:checked + label:hover{
+    background-color: #00B0FF;
+}
+
+
+/* 
+* Style du bouton burger menu pour le tri des évènements par catégorie 
+*/
+
+#burgerTriId {
+  background: #90CAF9;
+  margin-left: 0.9em;
+  border: 0;
+}
+
+#triCategorieId {  
   position: absolute ;
-  margin: 0 auto;
   text-align: center;
-
   
   height: 40px;
   width: 100%;
 
   line-height: 40px;
   padding: 0;
-
 }
 
-/* Gestion des labels des checkbox de filtrage d'évènement */
+/* ==========================
+   Style Form Ajout Evenement
+   ========================== */
 
+#formEventId{
+  margin: 0 auto;
+  margin-top: 50px;
+  padding-top: 20px;
 
-input[type=checkbox]:checked + label {
-  color: #616161;
-  background: #0091EA;
-  border-radius: 5px;
-  padding: 0 10px;
-  box-shadow: 4px 4px 5px #BDBDBD;
-}
-
-input[type=checkbox] + label {
-  color: #BDBDBD;
-  
-}
-
-input[type=checkbox] {
-  display: none;
+  width: 80%;
 }
 
 /* Gestion du style des labels et des icônes 
@@ -295,3 +283,51 @@ label{
   display: none;
 }
 
+
+/*  Breakpoint à 767px  */
+
+/* 
+* Gestion pour les tablettes
+  et devices plus petits 
+*/
+@media screen and (max-width: 767px) {
+  /* gestion du menu */
+  li{
+    text-align: center;
+  }
+
+  li.checkbox-inline{
+    text-align: left;
+    margin-left: 10px;
+    padding: 0;
+    width: 30%;
+  }
+
+  #triCategorieId{
+    background-color: rgba(0,0,0,0);
+  }
+
+
+  #formEventId{
+    padding-bottom: 3em;
+  }
+
+  .ourBurgerMenu{
+    background: rgba(144, 202, 249, 0.75);
+  }
+
+  .btn-menu{
+    width: 100%;
+  }
+
+  /*
+    Gestion des labels dans le form addevent :
+    afin de conserver une homogénéité de présentation
+    (tous les labels se mettent sous les icones, en dessous de 768 px)
+  */
+  .glyphicon{
+    display: block;
+  }
+
+
+}

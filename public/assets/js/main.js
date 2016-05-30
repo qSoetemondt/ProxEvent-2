@@ -39,7 +39,7 @@ $(document).ready(function() {
 				$input_checkbox.attr('value', $categorie);
 				$input_checkbox.attr('id', $categorie + "Box");
 
-				$label_checkbox = $('<label for="' + $categorie + 'Box">' + $categorie + '</label>');
+				$label_checkbox = $('<label for="' + $categorie + 'Box" class="triEventByCategory">' + $categorie + '</label>');
 
 				$div_checkbox.append($input_checkbox);
 				$div_checkbox.append($label_checkbox);
