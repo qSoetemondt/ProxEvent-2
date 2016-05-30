@@ -28,7 +28,7 @@
 </h3>
 <div class="row">
     <div id="btnLogin">
-        <button class="btn btn-primary" href="<?= $this->url('oublie')?>">Mot de passe oublié ?</a>
+        <a class="btn btn-primary" href="<?= $this->url('oublie')?>">Mot de passe oublié ?</a>
         <button type="submit" class="btn btn-primary" id="btnLog" name="connexion">Connexion</button>
     </div>
 </div>

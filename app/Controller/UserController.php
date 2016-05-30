@@ -134,7 +134,7 @@ class UserController extends Controller
             }
             
             // vérifier le bon format
-            if(preg_match('/[a-zA-Z0-9\_\-\@]5,32}/' , $_POST['mot_de_passe']) == false) {
+            if(preg_match('/[a-zA-Z0-9\_\-\@]{5,32}/' , $_POST['mot_de_passe']) == false) {
                 $errors['mdp'] = 'Le mot de passe ne respecte pas le bon format.';
             }
             
