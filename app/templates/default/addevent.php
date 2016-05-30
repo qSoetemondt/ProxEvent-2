@@ -9,7 +9,17 @@
 		<!-- Div de rangement des catégories -->
 		<div class="form-group" id="rangeCategId">
 			<h2>Type d'événement</h2>
-			<?php if (isset($erreur)){ echo $erreur; } ?>
+			<?php
+			if (isset($erreur))
+			{
+			?>
+				<div id="categErreurId">
+					<?= $erreur; ?>
+				</div>
+			<?php
+			}
+			?>
+
 		</div>
 		<!-- Apparition des sous catégories : -->
 		<div class="form-group" id="rangeSubCategId">

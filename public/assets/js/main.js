@@ -3,17 +3,6 @@
   ==============================*/
 
 
-/**
- * Gère l'état pour un nouvel évènement créé
- * par un objet qui résiste au rafraîchissement de page
- */
-var newEventStatus = $.jStorage.get("key");
-// Si l'objet n'existe pas on l'initialise
-if(!newEventStatus) {
-    newEventStatus = $.jStorage.set("key","");
-}
-
-
 	/* ===========================================================
 		Génération dynamique des checkbox de filtrage d'évènements
 	   =========================================================== */
@@ -21,6 +10,18 @@ if(!newEventStatus) {
 
 /* au chargement complet de la page */
 $(document).ready(function() {
+
+	/**
+	 * Gère l'état pour un nouvel évènement créé
+	 * par un objet qui résiste au rafraîchissement de page
+	 */
+	var newEventStatus = $.jStorage.get("key");
+	console.dir(newEventStatus);
+	// Si l'objet n'existe pas on l'initialise
+	if(!newEventStatus) {
+	    newEventStatus = $.jStorage.set("key","");
+	}
+
 
 	/**
 	 * Gère les informations d'un évènement
@@ -34,6 +35,8 @@ $(document).ready(function() {
 
 		// on vide la valeur après affichage
 		$.jStorage.set("key","");
+		newEventStatus = "";
+
 	}
 
 	/**
