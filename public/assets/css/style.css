@@ -140,7 +140,7 @@ section>#mapOk {
 }
 #forminscription{
   margin:0 auto;
-  width:70em;
+  width:75%;
   border-radius: 20px;
   height: 19em;
   padding-top: 1.2em;
@@ -182,7 +182,6 @@ footer {
 .ourMenu{
   background: rgba(0,0,0,0);
   border: none;
-  width: 500px;
 }
 
 .btn-menu{
@@ -241,11 +240,11 @@ input[type=checkbox] {
 }
 
 label.triEventByCategory:hover {
-  background-color: #00B0FF;
+  background-color: #FFCDD2;
 }
 
 input[type=checkbox]:checked + label:hover{
-    background-color: #00B0FF;
+    background-color: #4DB6AC;
 }
 
 
@@ -254,7 +253,7 @@ input[type=checkbox]:checked + label:hover{
 */
 
 #burgerTriId {
-  background: #90CAF9;
+  background: #009688;
   margin-left: 0.9em;
   border: 0;
 }
@@ -287,7 +286,7 @@ li.checkbox-inline{
   margin-top: 50px;
   padding-top: 20px;
   /* Pour ne pas superposer le form avec le menu : */
-  padding-bottom: 3em;
+  padding-bottom: 4em;
   width: 80%;
 }
 
@@ -390,7 +389,7 @@ label{
 
 
   #formEventId{
-    padding-bottom: 3em;
+    padding-bottom: 4em;
   }
 
   .triEventByCategory{
