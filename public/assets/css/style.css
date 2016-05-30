@@ -141,7 +141,7 @@ section>#mapOk {
   width: 50%;
   margin:5px auto;
   height: 1.5em;
-  
+
 }
 .labelForm{
   color: white;
@@ -172,7 +172,7 @@ section>#mapOk {
   margin:0 auto;
   display: block;
   text-align: center;
-
+  width: 80%;
 }
 
 
@@ -181,6 +181,16 @@ section>#mapOk {
   padding-right: 3.337em;
 }
 
+#mailOublie{
+  display: block;
+  margin: 0 auto;
+  width: 70%;
+  text-align: center;
+}
+.mailOublierow{
+  margin:0 auto;
+  
+}
 
 /* ====================
     Infos & menus page
@@ -305,12 +315,14 @@ li.checkbox-inline{
   padding-bottom: 4em;
   width: 70%;
   border-radius: 20px;
-  
+
   margin-top: 8em;
   padding-top: 1.2em;
-  
+
   background-color: rgba(255,255,255,0.8);
 }
+
+
 
 /* Gestion du style des labels et des icônes
  dans le formulaire d'ajout d'évènement */
