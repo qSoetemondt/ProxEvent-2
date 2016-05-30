@@ -10,10 +10,11 @@ a:hover {
 
 h1 {
   text-align: center;
-  padding-top: 0.15em;
+  padding-top: 0;
+  margin: 0;
+  line-height: 1.7em;
   font-weight: bold;
   color: #FFF;
-  margin: 0;
   background-color: rgba(144, 202, 249, 0.75);
 }
 
@@ -142,9 +143,14 @@ footer {
 * Gestion des labels des checkbox de filtrage d'évènement 
 */
 
+#navbarTriEventId{
+  text-align: center;
+}
+
 #navBurgerTri {
   text-align: center;
-  background-color: rgba(144, 202, 249, 0.75);
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0);
   margin-bottom: 0px;
   border-width: 0px;
 }
@@ -191,7 +197,8 @@ input[type=checkbox]:checked + label:hover{
 }
 
 #triCategorieId {  
-  position: absolute ;
+  display: block;   
+  /*position: absolute;*/
   text-align: center;
   
   height: 40px;
@@ -200,6 +207,13 @@ input[type=checkbox]:checked + label:hover{
   line-height: 40px;
   padding: 0;
 }
+
+li.checkbox-inline{
+    text-align: center;
+    /*margin-left: 10px;
+    padding: 0;
+    width: 30%;*/
+  }
 
 /* ==========================
    Style Form Ajout Evenement

@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'PROXEveNT']) ?>
+<?php $this->layout('layout', ['title' => '']) ?>
 
 <?php $this->start('main_content') ?>
 
