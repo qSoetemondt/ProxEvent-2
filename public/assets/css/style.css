@@ -163,7 +163,7 @@ section>#mapOk {
   margin:0 auto;
   display: block;
   text-align: center;
-
+  width: 80%;
 }
 
 
@@ -172,6 +172,16 @@ section>#mapOk {
   padding-right: 3.337em;
 }
 
+#mailOublie{
+  display: block;
+  margin: 0 auto;
+  width: 70%;
+  text-align: center;
+}
+.mailOublierow{
+  margin:0 auto;
+  
+}
 
 /* ====================
     Infos & menus page
