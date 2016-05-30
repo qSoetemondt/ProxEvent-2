@@ -14,21 +14,24 @@
 console.log(value);
 
 
+
+	/* ===========================================================
+		Génération dynamique des checkbox de filtrage d'évènements
+	   =========================================================== */
+
 $(document).ready(function() {
 
 	$.ajax({
 		url: '/api/categories',
 		type: 'GET',
 		dataType: 'json',
-
 	})
 	.done(function(json) {
-		console.log(json);
-
+		
 		$(json).each(function(index, el) {
 			if($(json)[index]['parent_id'] == 0)
 			{
-				$div_checkbox = $('<div class="checkbox-inline">');
+				$div_checkbox = $('<li class="checkbox-inline">');
 
 				$input_checkbox = $('<input type="checkbox" checked>');
 				$categorie = $(json)[index]['libelle'];
@@ -36,7 +39,7 @@ $(document).ready(function() {
 				$input_checkbox.attr('value', $categorie);
 				$input_checkbox.attr('id', $categorie + "Box");
 
-				$label_checkbox = $('<label for="' + $categorie + 'Box">' + $categorie + '</label>');
+				$label_checkbox = $('<label for="' + $categorie + 'Box" class="triEventByCategory">' + $categorie + '</label>');
 
 				$div_checkbox.append($input_checkbox);
 				$div_checkbox.append($label_checkbox);
@@ -44,7 +47,6 @@ $(document).ready(function() {
 				$('#triCategorieId').append($div_checkbox);
 			}
 		});
-
 	})
 	.fail(function(error) {
 		console.log(error);
@@ -99,18 +101,15 @@ $(document).ready(function() {
 			// enrichi des catégories
 		var gmarkers = [];
 
-
-		// ************************************************
-		// Chargement des événements ciblés, par appel AJAX
+		/* ================================================
+		   Chargement des évènements ciblés, par appel AJAX
+		   ================================================ */
 		$.ajax({
 			url: '/api/events',
 			type: 'GET',
 			dataType: 'json',
-			// data: {param1: 'value1'},
 		})
 		.done(function(json) {
-			// console.log(json);
-
 			$(json).each(function(index, el) {
 
 				$latitude = $(json)[index]['latitude'];
@@ -173,11 +172,14 @@ $(document).ready(function() {
 					animation: google.maps.Animation.DROP
 				});
 
-
-				// création d'un tableau d'objets markers surchargés de la propriété mycategory
+				/*
+					Filtrage des markers de GoogleMap par catégorie:
+				*/
+				// création d'un tableau d'objets markers surchargés de la propriété mycategory 
 				marker['mycategory'] = $(json)[index]['libelle'];
 				gmarkers.push(marker);
-				// fonction pour montrer les marqueurs en fonction des catégories choisies dans les checkbox (home.php)
+				// fonction pour montrer les marqueurs en fonction des catégories choisies 
+
 				function show(category){
 					for( var i=0; i<gmarkers.length; i++ ){
 						if (gmarkers[i].mycategory == category) {
@@ -185,7 +187,7 @@ $(document).ready(function() {
 					    }
 					}
 				}
-				// fonction pour cacher les marqueurs en fonction des catégories choisies dans les checkbox (home.php)
+				// fonction pour cacher les marqueurs en fonction des catégories choisies 
 				function hide(category) {
 			        for ( var i=0; i<gmarkers.length; i++ ) {
 				        if (gmarkers[i].mycategory == category) {
@@ -194,7 +196,7 @@ $(document).ready(function() {
 			      	}
 			    }
 
-			    // fonction pour montrer ou cacher des marqueurs en réaction au clic sur les checkbox
+			    // fonction pour montrer ou cacher des marqueurs en réaction au clic sur une des checkbox en fonction de l'état de la checkbox
 				function boxclick(box,category) {
 			        if (box.checked) {
 			        	this.checked = true;
@@ -206,8 +208,8 @@ $(document).ready(function() {
 			        }
 			    }
 
-
-			    $('input[type=checkbox]').on('click', $('input[type=checkbox]') ,function(event) {
+			 	// Au clic sur une checkbox, on applique l'action de filtrage avec la fonction boxclick		  
+			   $('input[type=checkbox]').on('click', $('input[type=checkbox]') ,function(event) {
 			    	$categorie_traitee = $(this).val();
 			    	boxclick(this, $categorie_traitee);
 			    });
@@ -340,6 +342,7 @@ $(document).ready(function() {
 				});
 
 			});
+
 
 		})
 		.fail(function(error) {
