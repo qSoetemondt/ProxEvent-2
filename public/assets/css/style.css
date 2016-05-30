@@ -19,7 +19,7 @@ h1 {
 }
 
 h2 {
-	color: #66D9EF;
+	color: black;
 }
 
 
@@ -44,7 +44,8 @@ body {
   background-image: url('http://127.0.0.1/assets/img/bg-png.png');
   background-size: cover;
   background-color: rgba(0, 0, 0, 0.3);
-  
+  overflow-x: hidden;
+
 }
 
 .footer {
@@ -91,7 +92,7 @@ code {
 html, #mapOk {
   width: 100vw;
   height: 100vh;
-  
+
 }
 
 /* Position carte : arrière plan */
@@ -113,7 +114,7 @@ section>#mapOk {
   margin: 0;
 }
 /* ====================
-   Formulaire 
+   Formulaire
    ==================== */
 .info{
   font-size: 0.8em;
@@ -122,25 +123,25 @@ section>#mapOk {
   padding: 0 7px 0 9px;
   border-radius: 1em;
 }
-#login{
-  background: #AAA;
-}
+
 .errorForm{
-  color: white;
+  color: black;
   padding: 0 7px 0 9px;
   border-radius: 1em;
   text-align: center;
   width: 50%;
   margin:5px auto;
   height: 1.5em;
+  
 }
 .labelForm{
   color: white;
-  font-size: 1.2em; 
+  font-size: 1.2em;
 }
 #forminscription{
   margin:0 auto;
   width:75%;
+
   border-radius: 20px;
   height: 19em;
   padding-top: 1.2em;
@@ -150,25 +151,28 @@ section>#mapOk {
 }
 #formLogin{
   margin:0 auto;
-  width:70em;
+  width:80%;
   border-radius: 20px;
   height: 14em;
   margin-top: 13em;
   padding-top: 1.2em;
   vertical-align: middle;
-  background-color: rgba(255,255,255,0.3);
+  background-color: rgba(255,255,255,0.5);
 }
 #btnLogin{
   margin:0 auto;
   display: block;
   text-align: center;
-  
+
 }
+
 
 #btnLog{
   padding-left: 3.337em;
   padding-right: 3.337em;
 }
+
+
 /* ====================
     Infos & menus page
    ==================== */
@@ -281,13 +285,22 @@ li.checkbox-inline{
    Style Form Ajout Evenement
    ========================== */
 
-#formEventId{
+#formEventId {
   margin: 0 auto;
-  margin-top: 50px;
-  padding-top: 20px;
   /* Pour ne pas superposer le form avec le menu : */
   padding-bottom: 4em;
   width: 80%;
+
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 4em;
+  width: 70%;
+  border-radius: 20px;
+  
+  margin-top: 8em;
+  padding-top: 1.2em;
+  
+  background-color: rgba(255,255,255,0.8);
 }
 
 /* Gestion du style des labels et des icônes

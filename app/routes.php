@@ -16,8 +16,6 @@
 		// route vers le fichier json des événements
 		['GET', '/api/events', 'Api#apiEvent', 'apiEvent'],
 
-
-
 		// Route vers le form d'ajout d'événement
 		['GET|POST', '/addevent', 'Event#insertNewEvent', 'addEvent'],
 
@@ -25,7 +23,8 @@
 		['GET|POST', '/api/subcategories/[:id]', 'Api#subCategories', 'apiSubCategories'],
 
 		// Route vers l'API d'ajout d'événement :
-		['POST', '/api/addevent/[:id_user]/[:titre]/[:adresse]/[:latitude]/[:longitude]/[:categorie_id]/[:date_debut]/[:date_fin]/[:payant]/[:description]', 'API#insertNewEvent', 'ApiAddEvent']
+		// Pour les paramètres : mettre des "," pour les latitudes et les longitudes, et non pas des "." Voir API Controller pour voir les paramètres obligatoires
+		['GET|POST', '/api/addevent/[:id_user]/[:titre]/[:adresse]/[:latitude]/[:longitude]/[:categorie_id]/[:date_debut]/[:date_fin]/[:payant]/[:description]', 'API#insertNewEvent', 'ApiAddEvent']
 
 
 	);

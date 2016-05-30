@@ -87,10 +87,6 @@ class EventController extends Controller
 					$id_categorie = $_POST['radSubCategorie'];
 				}
 
-
-
-
-
 				// tableau associatif  de données relatives à l'évènement à insérer en BDD
 				$data = [
 						 'id' => NULL,
