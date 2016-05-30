@@ -10,11 +10,14 @@
 
 	<!-- Appel de la CSS reset -->
 	<!-- <link rel="stylesheet" href="<?= $this->assetUrl('css/normalize.css')?>"> -->
-	
+
 	<!-- Appel des CSS de datepicker -->
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/default.css')?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/default.date.css')?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/default.time.css')?>">
+
+	<!-- Appel de la CSS dialogbox pour message event crée (bootstrap dialog de nakupanda)-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/css/bootstrap-dialog.min.css">
 
 	<!-- Appel à notre CSS -->
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
@@ -81,12 +84,12 @@
 				<?php
 				}
 				?>
-			</ul>		
+			</ul>
 	    </div>
 	  </div>
 	</nav>
 
-	
+
 
 
 	<div class="contents">
@@ -112,12 +115,16 @@
 
 	<script src="https://maps.googleapis.com/maps/api/js?libraries=places&language=fr&key=AIzaSyAGNXG4UdnErAn4jfJ2lgwZ0OEGbT-6lws"></script>
 
+	<!-- Appel à bootstrap dialog (de nakupanda) -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/js/bootstrap-dialog.min.js"></script>
+
+
 	<!-- === SCRIPTS CUSTOM JS === -->
 	<!-- Appel à jstorage -->
 	<script src="<?= $this->assetUrl('js/jstorage.js') ?>"></script>
-	
-	<!-- Appel des scripts spécifiques -->
 
+
+	<!-- Appel des scripts spécifiques -->
 	<?= $this->section('scripts') ?>
 
 </body>

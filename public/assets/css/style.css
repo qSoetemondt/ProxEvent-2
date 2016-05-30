@@ -107,6 +107,25 @@ section>#mapOk {
   margin: 0;
 }
 
+/* Gestion de l'apparition du message de création d'event */
+#msgAddEventId{
+  display: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #009688;
+  opacity: 0.9;
+  line-height: 2em;
+  font-size: 1.1em;
+  color: #fff;
+  width: 20em;
+
+  text-align: center;
+  top: 15em;
+  left: 10em;
+  margin: 0 auto;
+  position: absolute;
+}
+
 
 /* ====================
     Infos & menus page

@@ -4,7 +4,7 @@
 
 
 <nav class="navbar navbar-default" id="navBurgerTri">
-  	<div class="container-fluid">	
+  	<div class="container-fluid">
 		 <!-- Brand and toggle get grouped for better mobile display -->
 	    <div class="navbar-header" id="menuBurgerTriId">
 	      	<button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#navbarTriEventId" aria-expanded="false" id="burgerTriId">
@@ -25,10 +25,9 @@
 	</div>
 </nav>
 
-	<!-- zone de message évènement ajouté -->
-	<div id="msgAddEventId"></div>
 	<!-- Appel Google map -->
-	<div id="mapOk"></div>
+	<div id="mapOk">
+	</div>
 	<!-- zone d'erreur -->
 	<div id="mapError"></div>
 

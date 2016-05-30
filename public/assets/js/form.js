@@ -73,7 +73,7 @@ $(document).ready(function() {
 		dataType: 'json',
 	})
 	.done(function(json) {
-		/* 
+		/*
 			Génération dynamique des checkboxes pour chaque catégorie principale :
 		*/
 		$form = $('#rangeCategId');
@@ -182,7 +182,7 @@ $(document).ready(function() {
 		// on ajoute le style :
 		$categorieFocused.addClass('focused');
 
-		/* 
+		/*
 			Gestion de l'affichage des sous-catégories
 		*/
 		// Récupération de l'id de la catégorie cliquée :
@@ -396,7 +396,7 @@ $(document).ready(function() {
 	 */
 	$('#btnFormEvent').click(function(event) {
 		if(!$.jStorage.get("key")) {
-			$.jStorage.set("key","nouvel évènement créé avec succès");
+			$.jStorage.set("key","OK");
 		}
 	});
 

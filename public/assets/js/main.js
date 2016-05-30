@@ -6,7 +6,7 @@
 /**
  * Gère l'état pour un nouvel évènement créé
  * par un objet qui résiste au rafraîchissement de page
- */ 
+ */
 var newEventStatus = $.jStorage.get("key");
 // Si l'objet n'existe pas on l'initialise
 if(!newEventStatus) {
@@ -27,14 +27,14 @@ $(document).ready(function() {
 	 * si l'on arrive du formulaire d'ajout évènement
 	 */
 	if(newEventStatus) {
-		// Gère l'affichage du message à l'écran
-		$('#msgAddEventId').text(newEventStatus);
-		$('#msgAddEventId').hide().toggle(500);
-		$('#msgAddEventId').show().toggle(5000);
+		// Appel à la fenêtre de dialogue bootstrap dialog
+		BootstrapDialog.show({
+            message: 'Nouvel évènement créé avec succès !'
+        });
+
 		// on vide la valeur après affichage
 		$.jStorage.set("key","");
 	}
-
 
 	/**
  	 * Génère le menu des catégories
@@ -47,7 +47,7 @@ $(document).ready(function() {
 		dataType: 'json',
 	})
 	.done(function(json) {
-		
+
 		$(json).each(function(index, el) {
 			if($(json)[index]['parent_id'] == 0)
 			{
@@ -197,10 +197,10 @@ $(document).ready(function() {
 				/*
 					Filtrage des markers de GoogleMap par catégorie:
 				*/
-				// création d'un tableau d'objets markers surchargés de la propriété mycategory 
+				// création d'un tableau d'objets markers surchargés de la propriété mycategory
 				marker['mycategory'] = $(json)[index]['libelle'];
 				gmarkers.push(marker);
-				// fonction pour montrer les marqueurs en fonction des catégories choisies 
+				// fonction pour montrer les marqueurs en fonction des catégories choisies
 
 				function show(category){
 					for( var i=0; i<gmarkers.length; i++ ){
@@ -209,7 +209,7 @@ $(document).ready(function() {
 					    }
 					}
 				}
-				// fonction pour cacher les marqueurs en fonction des catégories choisies 
+				// fonction pour cacher les marqueurs en fonction des catégories choisies
 				function hide(category) {
 			        for ( var i=0; i<gmarkers.length; i++ ) {
 				        if (gmarkers[i].mycategory == category) {
@@ -230,7 +230,7 @@ $(document).ready(function() {
 			        }
 			    }
 
-			 	// Au clic sur une checkbox, on applique l'action de filtrage avec la fonction boxclick		  
+			 	// Au clic sur une checkbox, on applique l'action de filtrage avec la fonction boxclick
 			   $('input[type=checkbox]').on('click', $('input[type=checkbox]') ,function(event) {
 			    	$categorie_traitee = $(this).val();
 			    	boxclick(this, $categorie_traitee);
