@@ -19,7 +19,7 @@ h1 {
 }
 
 h2 {
-	color: #66D9EF;
+	color: black;
 }
 
 
@@ -121,17 +121,16 @@ section>#mapOk {
   padding: 0 7px 0 9px;
   border-radius: 1em;
 }
-#login{
-  background: #AAA;
-}
+
 .errorForm{
-  color: white;
+  color: black;
   padding: 0 7px 0 9px;
   border-radius: 1em;
   text-align: center;
   width: 50%;
   margin:5px auto;
   height: 1.5em;
+  
 }
 .labelForm{
   color: white;
@@ -139,7 +138,7 @@ section>#mapOk {
 }
 #forminscription{
   margin:0 auto;
-  width:70em;
+  width:80%;
   border-radius: 20px;
   height: 19em;
   padding-top: 1.2em;
@@ -149,13 +148,13 @@ section>#mapOk {
 }
 #formLogin{
   margin:0 auto;
-  width:70em;
+  width:80%;
   border-radius: 20px;
   height: 14em;
   margin-top: 13em;
   padding-top: 1.2em;
   vertical-align: middle;
-  background-color: rgba(255,255,255,0.3);
+  background-color: rgba(255,255,255,0.5);
 }
 #btnLogin{
   margin:0 auto;
@@ -181,7 +180,6 @@ footer {
 .ourMenu{
   background: rgba(0,0,0,0);
   border: none;
-  width: 500px;
 }
 
 .btn-menu{
@@ -283,11 +281,18 @@ li.checkbox-inline{
 
 #formEventId{
   margin: 0 auto;
-  margin-top: 50px;
-  padding-top: 20px;
   /* Pour ne pas superposer le form avec le menu : */
-  padding-bottom: 3em;
-  width: 80%;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 4em;
+  width: 70%;
+  border-radius: 20px;
+  
+  margin-top: 8em;
+  padding-top: 1.2em;
+  
+  background-color: rgba(255,255,255,0.8);
+  
 }
 
 /* Gestion du style des labels et des icônes
@@ -389,7 +394,7 @@ label{
 
 
   #formEventId{
-    padding-bottom: 3em;
+    padding-bottom: 4em;
   }
 
   .triEventByCategory{
