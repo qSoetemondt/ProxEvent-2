@@ -44,7 +44,7 @@ body {
   background-image: url('http://127.0.0.1/assets/img/bg-png.png');
   background-size: cover;
   background-color: rgba(0, 0, 0, 0.3);
-  
+
 }
 
 .footer {
@@ -60,6 +60,7 @@ body {
 
 body > .container {
   padding: 60px 15px 0;
+  width: 100%;
 }
 .container .text-muted {
   margin: 20px 0;
@@ -90,7 +91,7 @@ code {
 html, #mapOk {
   width: 100vw;
   height: 100vh;
-  
+
 }
 
 /* Position carte : arrière plan */
@@ -112,7 +113,7 @@ section>#mapOk {
   margin: 0;
 }
 /* ====================
-   Formulaire 
+   Formulaire
    ==================== */
 .info{
   font-size: 0.8em;
@@ -134,7 +135,7 @@ section>#mapOk {
 }
 .labelForm{
   color: white;
-  font-size: 1.2em; 
+  font-size: 1.2em;
 }
 #forminscription{
   margin:0 auto;
@@ -160,13 +161,16 @@ section>#mapOk {
   margin:0 auto;
   display: block;
   text-align: center;
-  
+
 }
+
 
 #btnLog{
   padding-left: 3.337em;
   padding-right: 3.337em;
 }
+
+
 /* ====================
     Infos & menus page
    ==================== */
