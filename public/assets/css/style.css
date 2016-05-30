@@ -140,7 +140,7 @@ footer {
 
 
 /*
-* Gestion des labels des checkbox de filtrage d'évènement 
+* Gestion des labels des checkbox de filtrage d'évènement
 */
 
 #navbarTriEventId{
@@ -157,20 +157,21 @@ footer {
 
 input[type=checkbox]:checked + label {
   color: #FFF;
-  background-color: #0091EA;
+  background-color: #009688;
   border-radius: 5px;
   padding: 0 10px;
+  /*padding: 0 5em;*/
   box-shadow: 4px 4px 5px #BDBDBD;
   opacity: 0.9;
 }
 
 input[type=checkbox] + label {
   color: #FFF;
-  background-color: #0091EA;
+  background-color: #EF9A9A;
   border-radius: 5px;
   padding: 0 10px;
   box-shadow: 4px 4px 5px #BDBDBD;
-  opacity: 0.4;
+  opacity: 0.9;
 }
 
 input[type=checkbox] {
@@ -186,8 +187,8 @@ input[type=checkbox]:checked + label:hover{
 }
 
 
-/* 
-* Style du bouton burger menu pour le tri des évènements par catégorie 
+/*
+* Style du bouton burger menu pour le tri des évènements par catégorie
 */
 
 #burgerTriId {
@@ -196,23 +197,23 @@ input[type=checkbox]:checked + label:hover{
   border: 0;
 }
 
-#triCategorieId {  
-  display: block;   
-  /*position: absolute;*/
+#triCategorieId {
+  display: block;
   text-align: center;
-  
+
   height: 40px;
   width: 100%;
 
   line-height: 40px;
   padding: 0;
+  margin-top: 0.75em;
+
 }
 
 li.checkbox-inline{
     text-align: center;
-    /*margin-left: 10px;
     padding: 0;
-    width: 30%;*/
+    /*width: 30%;*/
   }
 
 /* ==========================
@@ -223,11 +224,12 @@ li.checkbox-inline{
   margin: 0 auto;
   margin-top: 50px;
   padding-top: 20px;
-
+  /* Pour ne pas superposer le form avec le menu : */
+  padding-bottom: 3em;
   width: 80%;
 }
 
-/* Gestion du style des labels et des icônes 
+/* Gestion du style des labels et des icônes
  dans le formulaire d'ajout d'évènement */
 
 input[type=radio]:checked + span {
@@ -300,9 +302,9 @@ label{
 
 /*  Breakpoint à 767px  */
 
-/* 
+/*
 * Gestion pour les tablettes
-  et devices plus petits 
+  et devices plus petits
 */
 @media screen and (max-width: 767px) {
   /* gestion du menu */
@@ -314,16 +316,22 @@ label{
     text-align: left;
     margin-left: 10px;
     padding: 0;
-    width: 30%;
+    /*width: 100%;*/
+    width: 6em;
   }
 
   #triCategorieId{
     background-color: rgba(0,0,0,0);
+    position: absolute;
+    text-align: center;
   }
 
 
   #formEventId{
     padding-bottom: 3em;
+  }
+
+  .triEventByCategory{
   }
 
   .ourBurgerMenu{
