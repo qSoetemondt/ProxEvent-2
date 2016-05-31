@@ -16,7 +16,6 @@ $(document).ready(function() {
 	 * par un objet qui résiste au rafraîchissement de page
 	 */
 	var newEventStatus = $.jStorage.get("key");
-	console.dir(newEventStatus);
 	// Si l'objet n'existe pas on l'initialise
 	if(!newEventStatus) {
 	    newEventStatus = $.jStorage.set("key","");
@@ -35,9 +34,8 @@ $(document).ready(function() {
 
 		// on vide la valeur après affichage
 		$.jStorage.set("key","");
-		newEventStatus = "";
 
-	}
+	}	
 
 	/**
  	 * Génère le menu des catégories

@@ -41,7 +41,9 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
   position: relative;
-  background-image: url('http://127.0.0.1/assets/img/bg-png.png');
+  /*background-image: url('http://127.0.0.1/assets/img/bg-png.png');*/
+  background-image: url('/assets/img/bg-png.png');
+
   background-size: cover;
   background-color: rgba(0, 0, 0, 0.3);
   overflow-x: hidden;
@@ -101,18 +103,27 @@ section>#mapOk {
   z-index: -10;
 }
 
-/*Infobulle*/
+/* =============
+    Infobulle
+   ============= */
 
 .infobulle > h3{
   font-size : 1.2rem;
   color: deeppink;
+  margin: 0;
 }
 .infobulle > h4{
   font-size : 1.1rem;
+  margin: 0;
 }
 .Event{
   margin: 0;
 }
+
+.infobulle > p {
+  margin: 0;
+}
+
 /* ====================
    Formulaire
    ==================== */
@@ -219,6 +230,7 @@ footer {
 */
 
 #navbarTriEventId{
+  border: none;
   text-align: center;
 }
 
@@ -313,7 +325,22 @@ li.checkbox-inline{
   background-color: rgba(255,255,255,0.8);
 }
 
+/* Pour éviter l'effet de flicker du bloc facultatif du form */
+#facultatifForm{
+  display: none;
+}
 
+/* Gestion d'erreur sur la catégorie : */
+#categErreurId{
+  display: none;
+  text-align: center;
+  color: #fff;
+  background: #EF5350;
+  width: 50%;
+  margin: 1em auto;
+  line-height: 2em;
+  border-radius: 5px;
+}
 
 /* Gestion du style des labels et des icônes
  dans le formulaire d'ajout d'évènement */
@@ -352,6 +379,10 @@ label{
 
 #rangeCategId{
   margin-bottom: 4em;
+}
+
+#rangeCategId > h2 {
+  text-align: center;
 }
 
 /* bouton "Plus d'options" */
