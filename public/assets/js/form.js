@@ -394,7 +394,7 @@ $(document).ready(function() {
 	 * Gère la persistance du message "évènement ajouté"
 	 * à la soumission du formulaire
 	 */
-	$('#btnFormEvent').submit(function(event) {
+	$('#btnFormEvent').click(function(event) {
 		if(!$.jStorage.get("key")) {
 			$.jStorage.set("key","OK");
 		}
