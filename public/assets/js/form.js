@@ -133,10 +133,7 @@ $(document).ready(function() {
 				// création de l'input de type radio
 				$input = $('<input id="'+ $id_categorie +'" type="radio" name="radCategorie" value="'+ $id_categorie +'">');
 
-				// console.log('libelle : ');
 				$libelle = $(json)[index]['libelle'];
-				//console.log($libelle);
-				//console.log(typeof($libelle));
 
 				// Création d'un élément de ligne
 				$elementRow = $('<div class="col-xs-4">');
@@ -243,7 +240,9 @@ $(document).ready(function() {
 					$elementSub.css('display', 'block').hide().toggle(250);
 				}
 			}
-			else
+			// On rajout la lecture du CSS pour éviter un effet de flickering
+			// si jamais le bloc n'est pas apparent
+			else if(compteur == 0 && $elementSub.css('display') == 'block')
 			{
 				$elementSub.css('display', 'none').show().toggle(250);
 			}
@@ -377,7 +376,7 @@ $(document).ready(function() {
 	// simplifié ou complet : au clic sur un bouton, on toggle
 	// le form complet ou non. Par défaut, form simplifié.
 	$optionnel = $('#facultatifForm');
-	$optionnel.hide();
+	// $optionnel.hide();
 
 	$btnOpt = $('#btnOptId');
 
@@ -395,9 +394,16 @@ $(document).ready(function() {
 	 * à la soumission du formulaire
 	 */
 	$('#btnFormEvent').click(function(event) {
-		if(!$.jStorage.get("key")) {
+		// On vérifie que l'on clique sur la soumission de form ET
+		// qu'une catégorie est bien sélectionnée
+		if($.jStorage.get("key") == "" && $('input[name = "radCategorie"]').is(':checked')) {
 			$.jStorage.set("key","OK");
 		}
 	});
+
+	// En cas d'absence de catégorie, apparition du message de façon smooth :
+	$('#categErreurId').hide().fadeIn(1000);
+
+
 
 });
