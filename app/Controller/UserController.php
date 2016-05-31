@@ -85,7 +85,7 @@ class UserController extends Controller
             }else{
             if(!$errors){
                 $m = new mdpManager();
-                $r = $m->token();
+                $r = $m->token($_POST['email']);
                 
                 $mailTo = $_POST['email'];
                 $mail             = new \PHPMailer();
@@ -126,6 +126,7 @@ class UserController extends Controller
     }
     public function reinit($id,$token)
     {
+        
         $errors = [];
         if(isset($_POST['changement'])){
             // vérifier si champs vides
@@ -144,7 +145,8 @@ class UserController extends Controller
             }
              if(!$errors){
                 $m = new mdpManager();
-                $m->reinit();
+                $password = password_hash($_POST['mot_de_passe'], PASSWORD_DEFAULT);
+                $m->reinit($id,$token,$password);
                 $this->redirectToRoute('login');
             }   
         }

@@ -5,12 +5,12 @@ namespace Manager;
 
 class mdpManager extends \W\Manager\Manager
 {
-    public function token(){
+    public function token($email){
         if (isset($_POST['reinit'])) {    
             $token = md5(uniqid(rand(),true));
             $sql = "SELECT * FROM wusers WHERE email = :email";
             $stmt = $this->dbh->prepare($sql);
-            $stmt->bindValue(":email",$_POST['email']);
+            $stmt->bindValue(":email",$email);
             $stmt->execute();
             $user = $stmt->fetch();
             // echo "<a href=\"reinit.php?id=" . $user['id'] . "&token=" . $token . "\">lien</a>";
@@ -26,26 +26,23 @@ class mdpManager extends \W\Manager\Manager
  
     }
     
-    public function reinit($id,$token){
-        $sql = "SELECT count(*) as nb FROM tokens WHERE utilisateur_id = :id AND token = :token AND date_validite > NOW()";
+    public function reinit($id,$token, $password){
+        $sql = "SELECT count(*) as nb FROM tokens WHERE user_id = :id AND token = :token AND date_validite > NOW()";
         $stmt = $this->dbh->prepare($sql);
         $stmt->bindValue(":id",$id);
         $stmt->bindValue(":token",$token);
         $stmt->execute();
         $tok = $stmt->fetch();
-        if (isset($_POST['changement'])) {
-                $password = trim($_POST['mot_de_passe']);
-                $password = password_hash($password, PASSWORD_DEFAULT);
-                $sql = 'UPDATE utilisateurs SET mot_de_passe = :mot_de_passe WHERE id = :id';
-                $stmt = $this->dbh->prepare($sql);
-                $stmt->bindValue(':mot_de_passe',$password);
-                $stmt->bindValue(':id',$id);
-                $stmt->execute();
-                $sql = "DELETE FROM tokens WHERE utilisateur_id = :id";
-                $stmt = $this->dbh->prepare($sql);
-                $stmt->bindValue(':id',$id);
-                $stmt->execute();
+        $sql = 'UPDATE wusers SET password = :mot_de_passe WHERE id = :id';
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':mot_de_passe',$password);
+        $stmt->bindValue(':id',$id);
+        $stmt->execute();
+        $sql = "DELETE FROM tokens WHERE user_id = :id";
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':id',$id);
+        $stmt->execute();
             }
-        }
-    }
+}
+    
     
